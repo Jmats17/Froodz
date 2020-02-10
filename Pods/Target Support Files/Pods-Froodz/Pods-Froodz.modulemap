@@ -1,0 +1,6 @@
+framework module Pods_Froodz {
+  umbrella header "Pods-Froodz-umbrella.h"
+
+  export *
+  module * { export * }
+}

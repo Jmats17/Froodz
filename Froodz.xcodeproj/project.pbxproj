@@ -3,27 +3,47 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		D072697A23F0C85F002760ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072697923F0C85F002760ED /* AppDelegate.swift */; };
 		D072697C23F0C85F002760ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072697B23F0C85F002760ED /* SceneDelegate.swift */; };
-		D072697E23F0C85F002760ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072697D23F0C85F002760ED /* ViewController.swift */; };
 		D072698123F0C85F002760ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D072697F23F0C85F002760ED /* Main.storyboard */; };
 		D072698323F0C860002760ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D072698223F0C860002760ED /* Assets.xcassets */; };
 		D072698623F0C860002760ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D072698423F0C860002760ED /* LaunchScreen.storyboard */; };
+		D072699223F0CA3D002760ED /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699123F0CA3D002760ED /* UserService.swift */; };
+		D072699823F1FB10002760ED /* ActiveGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699723F1FB10002760ED /* ActiveGroupsViewController.swift */; };
+		D072699A23F1FB6D002760ED /* SelectedGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */; };
+		D072699D23F1FC3D002760ED /* ActiveGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699C23F1FC3D002760ED /* ActiveGroupTableViewCell.swift */; };
+		D072699F23F1FC79002760ED /* LiveLineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699E23F1FC79002760ED /* LiveLineTableViewCell.swift */; };
+		D07269A323F1FED0002760ED /* ActiveGroups-TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269A223F1FED0002760ED /* ActiveGroups-TableViewExtension.swift */; };
+		D07269AB23F20253002760ED /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269AA23F20253002760ED /* GroupService.swift */; };
+		D07269AD23F202D7002760ED /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269AC23F202D7002760ED /* Helper.swift */; };
+		D07269B023F20ACA002760ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D07269AF23F20ACA002760ED /* GoogleService-Info.plist */; };
+		D390F8F41647BA48B2456F2B /* Pods_Froodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3304F30116A359A2908B18E3 /* Pods_Froodz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.release.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.release.xcconfig"; sourceTree = "<group>"; };
+		3304F30116A359A2908B18E3 /* Pods_Froodz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Froodz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85EDD8752165AD430FFF64E7 /* Pods-Froodz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.debug.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.debug.xcconfig"; sourceTree = "<group>"; };
 		D072697623F0C85F002760ED /* Froodz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Froodz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D072697923F0C85F002760ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D072697B23F0C85F002760ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D072697D23F0C85F002760ED /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D072698023F0C85F002760ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D072698223F0C860002760ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D072698523F0C860002760ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D072698723F0C860002760ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D072699123F0CA3D002760ED /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		D072699723F1FB10002760ED /* ActiveGroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGroupsViewController.swift; sourceTree = "<group>"; };
+		D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGroupViewController.swift; sourceTree = "<group>"; };
+		D072699C23F1FC3D002760ED /* ActiveGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGroupTableViewCell.swift; sourceTree = "<group>"; };
+		D072699E23F1FC79002760ED /* LiveLineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLineTableViewCell.swift; sourceTree = "<group>"; };
+		D07269A223F1FED0002760ED /* ActiveGroups-TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveGroups-TableViewExtension.swift"; sourceTree = "<group>"; };
+		D07269AA23F20253002760ED /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
+		D07269AC23F202D7002760ED /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D07269AF23F20ACA002760ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +51,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D390F8F41647BA48B2456F2B /* Pods_Froodz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85B21A1AE8878FBC415EAA94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3304F30116A359A2908B18E3 /* Pods_Froodz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9AB42BA30FB1588ACB601209 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				85EDD8752165AD430FFF64E7 /* Pods-Froodz.debug.xcconfig */,
+				31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D072696D23F0C85F002760ED = {
 			isa = PBXGroup;
 			children = (
 				D072697823F0C85F002760ED /* Froodz */,
 				D072697723F0C85F002760ED /* Products */,
+				9AB42BA30FB1588ACB601209 /* Pods */,
+				85B21A1AE8878FBC415EAA94 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +98,85 @@
 			children = (
 				D072697923F0C85F002760ED /* AppDelegate.swift */,
 				D072697B23F0C85F002760ED /* SceneDelegate.swift */,
-				D072697D23F0C85F002760ED /* ViewController.swift */,
+				D072699023F0C9D8002760ED /* Helpers */,
+				D072698F23F0C9C9002760ED /* Service */,
+				D072698E23F0C9BE002760ED /* Model */,
+				D072698D23F0C9B6002760ED /* View Controllers */,
+				D072699B23F1FC1D002760ED /* Tableview Cells */,
 				D072697F23F0C85F002760ED /* Main.storyboard */,
 				D072698223F0C860002760ED /* Assets.xcassets */,
 				D072698423F0C860002760ED /* LaunchScreen.storyboard */,
 				D072698723F0C860002760ED /* Info.plist */,
+				D07269AF23F20ACA002760ED /* GoogleService-Info.plist */,
 			);
 			path = Froodz;
+			sourceTree = "<group>";
+		};
+		D072698D23F0C9B6002760ED /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D07269A423F1FF1F002760ED /* Active Groups */,
+				D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D072698E23F0C9BE002760ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D072698F23F0C9C9002760ED /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D07269A923F2022C002760ED /* Groups */,
+				D07269AE23F206DB002760ED /* Users */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D072699023F0C9D8002760ED /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D07269AC23F202D7002760ED /* Helper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D072699B23F1FC1D002760ED /* Tableview Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D072699C23F1FC3D002760ED /* ActiveGroupTableViewCell.swift */,
+				D072699E23F1FC79002760ED /* LiveLineTableViewCell.swift */,
+			);
+			path = "Tableview Cells";
+			sourceTree = "<group>";
+		};
+		D07269A423F1FF1F002760ED /* Active Groups */ = {
+			isa = PBXGroup;
+			children = (
+				D072699723F1FB10002760ED /* ActiveGroupsViewController.swift */,
+				D07269A223F1FED0002760ED /* ActiveGroups-TableViewExtension.swift */,
+			);
+			path = "Active Groups";
+			sourceTree = "<group>";
+		};
+		D07269A923F2022C002760ED /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				D07269AA23F20253002760ED /* GroupService.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		D07269AE23F206DB002760ED /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				D072699123F0CA3D002760ED /* UserService.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D072698A23F0C860002760ED /* Build configuration list for PBXNativeTarget "Froodz" */;
 			buildPhases = (
+				0D5ADCFD4DB62E6B25E8A917 /* [CP] Check Pods Manifest.lock */,
 				D072697223F0C85F002760ED /* Sources */,
 				D072697323F0C85F002760ED /* Frameworks */,
 				D072697423F0C85F002760ED /* Resources */,
+				75C574ACB1FF472FDA87E391 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D072698623F0C860002760ED /* LaunchScreen.storyboard in Resources */,
+				D07269B023F20ACA002760ED /* GoogleService-Info.plist in Resources */,
 				D072698323F0C860002760ED /* Assets.xcassets in Resources */,
 				D072698123F0C85F002760ED /* Main.storyboard in Resources */,
 			);
@@ -133,14 +248,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D5ADCFD4DB62E6B25E8A917 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Froodz-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75C574ACB1FF472FDA87E391 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Froodz/Pods-Froodz-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Froodz/Pods-Froodz-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Froodz/Pods-Froodz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D072697223F0C85F002760ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D072697E23F0C85F002760ED /* ViewController.swift in Sources */,
+				D072699823F1FB10002760ED /* ActiveGroupsViewController.swift in Sources */,
+				D07269AB23F20253002760ED /* GroupService.swift in Sources */,
+				D07269A323F1FED0002760ED /* ActiveGroups-TableViewExtension.swift in Sources */,
+				D072699F23F1FC79002760ED /* LiveLineTableViewCell.swift in Sources */,
 				D072697A23F0C85F002760ED /* AppDelegate.swift in Sources */,
+				D072699A23F1FB6D002760ED /* SelectedGroupViewController.swift in Sources */,
+				D072699D23F1FC3D002760ED /* ActiveGroupTableViewCell.swift in Sources */,
+				D07269AD23F202D7002760ED /* Helper.swift in Sources */,
 				D072697C23F0C85F002760ED /* SceneDelegate.swift in Sources */,
+				D072699223F0CA3D002760ED /* UserService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +446,7 @@
 		};
 		D072698B23F0C860002760ED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85EDD8752165AD430FFF64E7 /* Pods-Froodz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +465,7 @@
 		};
 		D072698C23F0C860002760ED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
