@@ -11,11 +11,16 @@ import UIKit
 class ActiveGroupsViewController: UIViewController {
 
     @IBOutlet weak var tableView : UITableView!
-
+    
+    var groups = [Group]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        UserGroups_Service.return_ActiveGroups { (groups) in
+            self.groups = groups
+            self.tableView.reloadData()
+        }
     }
    
     @IBAction func tappedJoinGroup(sender : UIButton) {

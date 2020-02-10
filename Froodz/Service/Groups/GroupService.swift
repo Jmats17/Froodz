@@ -12,7 +12,7 @@ import FirebaseFirestore
 
 struct GroupService {
     
-    static let FBRef = Firestore.firestore().collection("Groups")
+    private static let FBRef = Firestore.firestore().collection("Groups")
     
     //Creating new group to push to FB
     static func didCreateNewGroup(groupName : String, didRegister: @escaping (Bool) -> Void) {
@@ -32,8 +32,10 @@ struct GroupService {
         }
         
     }
+    
     //Joining existing group as a user and pushing data to FB
     static func didJoinExistingGroup() {
         
     }
+    
 }

@@ -21,6 +21,10 @@
 		D07269AB23F20253002760ED /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269AA23F20253002760ED /* GroupService.swift */; };
 		D07269AD23F202D7002760ED /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269AC23F202D7002760ED /* Helper.swift */; };
 		D07269B023F20ACA002760ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D07269AF23F20ACA002760ED /* GoogleService-Info.plist */; };
+		D07269B223F20E56002760ED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269B123F20E56002760ED /* User.swift */; };
+		D07269B423F21082002760ED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269B323F21082002760ED /* Extensions.swift */; };
+		D07269B623F214F1002760ED /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269B523F214F1002760ED /* Group.swift */; };
+		D07269B923F2156F002760ED /* User+Groups_Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269B823F2156F002760ED /* User+Groups_Service.swift */; };
 		D390F8F41647BA48B2456F2B /* Pods_Froodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3304F30116A359A2908B18E3 /* Pods_Froodz.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +48,10 @@
 		D07269AA23F20253002760ED /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
 		D07269AC23F202D7002760ED /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D07269AF23F20ACA002760ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D07269B123F20E56002760ED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D07269B323F21082002760ED /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D07269B523F214F1002760ED /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		D07269B823F2156F002760ED /* User+Groups_Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Groups_Service.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +132,8 @@
 		D072698E23F0C9BE002760ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D07269B123F20E56002760ED /* User.swift */,
+				D07269B523F214F1002760ED /* Group.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -131,6 +141,7 @@
 		D072698F23F0C9C9002760ED /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				D07269B723F2155A002760ED /* User+Groups */,
 				D07269A923F2022C002760ED /* Groups */,
 				D07269AE23F206DB002760ED /* Users */,
 			);
@@ -141,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				D07269AC23F202D7002760ED /* Helper.swift */,
+				D07269B323F21082002760ED /* Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -177,6 +189,14 @@
 				D072699123F0CA3D002760ED /* UserService.swift */,
 			);
 			path = Users;
+			sourceTree = "<group>";
+		};
+		D07269B723F2155A002760ED /* User+Groups */ = {
+			isa = PBXGroup;
+			children = (
+				D07269B823F2156F002760ED /* User+Groups_Service.swift */,
+			);
+			path = "User+Groups";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,16 +315,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07269B923F2156F002760ED /* User+Groups_Service.swift in Sources */,
 				D072699823F1FB10002760ED /* ActiveGroupsViewController.swift in Sources */,
 				D07269AB23F20253002760ED /* GroupService.swift in Sources */,
 				D07269A323F1FED0002760ED /* ActiveGroups-TableViewExtension.swift in Sources */,
 				D072699F23F1FC79002760ED /* LiveLineTableViewCell.swift in Sources */,
 				D072697A23F0C85F002760ED /* AppDelegate.swift in Sources */,
 				D072699A23F1FB6D002760ED /* SelectedGroupViewController.swift in Sources */,
+				D07269B623F214F1002760ED /* Group.swift in Sources */,
 				D072699D23F1FC3D002760ED /* ActiveGroupTableViewCell.swift in Sources */,
+				D07269B423F21082002760ED /* Extensions.swift in Sources */,
 				D07269AD23F202D7002760ED /* Helper.swift in Sources */,
 				D072697C23F0C85F002760ED /* SceneDelegate.swift in Sources */,
 				D072699223F0CA3D002760ED /* UserService.swift in Sources */,
+				D07269B223F20E56002760ED /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

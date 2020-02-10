@@ -7,6 +7,7 @@ target 'Froodz' do
 pod 'FirebaseFirestoreSwift'
 pod 'Firebase/Firestore'
 pod 'Firebase/Auth'
+pod 'CodableFirebase'
   # Pods for Froodz
 
 end

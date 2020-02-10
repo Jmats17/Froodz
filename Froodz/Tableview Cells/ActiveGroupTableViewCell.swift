@@ -22,5 +22,9 @@ class ActiveGroupTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setCellDataWithGroup(_ group : Group) {
+        self.groupNameLbl.text = group.groupName
+    }
 
 }
