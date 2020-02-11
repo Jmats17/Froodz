@@ -8,15 +8,24 @@
 
 import UIKit
 
+protocol BetButtonDelegate {
+    func minusButtonTapped(at indexPath : IndexPath)
+    func plusButtonTapped(at indexPath : IndexPath)
+}
+
 class LiveLineTableViewCell: UITableViewCell {
 
     @IBOutlet weak var liveLineNameLbl : UILabel!
     @IBOutlet weak var first_BetButton : UIButton!
     @IBOutlet weak var second_BetButton : UIButton!
     
+    var indexPath : IndexPath!
+    var delegate : BetButtonDelegate!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,5 +49,24 @@ class LiveLineTableViewCell: UITableViewCell {
         }
     }
     
+    func betInitiated(line : Line, groupID: String, sideTapped: String) {
+        guard let lineID = line.documentId else {return}
+        LineService.checkUserPlaceLineBet(groupID: groupID, lineID: lineID, selectedLine: sideTapped) { (didPlaceBet) in
+            if didPlaceBet {
+                print("already exists")
+            } else {
+                print("didnt place yet")
+                LineService.addUser_ToLineSide(groupID: groupID, lineID: lineID, sideTapped: sideTapped)
+            }
+        }
+    }
+    
+    @IBAction func firstBetButtonTapped(sender : UIButton) {
+        self.delegate?.minusButtonTapped(at: indexPath)
+    }
+    
+    @IBAction func secondBetButtonTapped(sender : UIButton) {
+        self.delegate?.plusButtonTapped(at: indexPath)
+    }
 
 }

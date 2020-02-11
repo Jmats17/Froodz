@@ -16,10 +16,11 @@ struct LineService {
     static let FBRef = Firestore.firestore().collection("Groups")
     
     static func pushNewLine_ToGroup(lineName : String, amount : Int, secondAmt : Int?, groupID : String, type: String, completion: @escaping (Bool) -> Void) {
-        
-            let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, optionalSecondLine: secondAmt, users: nil)
+
+        let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, optionalSecondLine: secondAmt, users: [UIDevice.current.identifierForVendor!.uuidString], creator: UIDevice.current.identifierForVendor!.uuidString, over: [], under: [])
+
             let lineData = try! FirestoreEncoder().encode(line)
-            
+
             FBRef.document(groupID).collection("Lines").addDocument(data: lineData) { error in
                 if let error = error {
                     completion(false)
@@ -29,6 +30,50 @@ struct LineService {
                     print("Document successfully written!")
                 }
             }
+    }
+    
+    static func checkUserPlaceLineBet(groupID : String, lineID: String,
+                                      selectedLine: String, completion: @escaping (_ didPlaceBetAlready: Bool) -> Void) {
+
+        let user = UIDevice.current.identifierForVendor!.uuidString
+
+        FBRef.document(groupID).collection("Lines").document(lineID).getDocument { (snapshot, error) in
+            if let err = error {
+                print(err.localizedDescription)
+                completion(true)
+                return
+            }
+
+            guard let data = snapshot else {completion(true) ; return}
+            let line = try! FirestoreDecoder().decode(Line.self, from: data.prepareForDecoding())
+
+            if !line.under.isEmpty, line.under.contains(user) {
+                completion(true)
+                return
+            } else if !line.over.isEmpty, line.over.contains(user) {
+                completion(true)
+                return
+            }
+            
+            completion(false)
+            return
+        }
+    }
+    
+    static func addUser_ToLineSide(groupID : String, lineID: String, sideTapped: String) {
+
+        if sideTapped == "Minus" {
+            FBRef.document(groupID).collection("Lines").document(lineID).updateData([
+                "under": FieldValue.arrayUnion([UIDevice.current.identifierForVendor!.uuidString]),
+                "over": FieldValue.arrayUnion([])
+            ])
+        } else {
+            FBRef.document(groupID).collection("Lines").document(lineID).updateData([
+                "over": FieldValue.arrayUnion([UIDevice.current.identifierForVendor!.uuidString]),
+                "under": FieldValue.arrayUnion([])
+            ])
+        }
+        
     }
     
     static func retrieve_CurrentLines(groupID: String, completion: @escaping ([Line]) -> Void) {

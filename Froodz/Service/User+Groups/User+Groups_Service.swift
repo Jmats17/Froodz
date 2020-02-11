@@ -37,7 +37,6 @@ struct UserGroups_Service {
             }
             
             guard let snapshot = documentSnapshot else { completion([]); return }
-            print(groupIds)
             for document in snapshot.documents {
                 
                 if groupIds.contains(document.documentID) {

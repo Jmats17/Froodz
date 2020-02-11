@@ -9,6 +9,7 @@
 import Foundation
 import CodableFirebase
 
+
 struct Line: Codable {
     
     let documentId: String?
@@ -16,7 +17,10 @@ struct Line: Codable {
     let type : String
     let numOnLine: Int
     let optionalSecondLine: Int?
-    let users : [String]?
+    let users : [String]
+    let creator: String
+    let over: [String]
+    let under: [String]
     
     enum CodingKeys: String, CodingKey {
         case documentId
@@ -25,18 +29,9 @@ struct Line: Codable {
         case numOnLine
         case optionalSecondLine
         case users
+        case creator
+        case over
+        case under
     }
-    
-    enum EncodableMoneyLine: String, Codable {
-        case lineName
-        case type
-        case numOnLine
-        case optionalSecondLine
-    }
-    
-    enum Encodable: String, Codable {
-        case lineName
-        case type
-        case numOnLine
-    }
+
 }
