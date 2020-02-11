@@ -15,6 +15,60 @@ extension JSONDecoder {
     }
 }
 
+extension UITextField {
+    
+    func addMinusToolBar(view : UIView) {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
+        let minusButton = UIBarButtonItem(title: "-", style: .plain, target: self, action: #selector(toggleMinus))
+        toolbar.items = [minusButton]
+        self.inputAccessoryView = toolbar
+    }
+    
+    @objc func toggleMinus(){
+        if var text = self.text , text.isEmpty == false{
+            if text.hasPrefix("-") {
+                text = text.replacingOccurrences(of: "-", with: "")
+            }
+            else
+            {
+                text = "-\(text)"
+            }
+            self.text = text
+        }
+    }
+    
+    func addPlusToolBar(view : UIView) {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
+        let plusButton = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(togglePlus))
+        toolbar.items = [plusButton]
+        self.inputAccessoryView = toolbar
+    }
+    
+    @objc func togglePlus(){
+        if var text = self.text , text.isEmpty == false{
+            if text.hasPrefix("+") {
+                text = text.replacingOccurrences(of: "+", with: "")
+            }
+            else
+            {
+                text = "+\(text)"
+            }
+            self.text = text
+        }
+    }
+    
+}
+
+extension Int {
+    func isSingular() -> String {
+        if self == 1 {
+            return "\(self) Active Member"
+        } else {
+            return "\(self) Active Members"
+        }
+    }
+}
+
 extension DocumentSnapshot {
 
     func prepareForDecoding() -> [String: Any] {

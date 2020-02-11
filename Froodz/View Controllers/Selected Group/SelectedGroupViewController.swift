@@ -24,7 +24,7 @@ class SelectedGroupViewController: UIViewController {
     private func checkGroupValue() {
         if let group = group {
             groupNameLbl.text = group.groupName
-            totalMembersLbl.text = "\(group.users.count) Active Members"
+            totalMembersLbl.text = group.users.count.isSingular()
         } else {
             groupNameLbl.text = "No Group Found"
             totalMembersLbl.text = "0 Active Members"
@@ -32,7 +32,11 @@ class SelectedGroupViewController: UIViewController {
     }
     
     @IBAction func tappedCreateLine(sender : UIButton) {
-        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if let vc = mainStoryboard.instantiateViewController(withIdentifier: "CreateLineVC") as? CreateLineViewController {
+            vc.groupID = group?.documentId
+            self.present(vc, animated: true, completion: nil)
+        }
     }
   
 

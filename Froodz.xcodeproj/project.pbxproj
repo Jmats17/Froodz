@@ -26,6 +26,10 @@
 		D07269B623F214F1002760ED /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269B523F214F1002760ED /* Group.swift */; };
 		D07269B923F2156F002760ED /* User+Groups_Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269B823F2156F002760ED /* User+Groups_Service.swift */; };
 		D07269BC23F225CE002760ED /* SelectedTblView-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269BB23F225CE002760ED /* SelectedTblView-Ext.swift */; };
+		D07269BF23F239C7002760ED /* CreateLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269BE23F239C7002760ED /* CreateLineViewController.swift */; };
+		D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */; };
+		D07269C323F246BD002760ED /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C223F246BC002760ED /* Line.swift */; };
+		D07269C623F257FB002760ED /* LineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C523F257FB002760ED /* LineService.swift */; };
 		D390F8F41647BA48B2456F2B /* Pods_Froodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3304F30116A359A2908B18E3 /* Pods_Froodz.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +58,10 @@
 		D07269B523F214F1002760ED /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D07269B823F2156F002760ED /* User+Groups_Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Groups_Service.swift"; sourceTree = "<group>"; };
 		D07269BB23F225CE002760ED /* SelectedTblView-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedTblView-Ext.swift"; sourceTree = "<group>"; };
+		D07269BE23F239C7002760ED /* CreateLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLineViewController.swift; sourceTree = "<group>"; };
+		D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CrteLineTxtFld-Ext.swift"; sourceTree = "<group>"; };
+		D07269C223F246BC002760ED /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		D07269C523F257FB002760ED /* LineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +144,7 @@
 			children = (
 				D07269B123F20E56002760ED /* User.swift */,
 				D07269B523F214F1002760ED /* Group.swift */,
+				D07269C223F246BC002760ED /* Line.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -143,6 +152,7 @@
 		D072698F23F0C9C9002760ED /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				D07269C423F257EB002760ED /* Lines */,
 				D07269B723F2155A002760ED /* User+Groups */,
 				D07269A923F2022C002760ED /* Groups */,
 				D07269AE23F206DB002760ED /* Users */,
@@ -204,10 +214,28 @@
 		D07269BA23F225A9002760ED /* Selected Group */ = {
 			isa = PBXGroup;
 			children = (
+				D07269BD23F239A7002760ED /* Live Line */,
 				D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */,
 				D07269BB23F225CE002760ED /* SelectedTblView-Ext.swift */,
 			);
 			path = "Selected Group";
+			sourceTree = "<group>";
+		};
+		D07269BD23F239A7002760ED /* Live Line */ = {
+			isa = PBXGroup;
+			children = (
+				D07269BE23F239C7002760ED /* CreateLineViewController.swift */,
+				D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */,
+			);
+			path = "Live Line";
+			sourceTree = "<group>";
+		};
+		D07269C423F257EB002760ED /* Lines */ = {
+			isa = PBXGroup;
+			children = (
+				D07269C523F257FB002760ED /* LineService.swift */,
+			);
+			path = Lines;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,10 +354,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07269C623F257FB002760ED /* LineService.swift in Sources */,
 				D07269B923F2156F002760ED /* User+Groups_Service.swift in Sources */,
 				D07269BC23F225CE002760ED /* SelectedTblView-Ext.swift in Sources */,
 				D072699823F1FB10002760ED /* ActiveGroupsVC.swift in Sources */,
 				D07269AB23F20253002760ED /* GroupService.swift in Sources */,
+				D07269BF23F239C7002760ED /* CreateLineViewController.swift in Sources */,
 				D07269A323F1FED0002760ED /* ActiveTableView-Ext.swift in Sources */,
 				D072699F23F1FC79002760ED /* LiveLineTableViewCell.swift in Sources */,
 				D072697A23F0C85F002760ED /* AppDelegate.swift in Sources */,
@@ -340,7 +370,9 @@
 				D07269AD23F202D7002760ED /* Helper.swift in Sources */,
 				D072697C23F0C85F002760ED /* SceneDelegate.swift in Sources */,
 				D072699223F0CA3D002760ED /* UserService.swift in Sources */,
+				D07269C323F246BD002760ED /* Line.swift in Sources */,
 				D07269B223F20E56002760ED /* User.swift in Sources */,
+				D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
