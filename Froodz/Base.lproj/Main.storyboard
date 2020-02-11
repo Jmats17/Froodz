@@ -115,20 +115,43 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live Line" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhj-mg-tbN">
-                                                    <rect key="frame" x="20" y="45" width="67.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgZ-CW-rI3">
+                                                    <rect key="frame" x="238" y="40" width="74" height="30"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YdX-9S-YPb">
+                                                    <rect key="frame" x="320" y="40" width="74" height="30"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="74" id="WRA-9m-peB"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhj-mg-tbN">
+                                                    <rect key="frame" x="20" y="30" width="194" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yhj-mg-tbN" firstAttribute="leading" secondItem="BzG-GT-9lz" secondAttribute="leading" constant="20" id="3wf-0O-x8v"/>
-                                                <constraint firstItem="yhj-mg-tbN" firstAttribute="top" secondItem="BzG-GT-9lz" secondAttribute="top" constant="45" id="YwW-nf-mDU"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="yhj-mg-tbN" secondAttribute="bottom" constant="19" id="2Bc-IL-bPw"/>
+                                                <constraint firstItem="KgZ-CW-rI3" firstAttribute="width" secondItem="YdX-9S-YPb" secondAttribute="width" id="4pc-Tg-3LQ"/>
+                                                <constraint firstItem="YdX-9S-YPb" firstAttribute="centerY" secondItem="BzG-GT-9lz" secondAttribute="centerY" id="K1u-Xi-gXW"/>
+                                                <constraint firstItem="yhj-mg-tbN" firstAttribute="top" secondItem="BzG-GT-9lz" secondAttribute="topMargin" constant="19" id="YgC-ug-YB8"/>
+                                                <constraint firstItem="yhj-mg-tbN" firstAttribute="centerY" secondItem="BzG-GT-9lz" secondAttribute="centerY" id="fHt-iZ-H45"/>
+                                                <constraint firstAttribute="trailing" secondItem="YdX-9S-YPb" secondAttribute="trailing" constant="20" id="hQf-dq-pbx"/>
+                                                <constraint firstItem="YdX-9S-YPb" firstAttribute="leading" secondItem="KgZ-CW-rI3" secondAttribute="trailing" constant="8" id="kBR-Hm-Ud4"/>
+                                                <constraint firstItem="KgZ-CW-rI3" firstAttribute="leading" secondItem="yhj-mg-tbN" secondAttribute="trailing" constant="24" id="kHO-Ul-1pa"/>
+                                                <constraint firstItem="KgZ-CW-rI3" firstAttribute="centerY" secondItem="YdX-9S-YPb" secondAttribute="centerY" id="nY2-ZU-AQs"/>
+                                                <constraint firstItem="yhj-mg-tbN" firstAttribute="leading" secondItem="BzG-GT-9lz" secondAttribute="leading" constant="20" id="pTV-FB-dtX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="first_BetButton" destination="KgZ-CW-rI3" id="WtR-Be-pll"/>
                                             <outlet property="liveLineNameLbl" destination="yhj-mg-tbN" id="VCA-iZ-xIx"/>
+                                            <outlet property="second_BetButton" destination="YdX-9S-YPb" id="K2S-vp-KQR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -168,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fCE-RF-nGq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="151"/>
+            <point key="canvasLocation" x="598.55072463768124" y="150.66964285714286"/>
         </scene>
         <!--Create Line View Controller-->
         <scene sceneID="V0M-Bt-bTs">

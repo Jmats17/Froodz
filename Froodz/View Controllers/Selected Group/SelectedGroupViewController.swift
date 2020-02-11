@@ -15,6 +15,7 @@ class SelectedGroupViewController: UIViewController {
     @IBOutlet weak var totalMembersLbl : UILabel!
 
     var group : Group?
+    var lines = [Line]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,10 @@ class SelectedGroupViewController: UIViewController {
         if let group = group {
             groupNameLbl.text = group.groupName
             totalMembersLbl.text = group.users.count.isSingular()
+            LineService.retrieve_CurrentLines(groupID: group.documentId) { (lines) in
+                self.lines = lines
+                self.tableView.reloadData()
+            }
         } else {
             groupNameLbl.text = "No Group Found"
             totalMembersLbl.text = "0 Active Members"
@@ -39,5 +44,4 @@ class SelectedGroupViewController: UIViewController {
         }
     }
   
-
 }
