@@ -17,8 +17,6 @@ struct LineService {
     
     static func pushNewLine_ToGroup(lineName : String, amount : Int, secondAmt : Int?, groupID : String, type: String, completion: @escaping (Bool) -> Void) {
         
-        
-        if type == "Coin Line" {
             let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, optionalSecondLine: secondAmt, users: nil)
             let lineData = try! FirestoreEncoder().encode(line)
             
@@ -31,22 +29,6 @@ struct LineService {
                     print("Document successfully written!")
                 }
             }
-        } else {
-            let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, optionalSecondLine: nil, users: nil)
-            let lineData = try! FirestoreEncoder().encode(line)
-            
-            FBRef.document(groupID).collection("Lines").addDocument(data: lineData) { error in
-                if let error = error {
-                    completion(false)
-                    print("Error writing document: \(error.localizedDescription)")
-                } else {
-                    completion(true)
-                    print("Document successfully written!")
-                }
-            }
-        }
-        
-        
     }
     
     static func retrieve_CurrentLines(groupID: String, completion: @escaping ([Line]) -> Void) {
