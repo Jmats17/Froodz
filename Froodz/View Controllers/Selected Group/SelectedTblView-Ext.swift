@@ -1,5 +1,5 @@
 //
-//  ActiveGroups-TableViewExtension.swift
+//  SelectedTableView-Ext.swift
 //  Froodz
 //
 //  Created by Justin Matsnev on 2/10/20.
@@ -9,23 +9,18 @@
 import Foundation
 import UIKit
 
-extension ActiveGroupsViewController : UITableViewDelegate, UITableViewDataSource {
+extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActiveGroupCell", for: indexPath) as! ActiveGroupTableViewCell
-        
-        let group = groups[indexPath.row]
-        cell.setCellDataWithGroup(group)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LiveLineCell", for: indexPath) as! LiveLineTableViewCell
         return cell
     }
-    
-    
 }

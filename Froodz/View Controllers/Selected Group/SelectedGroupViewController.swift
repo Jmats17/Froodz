@@ -14,9 +14,21 @@ class SelectedGroupViewController: UIViewController {
     @IBOutlet weak var groupNameLbl : UILabel!
     @IBOutlet weak var totalMembersLbl : UILabel!
 
+    var group : Group?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        checkGroupValue()
+    }
+    
+    private func checkGroupValue() {
+        if let group = group {
+            groupNameLbl.text = group.groupName
+            totalMembersLbl.text = "\(group.users.count) Active Members"
+        } else {
+            groupNameLbl.text = "No Group Found"
+            totalMembersLbl.text = "0 Active Members"
+        }
     }
     
     @IBAction func tappedCreateLine(sender : UIButton) {

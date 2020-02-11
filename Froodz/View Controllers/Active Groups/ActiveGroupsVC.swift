@@ -16,7 +16,6 @@ class ActiveGroupsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         UserGroups_Service.return_ActiveGroups { (groups) in
             self.groups = groups
             self.tableView.reloadData()

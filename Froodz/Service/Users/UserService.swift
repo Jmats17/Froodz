@@ -16,7 +16,6 @@ struct UserService {
     private static let FBUserRef = Firestore.firestore().collection("Users")
         .document(UIDevice.current.identifierForVendor!.uuidString)
     
-    
     static func return_UserActiveGroups(completion : @escaping ([String]) -> Void) {
         
         FBUserRef.getDocument { (documentSnapshot, error) in

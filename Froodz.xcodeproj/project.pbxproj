@@ -13,11 +13,11 @@
 		D072698323F0C860002760ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D072698223F0C860002760ED /* Assets.xcassets */; };
 		D072698623F0C860002760ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D072698423F0C860002760ED /* LaunchScreen.storyboard */; };
 		D072699223F0CA3D002760ED /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699123F0CA3D002760ED /* UserService.swift */; };
-		D072699823F1FB10002760ED /* ActiveGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699723F1FB10002760ED /* ActiveGroupsViewController.swift */; };
+		D072699823F1FB10002760ED /* ActiveGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699723F1FB10002760ED /* ActiveGroupsVC.swift */; };
 		D072699A23F1FB6D002760ED /* SelectedGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */; };
 		D072699D23F1FC3D002760ED /* ActiveGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699C23F1FC3D002760ED /* ActiveGroupTableViewCell.swift */; };
 		D072699F23F1FC79002760ED /* LiveLineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072699E23F1FC79002760ED /* LiveLineTableViewCell.swift */; };
-		D07269A323F1FED0002760ED /* ActiveGroups-TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269A223F1FED0002760ED /* ActiveGroups-TableViewExtension.swift */; };
+		D07269A323F1FED0002760ED /* ActiveTableView-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269A223F1FED0002760ED /* ActiveTableView-Ext.swift */; };
 		D07269AB23F20253002760ED /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269AA23F20253002760ED /* GroupService.swift */; };
 		D07269AD23F202D7002760ED /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269AC23F202D7002760ED /* Helper.swift */; };
 		D07269B023F20ACA002760ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D07269AF23F20ACA002760ED /* GoogleService-Info.plist */; };
@@ -25,6 +25,7 @@
 		D07269B423F21082002760ED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269B323F21082002760ED /* Extensions.swift */; };
 		D07269B623F214F1002760ED /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269B523F214F1002760ED /* Group.swift */; };
 		D07269B923F2156F002760ED /* User+Groups_Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269B823F2156F002760ED /* User+Groups_Service.swift */; };
+		D07269BC23F225CE002760ED /* SelectedTblView-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269BB23F225CE002760ED /* SelectedTblView-Ext.swift */; };
 		D390F8F41647BA48B2456F2B /* Pods_Froodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3304F30116A359A2908B18E3 /* Pods_Froodz.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,11 +41,11 @@
 		D072698523F0C860002760ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D072698723F0C860002760ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D072699123F0CA3D002760ED /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		D072699723F1FB10002760ED /* ActiveGroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGroupsViewController.swift; sourceTree = "<group>"; };
+		D072699723F1FB10002760ED /* ActiveGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGroupsVC.swift; sourceTree = "<group>"; };
 		D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGroupViewController.swift; sourceTree = "<group>"; };
 		D072699C23F1FC3D002760ED /* ActiveGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGroupTableViewCell.swift; sourceTree = "<group>"; };
 		D072699E23F1FC79002760ED /* LiveLineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLineTableViewCell.swift; sourceTree = "<group>"; };
-		D07269A223F1FED0002760ED /* ActiveGroups-TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveGroups-TableViewExtension.swift"; sourceTree = "<group>"; };
+		D07269A223F1FED0002760ED /* ActiveTableView-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveTableView-Ext.swift"; sourceTree = "<group>"; };
 		D07269AA23F20253002760ED /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
 		D07269AC23F202D7002760ED /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D07269AF23F20ACA002760ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -52,6 +53,7 @@
 		D07269B323F21082002760ED /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D07269B523F214F1002760ED /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D07269B823F2156F002760ED /* User+Groups_Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Groups_Service.swift"; sourceTree = "<group>"; };
+		D07269BB23F225CE002760ED /* SelectedTblView-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedTblView-Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				D07269A423F1FF1F002760ED /* Active Groups */,
-				D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */,
+				D07269BA23F225A9002760ED /* Selected Group */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -169,8 +171,8 @@
 		D07269A423F1FF1F002760ED /* Active Groups */ = {
 			isa = PBXGroup;
 			children = (
-				D072699723F1FB10002760ED /* ActiveGroupsViewController.swift */,
-				D07269A223F1FED0002760ED /* ActiveGroups-TableViewExtension.swift */,
+				D072699723F1FB10002760ED /* ActiveGroupsVC.swift */,
+				D07269A223F1FED0002760ED /* ActiveTableView-Ext.swift */,
 			);
 			path = "Active Groups";
 			sourceTree = "<group>";
@@ -197,6 +199,15 @@
 				D07269B823F2156F002760ED /* User+Groups_Service.swift */,
 			);
 			path = "User+Groups";
+			sourceTree = "<group>";
+		};
+		D07269BA23F225A9002760ED /* Selected Group */ = {
+			isa = PBXGroup;
+			children = (
+				D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */,
+				D07269BB23F225CE002760ED /* SelectedTblView-Ext.swift */,
+			);
+			path = "Selected Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,9 +327,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D07269B923F2156F002760ED /* User+Groups_Service.swift in Sources */,
-				D072699823F1FB10002760ED /* ActiveGroupsViewController.swift in Sources */,
+				D07269BC23F225CE002760ED /* SelectedTblView-Ext.swift in Sources */,
+				D072699823F1FB10002760ED /* ActiveGroupsVC.swift in Sources */,
 				D07269AB23F20253002760ED /* GroupService.swift in Sources */,
-				D07269A323F1FED0002760ED /* ActiveGroups-TableViewExtension.swift in Sources */,
+				D07269A323F1FED0002760ED /* ActiveTableView-Ext.swift in Sources */,
 				D072699F23F1FC79002760ED /* LiveLineTableViewCell.swift in Sources */,
 				D072697A23F0C85F002760ED /* AppDelegate.swift in Sources */,
 				D072699A23F1FB6D002760ED /* SelectedGroupViewController.swift in Sources */,
