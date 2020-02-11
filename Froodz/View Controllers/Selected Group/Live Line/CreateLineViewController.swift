@@ -14,17 +14,50 @@ class CreateLineViewController: UIViewController {
 
     @IBOutlet weak var lineNameTextField : UITextField!
     @IBOutlet weak var betTypeSegmentControl : UISegmentedControl!
+    
     @IBOutlet weak var first_SideTextField : UITextField!
     @IBOutlet weak var second_SideTextField : UITextField!
     
+    @IBOutlet weak var second_SideLbl : UILabel!
+    @IBOutlet weak var first_SideLbl : UILabel!
+
     var groupID : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         endEditingTapRecgonizer()
+        betTypeSegmentControl.addTarget(self, action: #selector(CreateLineViewController.selectedSegmentControl(_:)), for:.valueChanged)
     }
     
-    private func return_LineValues() -> (lineName : String, amount : Int, groupID : String, type: String)? {
+    @objc
+    func selectedSegmentControl(_ sender: UISegmentedControl) {
+        switch betTypeSegmentControl.selectedSegmentIndex {
+        case 0:
+            hideSecondChangeFirstText()
+        case 1:
+            hideSecondChangeFirstText()
+        case 2:
+            showSecondChangeFirstText()
+        default:
+            break
+        }
+    }
+    
+    func showSecondChangeFirstText() {
+        first_SideLbl.text = "Moneyline (-)"
+        second_SideLbl.isHidden = false
+        second_SideTextField.isHidden = false
+        first_SideTextField.text = ""
+    }
+    
+    func hideSecondChangeFirstText() {
+        first_SideTextField.text = ""
+        first_SideLbl.text = "Number on Line (+ / -)"
+        second_SideLbl.isHidden = true
+        second_SideTextField.isHidden = true
+    }
+    
+    func return_LineValues() -> (lineName : String, amount : Int, groupID : String, type: String)? {
         let index = betTypeSegmentControl.selectedSegmentIndex
         
         if let lineName = lineNameTextField.text, lineName != "" {
@@ -50,12 +83,23 @@ class CreateLineViewController: UIViewController {
     @IBAction func tappedCreate(sender : UIButton) {
                 
         guard let lineValues = return_LineValues() else { return }
-
-        LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
-            if didComplete {
-                print("Success. Create alert for user here")
+        
+        if betTypeSegmentControl.selectedSegmentIndex == 2 {
+            guard let secondAmtStr = second_SideTextField.text, secondAmtStr != "" else {return }
+            guard let secondAmt = Int(secondAmtStr) else {return}
+            LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: secondAmt, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
+                if didComplete {
+                    print("Success. Create alert for user here")
+                }
+            }
+        } else {
+            LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: nil, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
+                if didComplete {
+                    print("Success. Create alert for user here")
+                }
             }
         }
+        
     }
 
 }

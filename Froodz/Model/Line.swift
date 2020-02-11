@@ -15,6 +15,7 @@ struct Line: Codable {
     let lineName: String
     let type : String
     let numOnLine: Int
+    let optionalSecondLine: Int?
     let users : [String]?
     
     enum CodingKeys: String, CodingKey {
@@ -22,7 +23,15 @@ struct Line: Codable {
         case lineName
         case type
         case numOnLine
+        case optionalSecondLine
         case users
+    }
+    
+    enum EncodableMoneyLine: String, Codable {
+        case lineName
+        case type
+        case numOnLine
+        case optionalSecondLine
     }
     
     enum Encodable: String, Codable {

@@ -240,8 +240,8 @@
                                     <outlet property="delegate" destination="UaO-dD-Ogh" id="Uj4-DR-SlE"/>
                                 </connections>
                             </textField>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Side 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ng2-Eq-Tvk">
-                                <rect key="frame" x="213" y="266" width="48" height="21"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moneyline (+)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ng2-Eq-Tvk">
+                                <rect key="frame" x="213" y="266" width="105.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -251,7 +251,7 @@
                                 <segments>
                                     <segment title="Odds"/>
                                     <segment title="Total"/>
-                                    <segment title="Money Line"/>
+                                    <segment title="Coin Line"/>
                                 </segments>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3a-TN-0lx">
@@ -290,8 +290,10 @@
                     <navigationItem key="navigationItem" id="fES-l4-czU"/>
                     <connections>
                         <outlet property="betTypeSegmentControl" destination="7eX-kX-o6h" id="SHE-zk-VPs"/>
+                        <outlet property="first_SideLbl" destination="r0u-ar-fG0" id="Xy1-m6-biz"/>
                         <outlet property="first_SideTextField" destination="40L-0J-uO9" id="foa-kp-Mmz"/>
                         <outlet property="lineNameTextField" destination="qeN-Ow-9vl" id="Qe0-n9-sYf"/>
+                        <outlet property="second_SideLbl" destination="ng2-Eq-Tvk" id="TWV-7v-drp"/>
                         <outlet property="second_SideTextField" destination="vmd-aY-bC4" id="Nxu-vd-K8U"/>
                     </connections>
                 </viewController>
