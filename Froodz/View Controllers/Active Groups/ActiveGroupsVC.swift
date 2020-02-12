@@ -23,7 +23,23 @@ class ActiveGroupsViewController: UIViewController {
     }
    
     @IBAction func tappedJoinGroup(sender : UIButton) {
-        
+        let alertVC = UIAlertController(title: "Join Group", message: "Please enter the 6 digit code of the group you want to join.", preferredStyle: .alert)
+        alertVC.addTextField { (textfield) in
+            textfield.placeholder = "aaAa1a"
+        }
+        let addAction = UIAlertAction(title: "Join", style: .default) { (action) in
+            guard let code = (alertVC.textFields?[0].text) else { return }
+            GroupService.didJoinExistingGroup(code: code) { (didJoin) in
+                if didJoin {
+                    print("Joined or is not apart")
+                } else {
+                    print("Existing already")
+                }
+            }
+
+        }
+        alertVC.addAction(addAction)
+        self.present(alertVC, animated: true, completion: nil)
     }
 
     @IBAction func tappedCreateGroup(sender : UIButton) {

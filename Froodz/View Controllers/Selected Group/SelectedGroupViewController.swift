@@ -25,6 +25,7 @@ class SelectedGroupViewController: UIViewController {
     private func checkGroupValue() {
         if let group = group {
             groupNameLbl.text = group.groupName
+            print(group)
             totalMembersLbl.text = group.users.count.isSingular()
             LineService.retrieve_CurrentLines(groupID: group.documentId) { (lines) in
                 self.lines = lines

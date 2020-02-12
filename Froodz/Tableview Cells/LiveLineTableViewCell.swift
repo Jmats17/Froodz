@@ -52,10 +52,7 @@ class LiveLineTableViewCell: UITableViewCell {
     func betInitiated(line : Line, groupID: String, sideTapped: String) {
         guard let lineID = line.documentId else {return}
         LineService.checkUserPlaceLineBet(groupID: groupID, lineID: lineID, selectedLine: sideTapped) { (didPlaceBet) in
-            if didPlaceBet {
-                print("already exists")
-            } else {
-                print("didnt place yet")
+            if !didPlaceBet {
                 LineService.addUser_ToLineSide(groupID: groupID, lineID: lineID, sideTapped: sideTapped)
             }
         }
