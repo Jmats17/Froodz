@@ -13,13 +13,13 @@ import CodableFirebase
 
 struct GroupService {
     
-    private static let FBRef = Firestore.firestore().collection("Groups")
     private static let FBUserRef = Firestore.firestore().collection("Users").document(UIDevice.current.identifierForVendor!.uuidString)
 
     //Creating new group to push to FB
     static func didCreateNewGroup(groupName : String, didRegister: @escaping (Bool) -> Void) {
-        
-        FBRef.addDocument(data: [
+        let FBRef = Firestore.firestore().collection("Groups")
+        var ref: DocumentReference? = nil
+        ref = FBRef.addDocument(data: [
             "groupName" : groupName,
             "code": Helper.return_RandomGeneratedCode(),
             "users": FieldValue.arrayUnion([UIDevice.current.identifierForVendor!.uuidString])
@@ -28,8 +28,8 @@ struct GroupService {
                 print("Error adding document: \(err)")
                 didRegister(false)
             } else {
-                print("Document added with ID: \(FBRef.document().documentID)")
-                UserService.addGroupTo_ActiveGroups(groupID: FBRef.document().documentID)
+                guard let id = ref?.documentID else {didRegister(false); return}
+                UserService.addGroupTo_ActiveGroups(groupID: id)
                 didRegister(true)
             }
         }
@@ -38,7 +38,8 @@ struct GroupService {
     
     //Joining existing group as a user and pushing data to FB
     static func didJoinExistingGroup(code: String,_ didJoin: @escaping (Bool) -> Void) {
-       
+        let FBRef = Firestore.firestore().collection("Groups")
+
         FBRef.whereField("code", isEqualTo: code).getDocuments { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
