@@ -56,10 +56,17 @@ extension ActiveGroupsViewController: UITextFieldDelegate {
         GroupService.didJoinExistingGroup(code: code) { (didJoin) in
             if didJoin {
                 print("Joined or is not apart")
+                self.joinGroupTextField.text = ""
             } else {
-                print("Existing already")
+                self.codeNotFoundAlert()
             }
         }
+    }
+    
+    private func codeNotFoundAlert() {
+        let alert = UIAlertController(title: "Code Not Found", message: "Please try another code or check again.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -47,21 +47,28 @@ struct GroupService {
                 return
             }
 
-            guard let document = snapshot?.documents[0] else { didJoin(false); return }
-            let group = try! FirestoreDecoder().decode(Group.self, from: document.prepareForDecoding())
-            if !group.users.contains(UIDevice.current.identifierForVendor!.uuidString) {
-                FBRef.document(group.documentId).updateData([
-                    "users" : FieldValue.arrayUnion([UIDevice.current.identifierForVendor!.uuidString])
-                ]) { error in
-                    if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
-                    else {
-                        UserService.addGroupTo_ActiveGroups(groupID: group.documentId)
-                        didJoin(true)
-                        return
-                    }
-                }
-                
+            guard let documents = snapshot?.documents else {
+                didJoin(false)
+                return
             }
+            
+            if documents.count > 0 {
+                let group = try! FirestoreDecoder().decode(Group.self, from: documents[0].prepareForDecoding())
+                if !group.users.contains(UIDevice.current.identifierForVendor!.uuidString) {
+                    FBRef.document(group.documentId).updateData([
+                        "users" : FieldValue.arrayUnion([UIDevice.current.identifierForVendor!.uuidString])
+                    ]) { error in
+                        if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
+                        else {
+                            UserService.addGroupTo_ActiveGroups(groupID: group.documentId)
+                            didJoin(true)
+                            return
+                        }
+                    }
+                    
+                }
+            }
+            
             didJoin(false)
             return
         }
