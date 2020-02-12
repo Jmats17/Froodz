@@ -55,7 +55,6 @@ extension ActiveGroupsViewController: UITextFieldDelegate {
         guard let code = joinGroupTextField.text else { return }
         GroupService.didJoinExistingGroup(code: code) { (didJoin) in
             if didJoin {
-                print("Joined or is not apart")
                 self.joinGroupTextField.text = ""
             } else {
                 self.codeNotFoundAlert()

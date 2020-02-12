@@ -15,6 +15,7 @@ class SelectedGroupViewController: UIViewController {
     @IBOutlet weak var totalMembersLbl : UILabel!
 
     var group : Group?
+    var allLineData = [Line]()
     var lines = [Line]()
     
     override func viewDidLoad() {
@@ -29,6 +30,7 @@ class SelectedGroupViewController: UIViewController {
             totalMembersLbl.text = group.users.count.isSingular()
             LineService.retrieve_CurrentLines(groupID: group.documentId) { (lines) in
                 self.lines = lines
+                self.allLineData = lines
                 self.tableView.reloadData()
             }
         } else {
@@ -45,4 +47,13 @@ class SelectedGroupViewController: UIViewController {
         }
     }
   
+    @IBAction func tappedUsersExistingLines(sender: UIButton) {
+        self.lines = self.lines.filter({ $0.creator == UIDevice.current.identifierForVendor!.uuidString })
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func tappedAllLines(sender: UIButton) {
+        self.lines = self.allLineData
+        self.tableView.reloadData()
+    }
 }

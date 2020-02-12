@@ -267,6 +267,20 @@
                                     <action selector="tappedCreateLineWithSender:" destination="Mjf-5M-5aa" eventType="touchUpInside" id="Az9-ek-afy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dh9-n2-gea">
+                                <rect key="frame" x="306" y="159" width="84" height="30"/>
+                                <state key="normal" title="My live lines"/>
+                                <connections>
+                                    <action selector="tappedUsersExistingLinesWithSender:" destination="Mjf-5M-5aa" eventType="touchUpInside" id="mEK-Aj-Vjt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zug-9X-IXH">
+                                <rect key="frame" x="24" y="159" width="58" height="30"/>
+                                <state key="normal" title="All Lines"/>
+                                <connections>
+                                    <action selector="tappedAllLinesWithSender:" destination="Mjf-5M-5aa" eventType="touchUpInside" id="pGp-Q2-JYi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -275,11 +289,15 @@
                             <constraint firstItem="h36-1k-Gg4" firstAttribute="top" secondItem="EHk-FY-Wof" secondAttribute="bottom" constant="16" id="N0T-Ig-f7i"/>
                             <constraint firstItem="h36-1k-Gg4" firstAttribute="leading" secondItem="ogV-wG-a5f" secondAttribute="leading" id="RLs-sF-VBf"/>
                             <constraint firstItem="eYr-kq-gOr" firstAttribute="top" secondItem="ogV-wG-a5f" secondAttribute="top" constant="41" id="c1v-YB-CNg"/>
+                            <constraint firstItem="Dh9-n2-gea" firstAttribute="centerY" secondItem="EHk-FY-Wof" secondAttribute="centerY" id="hcL-IW-MTw"/>
                             <constraint firstItem="EHk-FY-Wof" firstAttribute="centerX" secondItem="GRA-ce-6wi" secondAttribute="centerX" id="hg3-l6-PCH"/>
                             <constraint firstItem="GRA-ce-6wi" firstAttribute="centerX" secondItem="eYr-kq-gOr" secondAttribute="centerX" id="kcD-AW-coE"/>
                             <constraint firstItem="GRA-ce-6wi" firstAttribute="top" secondItem="eYr-kq-gOr" secondAttribute="bottom" constant="8" id="kxM-S0-Hgg"/>
+                            <constraint firstItem="Zug-9X-IXH" firstAttribute="leading" secondItem="ogV-wG-a5f" secondAttribute="leading" constant="24" id="uIR-Hk-gbX"/>
                             <constraint firstItem="EHk-FY-Wof" firstAttribute="top" secondItem="GRA-ce-6wi" secondAttribute="bottom" constant="24" id="vwy-Qb-7Dq"/>
                             <constraint firstItem="h36-1k-Gg4" firstAttribute="trailing" secondItem="ogV-wG-a5f" secondAttribute="trailing" id="w7t-WG-pvi"/>
+                            <constraint firstItem="ogV-wG-a5f" firstAttribute="trailing" secondItem="Dh9-n2-gea" secondAttribute="trailing" constant="24" id="ybj-tw-C6X"/>
+                            <constraint firstItem="Zug-9X-IXH" firstAttribute="centerY" secondItem="EHk-FY-Wof" secondAttribute="centerY" id="zwS-hn-ObU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ogV-wG-a5f"/>
                     </view>
