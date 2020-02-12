@@ -29,6 +29,7 @@ struct GroupService {
                 didRegister(false)
             } else {
                 print("Document added with ID: \(FBRef.document().documentID)")
+                UserService.addGroupTo_ActiveGroups(groupID: FBRef.document().documentID)
                 didRegister(true)
             }
         }
@@ -53,6 +54,7 @@ struct GroupService {
                 ]) { error in
                     if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
                     else {
+                        UserService.addGroupTo_ActiveGroups(groupID: group.documentId)
                         didJoin(true)
                         return
                     }

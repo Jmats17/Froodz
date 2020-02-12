@@ -32,4 +32,16 @@ struct UserService {
             completion(user.active_groups)
         }
     }
+    
+    static func addGroupTo_ActiveGroups(groupID: String) {
+        FBUserRef.updateData([
+            "active_groups": FieldValue.arrayUnion([groupID])
+        ]) { err in
+            if let err = err {
+                print("Error joining group: \(err.localizedDescription)")
+            } else {
+                print("Joined")
+            }
+        }
+    }
 }
