@@ -11,35 +11,26 @@ import UIKit
 class ActiveGroupsViewController: UIViewController {
 
     @IBOutlet weak var tableView : UITableView!
-    
+    @IBOutlet weak var joinGroupTextField : UITextField!
+
     var groups = [Group]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        joinGroupTextField.delegate = self
+        endEditingTapRecgonizer()
+        
         UserGroups_Service.return_ActiveGroups { (groups) in
             self.groups = groups
             self.tableView.reloadData()
         }
+        
     }
    
-    @IBAction func tappedJoinGroup(sender : UIButton) {
-        let alertVC = UIAlertController(title: "Join Group", message: "Please enter the 6 digit code of the group you want to join.", preferredStyle: .alert)
-        alertVC.addTextField { (textfield) in
-            textfield.placeholder = "aaAa1a"
-        }
-        let addAction = UIAlertAction(title: "Join", style: .default) { (action) in
-            guard let code = (alertVC.textFields?[0].text) else { return }
-            GroupService.didJoinExistingGroup(code: code) { (didJoin) in
-                if didJoin {
-                    print("Joined or is not apart")
-                } else {
-                    print("Existing already")
-                }
-            }
-
-        }
-        alertVC.addAction(addAction)
-        self.present(alertVC, animated: true, completion: nil)
+    private func endEditingTapRecgonizer() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
 
     @IBAction func tappedCreateGroup(sender : UIButton) {

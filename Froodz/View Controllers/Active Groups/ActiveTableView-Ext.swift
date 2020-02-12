@@ -12,7 +12,7 @@ import UIKit
 extension ActiveGroupsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 119
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groups.count
@@ -29,6 +29,14 @@ extension ActiveGroupsViewController : UITableViewDelegate, UITableViewDataSourc
         
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // this will turn on `masksToBounds` just before showing the cell
+      
+        cell.contentView.layer.masksToBounds = true
+        let radius = cell.contentView.layer.cornerRadius
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActiveGroupCell", for: indexPath) as! ActiveGroupTableViewCell
         
@@ -39,4 +47,24 @@ extension ActiveGroupsViewController : UITableViewDelegate, UITableViewDataSourc
     }
     
     
+}
+
+extension ActiveGroupsViewController: UITextFieldDelegate {
+    
+    func joinGroup() {
+        guard let code = joinGroupTextField.text else { return }
+        GroupService.didJoinExistingGroup(code: code) { (didJoin) in
+            if didJoin {
+                print("Joined or is not apart")
+            } else {
+                print("Existing already")
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        joinGroup()
+        textField.resignFirstResponder()
+        return true
+    }
 }
