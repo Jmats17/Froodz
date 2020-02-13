@@ -19,12 +19,11 @@ class ActiveGroupTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         // add shadow on cell
-        backgroundColor = .clear
         contentCellView.layer.masksToBounds = false
-        contentCellView.layer.shadowOpacity = 0.10
-        contentCellView.layer.shadowRadius = 3
+        contentCellView.layer.shadowOpacity = 0.2
+        contentCellView.layer.shadowRadius = 4
         contentCellView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        contentCellView.layer.shadowColor = UIColor.black.cgColor
+        contentCellView.layer.shadowColor = UIColor.lightGray.cgColor
 
         // add corner radius on `contentView`
         contentCellView.layer.cornerRadius = 7

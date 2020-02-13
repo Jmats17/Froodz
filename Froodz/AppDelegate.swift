@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CodableFirebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -8,6 +8,8 @@ pod 'FirebaseFirestoreSwift'
 pod 'Firebase/Firestore'
 pod 'Firebase/Auth'
 pod 'CodableFirebase'
+pod 'PMSuperButton'
+
   # Pods for Froodz
 
 end

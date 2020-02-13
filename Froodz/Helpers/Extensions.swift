@@ -17,6 +17,15 @@ extension JSONDecoder {
 
 extension UITextField {
     
+    func loginTextfieldStyle() {
+        self.layer.borderWidth = 1.0
+        self.layer.cornerRadius = 13.0
+        self.layer.borderColor = UIColor.init(red: 82/255, green: 214/255, blue: 255/255, alpha: 1.0).cgColor
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    
     func addMinusToolBar(view : UIView) {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
         let minusButton = UIBarButtonItem(title: "-", style: .plain, target: self, action: #selector(toggleMinus))

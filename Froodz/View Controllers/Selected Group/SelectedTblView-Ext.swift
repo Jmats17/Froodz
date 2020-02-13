@@ -12,7 +12,7 @@ import UIKit
 extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSource, BetButtonDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 136
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,13 +37,7 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
         
         cell.betInitiated(line: line, groupID: groupID, sideTapped: "Minus")
         guard let lineID = line.documentId else {return}
-//        LineService.checkUserPlaceLineBet(groupID: groupID, lineID: lineID, selectedLine: "Minus") { (didPlaceBet) in
-//            if didPlaceBet {
-//                print("already exists")
-//            } else {
-//                print("didnt place yet")
-//            }
-//        }
+
     }
     
     func plusButtonTapped(at indexPath: IndexPath) {
@@ -53,14 +47,13 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
         guard let lineID = line.documentId else {return}
 
         cell.betInitiated(line: line, groupID: groupID, sideTapped: "Plus")
-//        LineService.checkUserPlaceLineBet(groupID: groupID, lineID: lineID, selectedLine: "Plus") { (didPlaceBet) in
-//            if didPlaceBet {
-//                print("already exists")
-//            } else {
-//                print("didnt place yet")
-//            }
-//        }
+
     }
     
-    
+    func lineCompletedTapped(at indexPath: IndexPath) {
+        //TODO If line completed, delete or store in past lines history?
+        //Assign points to users on side that won
+        //Figure out how to store map between user and points
+        //Probably need to finally do login and signup and store actual users
+    }
 }

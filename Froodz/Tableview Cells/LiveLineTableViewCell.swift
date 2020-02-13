@@ -11,6 +11,7 @@ import UIKit
 protocol BetButtonDelegate {
     func minusButtonTapped(at indexPath : IndexPath)
     func plusButtonTapped(at indexPath : IndexPath)
+    func lineCompletedTapped(at indexPath : IndexPath)
 }
 
 class LiveLineTableViewCell: UITableViewCell {
@@ -18,7 +19,12 @@ class LiveLineTableViewCell: UITableViewCell {
     @IBOutlet weak var liveLineNameLbl : UILabel!
     @IBOutlet weak var first_BetButton : UIButton!
     @IBOutlet weak var second_BetButton : UIButton!
-    
+    @IBOutlet weak var lineCompletedButton : UIButton! {
+        didSet {
+            lineCompletedButton.isHidden = true
+        }
+    }
+
     var indexPath : IndexPath!
     var delegate : BetButtonDelegate!
 
@@ -34,9 +40,16 @@ class LiveLineTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func showCompletedButton(line: Line) {
+        if line.creator == UIDevice.current.identifierForVendor!.uuidString {
+            self.lineCompletedButton.isHidden = false
+        }
+    }
+    
     func setCellData(_ line: Line) {
+        self.lineCompletedButton.isHidden = true
         self.liveLineNameLbl.text = line.lineName
-        
+        showCompletedButton(line: line)
         
         if line.type != "Coin Line" {
             let newNumOnLine = Double(line.numOnLine) + 0.5
@@ -66,4 +79,7 @@ class LiveLineTableViewCell: UITableViewCell {
         self.delegate?.plusButtonTapped(at: indexPath)
     }
 
+    @IBAction func lineCompletedTapped(sender : UIButton) {
+        self.delegate?.lineCompletedTapped(at: indexPath)
+    }
 }

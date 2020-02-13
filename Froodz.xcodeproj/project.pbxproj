@@ -30,8 +30,26 @@
 		D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */; };
 		D07269C323F246BD002760ED /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C223F246BC002760ED /* Line.swift */; };
 		D07269C623F257FB002760ED /* LineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C523F257FB002760ED /* LineService.swift */; };
+		D0DF8D1623F5D47100590C60 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1523F5D47100590C60 /* LoginViewController.swift */; };
+		D0DF8D1823F5D54300590C60 /* LoginTxtfield-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */; };
+		D0DF8D1A23F6008100590C60 /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1923F6008100590C60 /* VerificationVC.swift */; };
+		D0DF8D1C23F600EF00590C60 /* VerifyTxtField-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1B23F600EF00590C60 /* VerifyTxtField-Ext.swift */; };
+		D0DF8D1E23F6037E00590C60 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1D23F6037E00590C60 /* Constants.swift */; };
 		D390F8F41647BA48B2456F2B /* Pods_Froodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3304F30116A359A2908B18E3 /* Pods_Froodz.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D0DF8D2E23F6052500590C60 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.release.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.release.xcconfig"; sourceTree = "<group>"; };
@@ -62,6 +80,12 @@
 		D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CrteLineTxtFld-Ext.swift"; sourceTree = "<group>"; };
 		D07269C223F246BC002760ED /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		D07269C523F257FB002760ED /* LineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineService.swift; sourceTree = "<group>"; };
+		D0DF8D1523F5D47100590C60 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginTxtfield-Ext.swift"; sourceTree = "<group>"; };
+		D0DF8D1923F6008100590C60 /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
+		D0DF8D1B23F600EF00590C60 /* VerifyTxtField-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VerifyTxtField-Ext.swift"; sourceTree = "<group>"; };
+		D0DF8D1D23F6037E00590C60 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D0DF8D2F23F6056600590C60 /* Froodz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Froodz.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +138,7 @@
 		D072697823F0C85F002760ED /* Froodz */ = {
 			isa = PBXGroup;
 			children = (
+				D0DF8D2F23F6056600590C60 /* Froodz.entitlements */,
 				D072697923F0C85F002760ED /* AppDelegate.swift */,
 				D072697B23F0C85F002760ED /* SceneDelegate.swift */,
 				D072699023F0C9D8002760ED /* Helpers */,
@@ -133,6 +158,7 @@
 		D072698D23F0C9B6002760ED /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D0DF8D1423F5D44900590C60 /* Sign Up & Login */,
 				D07269A423F1FF1F002760ED /* Active Groups */,
 				D07269BA23F225A9002760ED /* Selected Group */,
 			);
@@ -164,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				D07269AC23F202D7002760ED /* Helper.swift */,
+				D0DF8D1D23F6037E00590C60 /* Constants.swift */,
 				D07269B323F21082002760ED /* Extensions.swift */,
 			);
 			path = Helpers;
@@ -238,6 +265,17 @@
 			path = Lines;
 			sourceTree = "<group>";
 		};
+		D0DF8D1423F5D44900590C60 /* Sign Up & Login */ = {
+			isa = PBXGroup;
+			children = (
+				D0DF8D1923F6008100590C60 /* VerificationVC.swift */,
+				D0DF8D1B23F600EF00590C60 /* VerifyTxtField-Ext.swift */,
+				D0DF8D1523F5D47100590C60 /* LoginViewController.swift */,
+				D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */,
+			);
+			path = "Sign Up & Login";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -250,6 +288,7 @@
 				D072697323F0C85F002760ED /* Frameworks */,
 				D072697423F0C85F002760ED /* Resources */,
 				75C574ACB1FF472FDA87E391 /* [CP] Embed Pods Frameworks */,
+				D0DF8D2E23F6052500590C60 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -355,13 +394,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D07269C623F257FB002760ED /* LineService.swift in Sources */,
+				D0DF8D1823F5D54300590C60 /* LoginTxtfield-Ext.swift in Sources */,
 				D07269B923F2156F002760ED /* User+Groups_Service.swift in Sources */,
 				D07269BC23F225CE002760ED /* SelectedTblView-Ext.swift in Sources */,
+				D0DF8D1A23F6008100590C60 /* VerificationVC.swift in Sources */,
 				D072699823F1FB10002760ED /* ActiveGroupsVC.swift in Sources */,
 				D07269AB23F20253002760ED /* GroupService.swift in Sources */,
 				D07269BF23F239C7002760ED /* CreateLineViewController.swift in Sources */,
+				D0DF8D1C23F600EF00590C60 /* VerifyTxtField-Ext.swift in Sources */,
 				D07269A323F1FED0002760ED /* ActiveTableView-Ext.swift in Sources */,
 				D072699F23F1FC79002760ED /* LiveLineTableViewCell.swift in Sources */,
+				D0DF8D1623F5D47100590C60 /* LoginViewController.swift in Sources */,
 				D072697A23F0C85F002760ED /* AppDelegate.swift in Sources */,
 				D072699A23F1FB6D002760ED /* SelectedGroupViewController.swift in Sources */,
 				D07269B623F214F1002760ED /* Group.swift in Sources */,
@@ -373,6 +416,7 @@
 				D07269C323F246BD002760ED /* Line.swift in Sources */,
 				D07269B223F20E56002760ED /* User.swift in Sources */,
 				D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */,
+				D0DF8D1E23F6037E00590C60 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,8 +560,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 85EDD8752165AD430FFF64E7 /* Pods-Froodz.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Froodz/Froodz.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 96QE7H4LVL;
 				INFOPLIST_FILE = Froodz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -526,6 +573,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinmatsnev.Froodz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Froodz PP";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -535,8 +583,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Froodz/Froodz.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 96QE7H4LVL;
 				INFOPLIST_FILE = Froodz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -545,6 +596,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinmatsnev.Froodz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Froodz PP";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

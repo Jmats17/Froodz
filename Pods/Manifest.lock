@@ -248,12 +248,14 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - PMSuperButton (3.0.2)
 
 DEPENDENCIES:
   - CodableFirebase
   - Firebase/Auth
   - Firebase/Firestore
   - FirebaseFirestoreSwift
+  - PMSuperButton
 
 SPEC REPOS:
   trunk:
@@ -276,6 +278,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - PMSuperButton
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -297,7 +300,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  PMSuperButton: 72105fef415890c8792a9e5a784f75c461066f8b
 
-PODFILE CHECKSUM: 3d2f52e0f99d2407d9d7a579330405339f30be26
+PODFILE CHECKSUM: 993b007baafeeed0b96dd082b2c8381bf8a22bae
 
 COCOAPODS: 1.8.4

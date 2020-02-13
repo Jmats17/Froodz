@@ -15,7 +15,8 @@ struct UserService {
     
     private static let FBUserRef = Firestore.firestore().collection("Users")
         .document(UIDevice.current.identifierForVendor!.uuidString)
-    
+    private static let usernameRef = Firestore.firestore().collection("Usernames")
+
     static func return_UserActiveGroups(completion : @escaping ([String]) -> Void) {
         
         FBUserRef.getDocument { (documentSnapshot, error) in
@@ -44,4 +45,60 @@ struct UserService {
             }
         }
     }
+    
+    static func checkForExistingUsername(username: String, completion: @escaping (_ isTaken : Bool) -> Void) {
+        
+        usernameRef.whereField("username", isEqualTo: username).getDocuments { (snapshot, error) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+                completion(true)
+                return
+            }
+            
+            guard let snapshot = snapshot else {
+                print("Error fetching document: \(String(describing: error?.localizedDescription))")
+                completion(true)
+                return
+            }
+            
+            let result = snapshot.documents.map({ (document) -> [String : String] in
+                return document.data() as! [String : String]
+            })
+            
+            if result.isEmpty {
+                completion(false)
+            } else {
+                completion(true)
+            }
+            
+        }
+    }
+    
+    static func create(_ user: FIRUser , username: String, fullName : String, completion: @escaping (User?) -> Void) {
+        var userAttrs = [String : Any]()
+        
+        Firestore.firestore().collection("Usernames").addDocument(data: ["username" : username])
+        
+        userAttrs = ["username": username, "fullName" : fullName, "active_groups": FieldValue.arrayUnion([])] as [String : Any]
+        
+        let ref = Firestore.firestore().collection("Users").document(user.uid)
+        ref.setData(userAttrs) { (err) in
+            if let error = err {
+                print(error.localizedDescription)
+                return completion(nil)
+            }
+            ref.getDocument(completion: { (snapshot, error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                }
+                guard let snapshot = snapshot else { return completion(nil) }
+                let user = try! FirestoreDecoder().decode(User.self, from: snapshot.prepareForDecoding())
+
+                completion(user)
+            })
+        }
+        
+    }
+    
 }

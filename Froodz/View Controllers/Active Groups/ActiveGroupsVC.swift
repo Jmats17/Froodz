@@ -12,7 +12,12 @@ class ActiveGroupsViewController: UIViewController {
 
     @IBOutlet weak var tableView : UITableView!
     @IBOutlet weak var joinGroupTextField : UITextField!
-
+    @IBOutlet weak var createGroupButton: UIButton! {
+        didSet {
+            createGroupButton.layer.cornerRadius = 7.0
+        }
+    }
+    
     var groups = [Group]()
     
     override func viewDidLoad() {
@@ -20,10 +25,10 @@ class ActiveGroupsViewController: UIViewController {
         joinGroupTextField.delegate = self
         endEditingTapRecgonizer()
         
-        UserGroups_Service.return_ActiveGroups { (groups) in
-            self.groups = groups
-            self.tableView.reloadData()
-        }
+//        UserGroups_Service.return_ActiveGroups { (groups) in
+//            self.groups = groups
+//            self.tableView.reloadData()
+//        }
         
     }
    
