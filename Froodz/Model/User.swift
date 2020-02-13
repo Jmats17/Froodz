@@ -19,6 +19,13 @@ struct User : Codable {
     let active_groups : [String]
     
     private static var _current: User?
+    static var current: User {
+        guard let currentUser = _current else {
+            fatalError("Error: current user doesn't exist")
+        }
+        
+        return currentUser
+    }
     
     enum CodingKeys: String, CodingKey {
         case documentId

@@ -14,12 +14,11 @@ import CodableFirebase
 struct UserService {
     
     private static let FBUserRef = Firestore.firestore().collection("Users")
-        .document(UIDevice.current.identifierForVendor!.uuidString)
     private static let usernameRef = Firestore.firestore().collection("Usernames")
 
-    static func return_UserActiveGroups(completion : @escaping ([String]) -> Void) {
+    static func return_UserActiveGroups(userID: String, completion : @escaping ([String]) -> Void) {
         
-        FBUserRef.getDocument { (documentSnapshot, error) in
+        FBUserRef.document(userID).getDocument { (documentSnapshot, error) in
             
             if let err = error {
                 completion([])
@@ -34,8 +33,8 @@ struct UserService {
         }
     }
     
-    static func addGroupTo_ActiveGroups(groupID: String) {
-        FBUserRef.updateData([
+    static func addGroupTo_ActiveGroups(userID: String, groupID: String) {
+        FBUserRef.document(userID).updateData([
             "active_groups": FieldValue.arrayUnion([groupID])
         ]) { err in
             if let err = err {

@@ -14,8 +14,8 @@ struct UserGroups_Service {
     
     private static let FBRef = Firestore.firestore().collection("Groups")
     
-    static func return_ActiveGroups(completion: @escaping ([Group]) -> ()) {
-        UserService.return_UserActiveGroups { (groups) in
+    static func return_ActiveGroups(userID: String, completion: @escaping ([Group]) -> ()) {
+        UserService.return_UserActiveGroups(userID: userID) { (groups) in
             if groups.count > 0 {
                 return UserGroups_Service.retrieveGroups_FromGroupsArr(groupIds: groups) { (groups) in
                     completion(groups)

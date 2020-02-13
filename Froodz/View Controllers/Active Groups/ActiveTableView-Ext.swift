@@ -53,7 +53,7 @@ extension ActiveGroupsViewController: UITextFieldDelegate {
     
     func joinGroup() {
         guard let code = joinGroupTextField.text else { return }
-        GroupService.didJoinExistingGroup(code: code) { (didJoin) in
+        GroupService.didJoinExistingGroup(userID: user.documentId, code: code) { (didJoin) in
             if didJoin {
                 self.joinGroupTextField.text = ""
             } else {

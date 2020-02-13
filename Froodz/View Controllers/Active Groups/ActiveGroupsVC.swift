@@ -19,16 +19,17 @@ class ActiveGroupsViewController: UIViewController {
     }
     
     var groups = [Group]()
+    let user = User.current
     
     override func viewDidLoad() {
         super.viewDidLoad()
         joinGroupTextField.delegate = self
         endEditingTapRecgonizer()
         
-//        UserGroups_Service.return_ActiveGroups { (groups) in
-//            self.groups = groups
-//            self.tableView.reloadData()
-//        }
+        UserGroups_Service.return_ActiveGroups(userID: user.documentId) { (groups) in
+            self.groups = groups
+            self.tableView.reloadData()
+        }
         
     }
    
@@ -45,7 +46,7 @@ class ActiveGroupsViewController: UIViewController {
         }
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
             guard let groupName = (alertVC.textFields?[0].text) else { return }
-            GroupService.didCreateNewGroup(groupName: groupName) { (didRegister) in
+            GroupService.didCreateNewGroup(userID: self.user.documentId, groupName: groupName) { (didRegister) in
                 if didRegister {
                     print("Success")
                 }
