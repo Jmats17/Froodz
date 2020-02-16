@@ -14,10 +14,11 @@ import FirebaseFirestore
 struct LineService {
     
     static let FBRef = Firestore.firestore().collection("Groups")
+    static let user = User.current
     
     static func pushNewLine_ToGroup(lineName : String, amount : Int, secondAmt : Int?, groupID : String, type: String, completion: @escaping (Bool) -> Void) {
 
-        let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, optionalSecondLine: secondAmt, users: [UIDevice.current.identifierForVendor!.uuidString], creator: UIDevice.current.identifierForVendor!.uuidString, over: [], under: [])
+        let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, optionalSecondLine: secondAmt, users: [user.documentId], creator: user.documentId, over: [], under: [])
 
             let lineData = try! FirestoreEncoder().encode(line)
 
@@ -35,7 +36,6 @@ struct LineService {
     static func checkUserPlaceLineBet(groupID : String, lineID: String,
                                       selectedLine: String, completion: @escaping (_ didPlaceBetAlready: Bool) -> Void) {
 
-        let user = UIDevice.current.identifierForVendor!.uuidString
 
         FBRef.document(groupID).collection("Lines").document(lineID).getDocument { (snapshot, error) in
             if let err = error {
@@ -47,10 +47,10 @@ struct LineService {
             guard let data = snapshot else {completion(true) ; return}
             let line = try! FirestoreDecoder().decode(Line.self, from: data.prepareForDecoding())
 
-            if !line.under.isEmpty, line.under.contains(user) {
+            if !line.under.isEmpty, line.under.contains(user.documentId) {
                 completion(true)
                 return
-            } else if !line.over.isEmpty, line.over.contains(user) {
+            } else if !line.over.isEmpty, line.over.contains(user.documentId) {
                 completion(true)
                 return
             }
@@ -64,12 +64,12 @@ struct LineService {
 
         if sideTapped == "Minus" {
             FBRef.document(groupID).collection("Lines").document(lineID).updateData([
-                "under": FieldValue.arrayUnion([UIDevice.current.identifierForVendor!.uuidString]),
+                "under": FieldValue.arrayUnion([user.documentId]),
                 "over": FieldValue.arrayUnion([])
             ])
         } else {
             FBRef.document(groupID).collection("Lines").document(lineID).updateData([
-                "over": FieldValue.arrayUnion([UIDevice.current.identifierForVendor!.uuidString]),
+                "over": FieldValue.arrayUnion([user.documentId]),
                 "under": FieldValue.arrayUnion([])
             ])
         }

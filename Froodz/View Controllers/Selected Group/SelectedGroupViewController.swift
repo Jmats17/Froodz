@@ -17,6 +17,7 @@ class SelectedGroupViewController: UIViewController {
     var group : Group?
     var allLineData = [Line]()
     var lines = [Line]()
+    let user = User.current
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +49,7 @@ class SelectedGroupViewController: UIViewController {
     }
   
     @IBAction func tappedUsersExistingLines(sender: UIButton) {
-        self.lines = self.lines.filter({ $0.creator == UIDevice.current.identifierForVendor!.uuidString })
+        self.lines = self.lines.filter({ $0.creator == user.documentId })
         self.tableView.reloadData()
     }
     

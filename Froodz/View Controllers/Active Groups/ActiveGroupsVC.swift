@@ -26,11 +26,15 @@ class ActiveGroupsViewController: UIViewController {
         joinGroupTextField.delegate = self
         endEditingTapRecgonizer()
         
+        retrieveActiveGroups()
+        
+    }
+    
+    func retrieveActiveGroups() {
         UserGroups_Service.return_ActiveGroups(userID: user.documentId) { (groups) in
             self.groups = groups
             self.tableView.reloadData()
         }
-        
     }
    
     private func endEditingTapRecgonizer() {
@@ -43,12 +47,14 @@ class ActiveGroupsViewController: UIViewController {
         let alertVC = UIAlertController(title: "Create Group", message: "Please enter the name of the group", preferredStyle: .alert)
         alertVC.addTextField { (textfield) in
             textfield.placeholder = "Wombats"
+            textfield.autocapitalizationType = .words
         }
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
             guard let groupName = (alertVC.textFields?[0].text) else { return }
             GroupService.didCreateNewGroup(userID: self.user.documentId, groupName: groupName) { (didRegister) in
                 if didRegister {
                     print("Success")
+                    self.retrieveActiveGroups()
                 }
             }
         }

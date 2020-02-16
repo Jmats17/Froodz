@@ -54,6 +54,7 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
         //TODO If line completed, delete or store in past lines history?
         //Assign points to users on side that won
         //Figure out how to store map between user and points
-        //Probably need to finally do login and signup and store actual users
+        
+        
     }
 }

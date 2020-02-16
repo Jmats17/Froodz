@@ -27,7 +27,8 @@ class LiveLineTableViewCell: UITableViewCell {
 
     var indexPath : IndexPath!
     var delegate : BetButtonDelegate!
-
+    let user = User.current
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -41,7 +42,7 @@ class LiveLineTableViewCell: UITableViewCell {
     }
     
     func showCompletedButton(line: Line) {
-        if line.creator == UIDevice.current.identifierForVendor!.uuidString {
+        if line.creator == user.documentId {
             self.lineCompletedButton.isHidden = false
         }
     }
