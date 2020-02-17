@@ -15,8 +15,8 @@ struct Line: Codable {
     let documentId: String?
     let lineName: String
     let type : String
-    let numOnLine: Int
-    let optionalSecondLine: Int?
+    let numOnLine: Double
+    let optionalSecondLine: Double?
     let users : [String]
     let creator: String
     let over: [String]

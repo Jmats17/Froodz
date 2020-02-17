@@ -57,15 +57,15 @@ class CreateLineViewController: UIViewController {
         second_SideTextField.isHidden = true
     }
     
-    func return_LineValues() -> (lineName : String, amount : Int, groupID : String, type: String)? {
+    func return_LineValues() -> (lineName : String, amount : Double, groupID : String, type: String)? {
         let index = betTypeSegmentControl.selectedSegmentIndex
         
         if let lineName = lineNameTextField.text, lineName != "" {
             if let amountStr = first_SideTextField.text, amountStr != "" {
                 if let type = betTypeSegmentControl.titleForSegment(at: index) {
-                    if let amount = Int(amountStr) {
+                    if let amount = Double(amountStr) {
                         if let groupID = groupID {
-                            return (lineName, amount, groupID, type)
+                            return (lineName, amount + 0.5, groupID, type)
                         }
                     }
                 }
@@ -86,7 +86,7 @@ class CreateLineViewController: UIViewController {
         
         if betTypeSegmentControl.selectedSegmentIndex == 2 {
             guard let secondAmtStr = second_SideTextField.text, secondAmtStr != "" else {return }
-            guard let secondAmt = Int(secondAmtStr) else {return}
+            guard let secondAmt = Double(secondAmtStr) else {return}
             LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: secondAmt, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
                 if didComplete {
                     print("Success. Create alert for user here")

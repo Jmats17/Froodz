@@ -53,7 +53,7 @@ class LiveLineTableViewCell: UITableViewCell {
         showCompletedButton(line: line)
         
         if line.type != "Coin Line" {
-            let newNumOnLine = Double(line.numOnLine) + 0.5
+            let newNumOnLine = Double(line.numOnLine)
             self.first_BetButton.setTitle("-\(newNumOnLine)", for: .normal)
             self.second_BetButton.setTitle("+\(newNumOnLine)", for: .normal)
         } else {

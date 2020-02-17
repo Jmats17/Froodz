@@ -51,10 +51,43 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func lineCompletedTapped(at indexPath: IndexPath) {
-        //TODO If line completed, delete or store in past lines history?
-        //Assign points to users on side that won
-        //Figure out how to store map between user and points
-        
+        guard let group = group else {return }
+        let line = lines[indexPath.row]
+        let alertController = UIAlertController(title: "Who's the winnner?", message: "Which side of the bet hit?", preferredStyle: .alert)
+        if line.type != "Coin Line" {
+            let minusAction = UIAlertAction(title: "-\(line.numOnLine)", style: .default) { (action) in
+                GroupService.addPointsToWinners(line: line, lineWinners: line.under, group: group, amountToWinners: line.numOnLine, winningSide: "Minus") { (didSucceed) in
+                    if didSucceed {
+                        self.allLineData.removeAll(where: { $0.lineName == line.lineName })
+                        self.lines.removeAll(where: { $0.lineName == line.lineName })
+                    }
+                }
+            }
+            let plusAction = UIAlertAction(title: "+\(line.numOnLine)", style: .default) { (action) in
+                GroupService.addPointsToWinners(line: line, lineWinners: line.over, group: group, amountToWinners: line.numOnLine, winningSide: "Plus") { (didSucceed) in
+                    if didSucceed {
+                        self.allLineData.removeAll(where: { $0.lineName == line.lineName })
+                        self.lines.removeAll(where: { $0.lineName == line.lineName })
+                    }
+                }
+            }
+            alertController.addAction(minusAction)
+            alertController.addAction(plusAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            guard let secondLine = line.optionalSecondLine else {return}
+            let minusAction = UIAlertAction(title: "-\(line.numOnLine)", style: .default) { (action) in
+                
+            }
+            let plusAction = UIAlertAction(title: "+\(secondLine)", style: .default) { (action) in
+                
+            }
+            alertController.addAction(minusAction)
+            alertController.addAction(plusAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
         
     }
 }

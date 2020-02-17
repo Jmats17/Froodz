@@ -16,7 +16,7 @@ struct LineService {
     static let FBRef = Firestore.firestore().collection("Groups")
     static let user = User.current
     
-    static func pushNewLine_ToGroup(lineName : String, amount : Int, secondAmt : Int?, groupID : String, type: String, completion: @escaping (Bool) -> Void) {
+    static func pushNewLine_ToGroup(lineName : String, amount : Double, secondAmt : Double?, groupID : String, type: String, completion: @escaping (Bool) -> Void) {
 
         let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, optionalSecondLine: secondAmt, users: [user.documentId], creator: user.documentId, over: [], under: [])
 
