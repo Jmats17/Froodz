@@ -24,6 +24,8 @@ extension ActiveGroupsViewController : UITableViewDelegate, UITableViewDataSourc
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = mainStoryboard.instantiateViewController(withIdentifier: "SelectedGroupVC") as? SelectedGroupViewController {
             vc.group = group
+            vc.modalPresentationStyle = .fullScreen
+
             self.present(vc, animated: true, completion: nil)
         }
         

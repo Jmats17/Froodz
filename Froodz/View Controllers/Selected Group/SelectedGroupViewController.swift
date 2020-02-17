@@ -57,4 +57,8 @@ class SelectedGroupViewController: UIViewController {
         self.lines = self.allLineData
         self.tableView.reloadData()
     }
+    
+    @IBAction func didTapBack(sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

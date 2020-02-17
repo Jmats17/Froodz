@@ -10,30 +10,69 @@ import UIKit
 
 class ActiveGroupsViewController: UIViewController {
 
-    @IBOutlet weak var tableView : UITableView!
-    @IBOutlet weak var joinGroupTextField : UITextField!
+    @IBOutlet weak var tableView : UITableView! {
+        didSet {
+            if #available(iOS 10.0, *) {
+                tableView.refreshControl = refreshControl
+            } else {
+                tableView.addSubview(refreshControl)
+            }
+        }
+    }
+    @IBOutlet weak var joinGroupTextField : UITextField! {
+        didSet {
+            joinGroupTextField.attributedPlaceholder = NSAttributedString(string: "6ixCde",
+                                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        }
+    }
     @IBOutlet weak var createGroupButton: UIButton! {
         didSet {
             createGroupButton.layer.cornerRadius = 7.0
         }
     }
-    
+    @IBOutlet weak var groupLbl : UILabel! {
+        didSet {
+            groupLbl.text = "\(user.fullName)'s Groups"
+        }
+    }
     var groups = [Group]()
     let user = User.current
+    let refreshControl = UIRefreshControl()
+    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         joinGroupTextField.delegate = self
         endEditingTapRecgonizer()
         
+        refreshControl.addTarget(self, action: #selector(refreshGroupData(_:)), for: .valueChanged)
+        startAnimatingIndicator()
         retrieveActiveGroups()
         
     }
     
+    private func startAnimatingIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.color = .black
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        self.view.addSubview(activityIndicator)
+    }
+    
+    @objc private func refreshGroupData(_ sender: Any) {
+        startAnimatingIndicator()
+        retrieveActiveGroups()
+    }
+    
     func retrieveActiveGroups() {
         UserGroups_Service.return_ActiveGroups(userID: user.documentId) { (groups) in
-            self.groups = groups
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                self.activityIndicator.stopAnimating()
+                self.groups = groups
+                self.tableView.reloadData()
+            }
         }
     }
    

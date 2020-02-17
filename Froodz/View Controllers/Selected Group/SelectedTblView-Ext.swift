@@ -60,6 +60,7 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
                     if didSucceed {
                         self.allLineData.removeAll(where: { $0.lineName == line.lineName })
                         self.lines.removeAll(where: { $0.lineName == line.lineName })
+                        self.tableView.reloadData()
                     }
                 }
             }
@@ -68,6 +69,7 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
                     if didSucceed {
                         self.allLineData.removeAll(where: { $0.lineName == line.lineName })
                         self.lines.removeAll(where: { $0.lineName == line.lineName })
+                        self.tableView.reloadData()
                     }
                 }
             }
