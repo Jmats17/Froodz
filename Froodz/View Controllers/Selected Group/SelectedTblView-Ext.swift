@@ -12,7 +12,7 @@ import UIKit
 extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSource, BetButtonDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 171
+        return 148
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,6 +28,20 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
         cell.setCellData(line)
         
         return cell
+    }
+  
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if lines[indexPath.row].creator == user.username {
+            let endAction = UIContextualAction(style: .destructive, title: "End Line", handler: { (action, view, completionHandler) in
+                self.lineCompletedTapped(at: indexPath)
+                completionHandler(true)
+            })
+            endAction.backgroundColor = UIColor(red: 70/255, green: 141/244, blue: 242/255, alpha: 1.0)
+            let configuration = UISwipeActionsConfiguration(actions: [endAction])
+            return configuration
+        } else {
+            return nil
+        }
     }
     
     func minusButtonTapped(at indexPath: IndexPath) {

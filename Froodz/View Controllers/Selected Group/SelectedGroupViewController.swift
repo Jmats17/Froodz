@@ -13,11 +13,22 @@ class SelectedGroupViewController: UIViewController {
     @IBOutlet weak var tableView : UITableView!
     @IBOutlet weak var groupNameLbl : UILabel!
     @IBOutlet weak var totalMembersLbl : UILabel!
-
+    @IBOutlet weak var createLineButton: UIButton! {
+        didSet {
+            createLineButton.layer.cornerRadius = 7.0
+        }
+    }
+    @IBOutlet weak var firstPlaceLbl : UILabel!
+    @IBOutlet weak var secondPlaceLbl : UILabel!
+    @IBOutlet weak var thirdPlaceLbl : UILabel!
+    
     var group : Group?
     var allLineData = [Line]()
     var lines = [Line]()
     let user = User.current
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -39,6 +39,9 @@ class ActiveGroupsViewController: UIViewController {
     let user = User.current
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -89,9 +89,9 @@ extension UITextField {
 extension Int {
     func isSingular() -> String {
         if self == 1 {
-            return "\(self) Active Member"
+            return "\(self) Member"
         } else {
-            return "\(self) Active Members"
+            return "\(self) Members"
         }
     }
 }
