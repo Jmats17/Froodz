@@ -18,7 +18,7 @@ struct LineService {
     
     static func pushNewLine_ToGroup(lineName : String, amount : Double, secondAmt : Double?, groupID : String, type: String, completion: @escaping (Bool) -> Void) {
 
-        let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, optionalSecondLine: secondAmt, users: [user.documentId], creator: user.documentId, over: [], under: [])
+        let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, optionalSecondLine: secondAmt, users: [user.username], creator: user.username, over: [], under: [])
 
             let lineData = try! FirestoreEncoder().encode(line)
 
@@ -47,10 +47,10 @@ struct LineService {
             guard let data = snapshot else {completion(true) ; return}
             let line = try! FirestoreDecoder().decode(Line.self, from: data.prepareForDecoding())
 
-            if !line.under.isEmpty, line.under.contains(user.documentId) {
+            if !line.under.isEmpty, line.under.contains(user.username) {
                 completion(true)
                 return
-            } else if !line.over.isEmpty, line.over.contains(user.documentId) {
+            } else if !line.over.isEmpty, line.over.contains(user.username) {
                 completion(true)
                 return
             }
@@ -64,12 +64,12 @@ struct LineService {
 
         if sideTapped == "Minus" {
             FBRef.document(groupID).collection("Lines").document(lineID).updateData([
-                "under": FieldValue.arrayUnion([user.documentId]),
+                "under": FieldValue.arrayUnion([user.username]),
                 "over": FieldValue.arrayUnion([])
             ])
         } else {
             FBRef.document(groupID).collection("Lines").document(lineID).updateData([
-                "over": FieldValue.arrayUnion([user.documentId]),
+                "over": FieldValue.arrayUnion([user.username]),
                 "under": FieldValue.arrayUnion([])
             ])
         }

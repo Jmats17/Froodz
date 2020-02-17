@@ -9,6 +9,24 @@
 import Foundation
 import FirebaseFirestore
 
+class SelfSizedTableView: UITableView {
+     override var intrinsicContentSize: CGSize {
+       self.layoutIfNeeded()
+       return self.contentSize
+   }
+
+   override var contentSize: CGSize {
+       didSet{
+           self.invalidateIntrinsicContentSize()
+       }
+   }
+
+   override func reloadData() {
+       super.reloadData()
+       self.invalidateIntrinsicContentSize()
+   }
+}
+
 extension JSONDecoder {
     func decode<T>(_ type: T.Type, fromJSONObject object: Any) throws -> T where T: Decodable {
         return try decode(T.self, from: try JSONSerialization.data(withJSONObject: object, options: []))

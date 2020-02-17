@@ -90,6 +90,7 @@ class CreateLineViewController: UIViewController {
             LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: secondAmt, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
                 if didComplete {
                     print("Success. Create alert for user here")
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         } else {

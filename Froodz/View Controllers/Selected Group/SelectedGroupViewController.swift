@@ -24,10 +24,14 @@ class SelectedGroupViewController: UIViewController {
         checkGroupValue()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkGroupValue()
+    }
+    
     private func checkGroupValue() {
         if let group = group {
             groupNameLbl.text = group.groupName
-            print(group)
             totalMembersLbl.text = group.users.count.isSingular()
             LineService.retrieve_CurrentLines(groupID: group.documentId) { (lines) in
                 self.lines = lines
@@ -47,16 +51,21 @@ class SelectedGroupViewController: UIViewController {
             self.present(vc, animated: true, completion: nil)
         }
     }
-  
-    @IBAction func tappedUsersExistingLines(sender: UIButton) {
-        self.lines = self.lines.filter({ $0.creator == user.documentId })
-        self.tableView.reloadData()
+    
+    @IBAction func segmentDidChange(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            self.lines = self.allLineData
+            self.tableView.reloadData()
+        case 1:
+            self.lines = self.lines.filter({ $0.creator == user.username })
+            self.tableView.reloadData()
+        default:
+            self.lines = self.allLineData
+            self.tableView.reloadData()
+        }
     }
     
-    @IBAction func tappedAllLines(sender: UIButton) {
-        self.lines = self.allLineData
-        self.tableView.reloadData()
-    }
     
     @IBAction func didTapBack(sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

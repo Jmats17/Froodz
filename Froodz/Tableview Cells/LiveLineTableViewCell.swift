@@ -16,6 +16,7 @@ protocol BetButtonDelegate {
 
 class LiveLineTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var createdLbl : UILabel!
     @IBOutlet weak var liveLineNameLbl : UILabel!
     @IBOutlet weak var first_BetButton : UIButton!
     @IBOutlet weak var second_BetButton : UIButton!
@@ -42,7 +43,7 @@ class LiveLineTableViewCell: UITableViewCell {
     }
     
     func showCompletedButton(line: Line) {
-        if line.creator == user.documentId {
+        if line.creator == user.username {
             self.lineCompletedButton.isHidden = false
         }
     }
@@ -50,6 +51,7 @@ class LiveLineTableViewCell: UITableViewCell {
     func setCellData(_ line: Line) {
         self.lineCompletedButton.isHidden = true
         self.liveLineNameLbl.text = line.lineName
+        self.createdLbl.text = "Created by: \(line.creator)"
         showCompletedButton(line: line)
         
         if line.type != "Coin Line" {

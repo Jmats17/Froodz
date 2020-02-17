@@ -56,7 +56,7 @@ struct GroupService {
         ref = FBRef.addDocument(data: [
             "groupName" : groupName,
             "code": Helper.return_RandomGeneratedCode(),
-            "users": [ User.current.documentId : 0.0 ]
+            "users": [ User.current.username : 0.0 ]
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -87,9 +87,9 @@ struct GroupService {
             
             if documents.count > 0 {
                 let group = try! FirestoreDecoder().decode(Group.self, from: documents[0].prepareForDecoding())
-                if !group.users.keys.contains(user.documentId) {
+                if !group.users.keys.contains(User.current.username) {
                     FBRef.document(group.documentId).updateData([
-                        "users" : FieldValue.arrayUnion([User.current.documentId])
+                        "users" : FieldValue.arrayUnion([User.current.username])
                     ]) { error in
                         if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
                         else {
