@@ -38,6 +38,8 @@ class SelectedGroupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 148
         checkGroupValue()
         didUpdate_TopLeaderboard()
     }
