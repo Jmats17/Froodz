@@ -22,16 +22,18 @@ extension CreateLineViewController : UITextFieldDelegate {
 extension CreateLineViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == Constants.Color.placeholderColor {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.font = UIFont.systemFont(ofSize: 22.0, weight: .semibold)
+            textView.textColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1.0)
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Santa Clause not making to to my house before 7AM"
-            textView.textColor = UIColor.lightGray
+            textView.font = UIFont.systemFont(ofSize: 22.0, weight: .regular)
+            textView.textColor = Constants.Color.placeholderColor
         }
     }
 }

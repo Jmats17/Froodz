@@ -18,7 +18,7 @@ struct LineService {
     
     static func pushNewLine_ToGroup(lineName : String, amount : Double, secondAmt : Double?, groupID : String, type: String, completion: @escaping (Bool) -> Void) {
 
-        let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, optionalSecondLine: secondAmt, users: [user.username], creator: user.username, over: [], under: [])
+        let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, users: [user.username], creator: user.username, over: [], under: [])
 
             let lineData = try! FirestoreEncoder().encode(line)
 

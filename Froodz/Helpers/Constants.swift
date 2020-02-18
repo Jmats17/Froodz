@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
     
@@ -15,5 +16,9 @@ struct Constants {
         static let uid = "uid"
         static let fullName = "fullName"
         static let username = "username"
+    }
+    
+    struct Color {
+        static let placeholderColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1.0)
     }
 }

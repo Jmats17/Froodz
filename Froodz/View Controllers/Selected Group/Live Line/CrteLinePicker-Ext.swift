@@ -30,20 +30,25 @@ extension CreateLineViewController: UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.pickerValue = pickerData[row]
         numberTextField.resignFirstResponder()
+        numberTextField.text = ""
         
         switch pickerData[row] {
         case "Odds":
             numberTextField.addPointFive_ToolBar(view: self.view)
-            numberTextField.placeholder = "3.5"
+            numberTextField.attributedPlaceholder =
+                NSAttributedString(string: "3.5", attributes: [NSAttributedString.Key.foregroundColor: Constants.Color.placeholderColor])
         case "Total":
             numberTextField.addPointFive_ToolBar(view: self.view)
-            numberTextField.placeholder = "10"
+            numberTextField.attributedPlaceholder =
+                NSAttributedString(string: "10", attributes: [NSAttributedString.Key.foregroundColor: Constants.Color.placeholderColor])
         case "Coin Line":
             numberTextField.addPlusMinusToolBar(view: self.view)
-            numberTextField.placeholder = "-1000"
+            numberTextField.attributedPlaceholder =
+                NSAttributedString(string: "-1000", attributes: [NSAttributedString.Key.foregroundColor: Constants.Color.placeholderColor])
         default:
             numberTextField.addPointFive_ToolBar(view: self.view)
-            numberTextField.placeholder = "3.5"
+            numberTextField.attributedPlaceholder =
+                NSAttributedString(string: "3.5", attributes: [NSAttributedString.Key.foregroundColor: Constants.Color.placeholderColor])
         }
     }
     

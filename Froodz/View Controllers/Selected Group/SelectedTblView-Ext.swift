@@ -92,15 +92,10 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
             
             self.present(alertController, animated: true, completion: nil)
         } else {
-            guard let secondLine = line.optionalSecondLine else {return}
-            let minusAction = UIAlertAction(title: "-\(line.numOnLine)", style: .default) { (action) in
+            let action = UIAlertAction(title: "\(line.numOnLine)", style: .default) { (action) in
                 
             }
-            let plusAction = UIAlertAction(title: "+\(secondLine)", style: .default) { (action) in
-                
-            }
-            alertController.addAction(minusAction)
-            alertController.addAction(plusAction)
+            alertController.addAction(action)
             
             self.present(alertController, animated: true, completion: nil)
         }

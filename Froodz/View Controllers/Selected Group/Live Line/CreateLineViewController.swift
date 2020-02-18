@@ -15,11 +15,17 @@ class CreateLineViewController: UIViewController {
     @IBOutlet weak var lineNameTextField : UITextView! {
         didSet {
             lineNameTextField.text = "Santa Clause not making to to my house before 7AM"
-            lineNameTextField.textColor = .lightGray
+            lineNameTextField.font = UIFont.systemFont(ofSize: 22.0, weight: .regular)
+            lineNameTextField.textColor = Constants.Color.placeholderColor
         }
     }
     @IBOutlet weak var betTypePickerView : UIPickerView!
-    @IBOutlet weak var numberTextField : UITextField!
+    @IBOutlet weak var numberTextField : UITextField! {
+        didSet {
+            numberTextField.attributedPlaceholder = NSAttributedString(string: "3.5",
+                                                                       attributes: [NSAttributedString.Key.foregroundColor: Constants.Color.placeholderColor])
+        }
+    }
     @IBOutlet weak var createButton : UIButton! {
         didSet {
             createButton.layer.cornerRadius = 7.0
@@ -33,6 +39,7 @@ class CreateLineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         endEditingTapRecgonizer()
+        numberTextField.addPointFive_ToolBar(view: self.view)
     }
     
     func return_LineValues() -> (lineName : String, amount : Double, groupID : String, betType: String)? {
@@ -55,29 +62,12 @@ class CreateLineViewController: UIViewController {
     }
     
     @IBAction func tappedCreate(sender : UIButton) {
-//
-//        guard let lineValues = return_LineValues() else { return }
-//
-//
-//
-//
-//        if betTypeSegmentControl.selectedSegmentIndex == 2 {
-//            guard let secondAmtStr = second_SideTextField.text, secondAmtStr != "" else {return }
-//            guard let secondAmt = Double(secondAmtStr) else {return}
-//            LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: secondAmt, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
-//                if didComplete {
-//                    print("Success. Create alert for user here")
-//                    self.dismiss(animated: true, completion: nil)
-//                }
-//            }
-//        } else {
-//            LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: nil, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
-//                if didComplete {
-//                    print("Success. Create alert for user here")
-//                }
-//            }
-//        }
-        
+        guard let lineValues = return_LineValues() else { return }
+        LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: nil, groupID: lineValues.groupID, type: lineValues.betType) { (didComplete) in
+            if didComplete {
+                print("Success. Create alert for user here")
+            }
+        }
     }
-
 }
+

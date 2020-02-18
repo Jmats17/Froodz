@@ -57,9 +57,9 @@ class LiveLineTableViewCell: UITableViewCell {
             self.first_BetButton.setTitle("-\(newNumOnLine)", for: .normal)
             self.second_BetButton.setTitle("+\(newNumOnLine)", for: .normal)
         } else {
-            guard let secondNum = line.optionalSecondLine else { return }
-            self.first_BetButton.setTitle("-\(line.numOnLine)", for: .normal)
-            self.second_BetButton.setTitle("+\(secondNum)", for: .normal)
+            let newNumOnLine = Int(line.numOnLine)
+            self.first_BetButton.setTitle("\(newNumOnLine)", for: .normal)
+            self.second_BetButton.isHidden = true
         }
     }
     

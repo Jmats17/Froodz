@@ -52,8 +52,13 @@ extension UITextField {
     }
     
     @objc
-    func addPointFive() -> Double {
-        return 0.5
+    func addPointFive() {
+        if var text = self.text , text.isEmpty == false{
+            guard let val = Double(text) else {return}
+            let newVal = val + 0.5
+            text = "\(newVal)"
+            self.text = text
+        }
     }
     
     func addPlusMinusToolBar(view : UIView) {

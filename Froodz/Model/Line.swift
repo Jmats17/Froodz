@@ -16,7 +16,6 @@ struct Line: Codable {
     let lineName: String
     let type : String
     let numOnLine: Double
-    let optionalSecondLine: Double?
     let users : [String]
     let creator: String
     let over: [String]
@@ -27,7 +26,6 @@ struct Line: Codable {
         case lineName
         case type
         case numOnLine
-        case optionalSecondLine
         case users
         case creator
         case over
