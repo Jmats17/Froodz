@@ -30,7 +30,6 @@
 		D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */; };
 		D07269C323F246BD002760ED /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C223F246BC002760ED /* Line.swift */; };
 		D07269C623F257FB002760ED /* LineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C523F257FB002760ED /* LineService.swift */; };
-		D0CDC58923FB70E6001B3DAC /* CrteLinePicker-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CDC58823FB70E6001B3DAC /* CrteLinePicker-Ext.swift */; };
 		D0DF8D1623F5D47100590C60 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1523F5D47100590C60 /* LoginViewController.swift */; };
 		D0DF8D1823F5D54300590C60 /* LoginTxtfield-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */; };
 		D0DF8D1A23F6008100590C60 /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1923F6008100590C60 /* VerificationVC.swift */; };
@@ -56,7 +55,7 @@
 		31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.release.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.release.xcconfig"; sourceTree = "<group>"; };
 		3304F30116A359A2908B18E3 /* Pods_Froodz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Froodz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EDD8752165AD430FFF64E7 /* Pods-Froodz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.debug.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.debug.xcconfig"; sourceTree = "<group>"; };
-		D072697623F0C85F002760ED /* Froodz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Froodz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D072697623F0C85F002760ED /* Handshake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handshake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D072697923F0C85F002760ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D072697B23F0C85F002760ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D072698023F0C85F002760ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,7 +80,6 @@
 		D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CrteLineTxtFld-Ext.swift"; sourceTree = "<group>"; };
 		D07269C223F246BC002760ED /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		D07269C523F257FB002760ED /* LineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineService.swift; sourceTree = "<group>"; };
-		D0CDC58823FB70E6001B3DAC /* CrteLinePicker-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CrteLinePicker-Ext.swift"; sourceTree = "<group>"; };
 		D0DF8D1523F5D47100590C60 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginTxtfield-Ext.swift"; sourceTree = "<group>"; };
 		D0DF8D1923F6008100590C60 /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
@@ -132,7 +130,7 @@
 		D072697723F0C85F002760ED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D072697623F0C85F002760ED /* Froodz.app */,
+				D072697623F0C85F002760ED /* Handshake.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,7 +253,6 @@
 			children = (
 				D07269BE23F239C7002760ED /* CreateLineViewController.swift */,
 				D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */,
-				D0CDC58823FB70E6001B3DAC /* CrteLinePicker-Ext.swift */,
 			);
 			path = "Live Line";
 			sourceTree = "<group>";
@@ -299,7 +296,7 @@
 			);
 			name = Froodz;
 			productName = Froodz;
-			productReference = D072697623F0C85F002760ED /* Froodz.app */;
+			productReference = D072697623F0C85F002760ED /* Handshake.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -419,7 +416,6 @@
 				D07269C323F246BD002760ED /* Line.swift in Sources */,
 				D07269B223F20E56002760ED /* User.swift in Sources */,
 				D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */,
-				D0CDC58923FB70E6001B3DAC /* CrteLinePicker-Ext.swift in Sources */,
 				D0DF8D1E23F6037E00590C60 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -576,7 +572,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinmatsnev.Froodz;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Handshake;
 				PROVISIONING_PROFILE_SPECIFIER = "Froodz PP";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -599,7 +595,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinmatsnev.Froodz;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Handshake;
 				PROVISIONING_PROFILE_SPECIFIER = "Froodz PP";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

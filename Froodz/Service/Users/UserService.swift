@@ -74,6 +74,14 @@ struct UserService {
         }
     }
     
+    static func returnUsersBalance_FromGroup(group : Group) -> Double {
+        if group.users.keys.contains(User.current.username) {
+            guard let amount = group.users[User.current.username] else {return 0.0}
+            return amount
+        }
+        return 0.0
+    }
+    
     static func create(_ user: FIRUser , username: String, fullName : String, completion: @escaping (User?) -> Void) {
         var userAttrs = [String : Any]()
         

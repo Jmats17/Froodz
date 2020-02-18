@@ -13,9 +13,10 @@ class SelectedGroupViewController: UIViewController {
     @IBOutlet weak var tableView : UITableView!
     @IBOutlet weak var groupNameLbl : UILabel!
     @IBOutlet weak var totalMembersLbl : UILabel!
+    @IBOutlet weak var numOfUsersCoinsLbl: UILabel!
     @IBOutlet weak var createLineButton: UIButton! {
         didSet {
-            createLineButton.layer.cornerRadius = 4.0
+            createLineButton.layer.cornerRadius = 7.0
         }
     }
     @IBOutlet weak var rankingView: UIView! {
@@ -86,6 +87,7 @@ class SelectedGroupViewController: UIViewController {
         if let group = group {
             groupNameLbl.text = group.groupName
             totalMembersLbl.text = group.users.count.isSingular()
+            numOfUsersCoinsLbl.text = "\(UserService.returnUsersBalance_FromGroup(group: group))"
             LineService.retrieve_CurrentLines(groupID: group.documentId) { (lines) in
                 DispatchQueue.main.async {
                     self.lines = lines
@@ -108,12 +110,16 @@ class SelectedGroupViewController: UIViewController {
     }
     
     @IBAction func segmentDidChange(sender: UISegmentedControl) {
+        self.lines = self.allLineData
         switch sender.selectedSegmentIndex {
         case 0:
-            self.lines = self.allLineData
+            self.lines = self.lines.filter({ !$0.single.contains(user.username) && !$0.doubleDown.contains(user.username) })
             self.tableView.reloadData()
         case 1:
             self.lines = self.lines.filter({ $0.creator == user.username })
+            self.tableView.reloadData()
+        case 2:
+            self.lines = self.lines.filter({ $0.single.contains(user.username) || $0.doubleDown.contains(user.username) })
             self.tableView.reloadData()
         default:
             self.lines = self.allLineData

@@ -16,9 +16,9 @@ struct LineService {
     static let FBRef = Firestore.firestore().collection("Groups")
     static let user = User.current
     
-    static func pushNewLine_ToGroup(lineName : String, amount : Double, secondAmt : Double?, groupID : String, type: String, completion: @escaping (Bool) -> Void) {
+    static func pushNewLine_ToGroup(lineName : String, amount : Double, groupID : String, completion: @escaping (Bool) -> Void) {
 
-        let line = Line(documentId: nil, lineName: lineName, type: type, numOnLine: amount, users: [user.username], creator: user.username, over: [], under: [])
+        let line = Line(documentId: nil, lineName: lineName, numOnLine: amount, users: [user.username], creator: user.username, single: [], doubleDown: [])
 
             let lineData = try! FirestoreEncoder().encode(line)
 
@@ -34,7 +34,7 @@ struct LineService {
     }
     
     static func checkUserPlaceLineBet(groupID : String, lineID: String,
-                                      selectedLine: String, completion: @escaping (_ didPlaceBetAlready: Bool) -> Void) {
+                                       completion: @escaping (_ didPlaceBetAlready: Bool) -> Void) {
 
 
         FBRef.document(groupID).collection("Lines").document(lineID).getDocument { (snapshot, error) in
@@ -47,10 +47,10 @@ struct LineService {
             guard let data = snapshot else {completion(true) ; return}
             let line = try! FirestoreDecoder().decode(Line.self, from: data.prepareForDecoding())
 
-            if !line.under.isEmpty, line.under.contains(user.username) {
+            if !line.single.isEmpty, line.single.contains(user.username) {
                 completion(true)
                 return
-            } else if !line.over.isEmpty, line.over.contains(user.username) {
+            } else if !line.doubleDown.isEmpty, line.doubleDown.contains(user.username) {
                 completion(true)
                 return
             }
@@ -60,20 +60,16 @@ struct LineService {
         }
     }
     
-    static func addUser_ToLineSide(groupID : String, lineID: String, sideTapped: String) {
-
-        if sideTapped == "Minus" {
-            FBRef.document(groupID).collection("Lines").document(lineID).updateData([
-                "under": FieldValue.arrayUnion([user.username]),
-                "over": FieldValue.arrayUnion([])
-            ])
-        } else {
-            FBRef.document(groupID).collection("Lines").document(lineID).updateData([
-                "over": FieldValue.arrayUnion([user.username]),
-                "under": FieldValue.arrayUnion([])
-            ])
-        }
-        
+    static func addUser_ToSingleBet(groupID : String, lineID: String) {
+        FBRef.document(groupID).collection("Lines").document(lineID).updateData([
+            "single": FieldValue.arrayUnion([user.username]),
+        ])
+    }
+    
+    static func addUser_ToDoubleDown(groupID : String, lineID: String) {
+        FBRef.document(groupID).collection("Lines").document(lineID).updateData([
+            "doubleDown": FieldValue.arrayUnion([user.username]),
+        ])
     }
     
     static func retrieve_CurrentLines(groupID: String, completion: @escaping ([Line]) -> Void) {

@@ -19,7 +19,6 @@ class CreateLineViewController: UIViewController {
             lineNameTextField.textColor = Constants.Color.placeholderColor
         }
     }
-    @IBOutlet weak var betTypePickerView : UIPickerView!
     @IBOutlet weak var numberTextField : UITextField! {
         didSet {
             numberTextField.attributedPlaceholder = NSAttributedString(string: "3.5",
@@ -33,8 +32,6 @@ class CreateLineViewController: UIViewController {
     }
     
     var groupID : String?
-    var pickerData = ["Odds", "Total", "Coin Line"]
-    var pickerValue = "Odds"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +39,12 @@ class CreateLineViewController: UIViewController {
         numberTextField.addPointFive_ToolBar(view: self.view)
     }
     
-    func return_LineValues() -> (lineName : String, amount : Double, groupID : String, betType: String)? {
+    func return_LineValues() -> (lineName : String, amount : Double, groupID : String)? {
         if let lineName = lineNameTextField.text, lineName != "" {
             if let amountStr = numberTextField.text, amountStr != "" {
                 if let amount = Double(amountStr) {
                     if let groupID = groupID {
-                        return (lineName, amount, groupID, pickerValue)
+                        return (lineName, amount, groupID)
                     }
                 }
             }
@@ -63,7 +60,7 @@ class CreateLineViewController: UIViewController {
     
     @IBAction func tappedCreate(sender : UIButton) {
         guard let lineValues = return_LineValues() else { return }
-        LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: nil, groupID: lineValues.groupID, type: lineValues.betType) { (didComplete) in
+        LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, groupID: lineValues.groupID) { (didComplete) in
             if didComplete {
                 print("Success. Create alert for user here")
             }

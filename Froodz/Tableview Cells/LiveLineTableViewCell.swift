@@ -9,24 +9,24 @@
 import UIKit
 
 protocol BetButtonDelegate {
-    func minusButtonTapped(at indexPath : IndexPath)
-    func plusButtonTapped(at indexPath : IndexPath)
+    func singleBetButtonTapped(at indexPath : IndexPath)
+    func doubleDownButtonTapped(at indexPath : IndexPath)
 }
 
 class LiveLineTableViewCell: UITableViewCell {
 
     @IBOutlet weak var createdLbl : UILabel!
     @IBOutlet weak var liveLineNameLbl : UILabel!
-    @IBOutlet weak var first_BetButton : UIButton! {
+    @IBOutlet weak var single_BetButton : UIButton! {
         didSet {
-            first_BetButton.layer.cornerRadius = 4.0
+            single_BetButton.layer.cornerRadius = 4.0
         }
     }
-    @IBOutlet weak var second_BetButton : UIButton! {
+    @IBOutlet weak var doubleDown_BetButton : UIButton! {
         didSet {
-            second_BetButton.layer.cornerRadius = 4.0
-            second_BetButton.layer.borderWidth = 1.0
-            second_BetButton.layer.borderColor = UIColor(red: 55/255, green: 135/255, blue: 191/255, alpha: 1.0).cgColor
+            doubleDown_BetButton.layer.cornerRadius = 4.0
+            doubleDown_BetButton.layer.borderWidth = 1.0
+            doubleDown_BetButton.layer.borderColor = UIColor(red: 55/255, green: 135/255, blue: 191/255, alpha: 1.0).cgColor
         }
     }
 
@@ -50,34 +50,40 @@ class LiveLineTableViewCell: UITableViewCell {
     
     func setCellData(_ line: Line) {
         self.liveLineNameLbl.text = line.lineName
-        self.createdLbl.text = "Created by: \(line.creator)"
-        
-        if line.type != "Coin Line" {
-            let newNumOnLine = Double(line.numOnLine)
-            self.first_BetButton.setTitle("-\(newNumOnLine)", for: .normal)
-            self.second_BetButton.setTitle("+\(newNumOnLine)", for: .normal)
+        self.createdLbl.text = "@\(line.creator.uppercased())"
+        let isInteger = line.numOnLine.truncatingRemainder(dividingBy: 1) == 0
+
+        if isInteger {
+            self.single_BetButton.setTitle("\(Int(line.numOnLine))", for: .normal)
         } else {
-            let newNumOnLine = Int(line.numOnLine)
-            self.first_BetButton.setTitle("\(newNumOnLine)", for: .normal)
-            self.second_BetButton.isHidden = true
+            self.single_BetButton.setTitle("\(line.numOnLine)", for: .normal)
         }
     }
     
-    func betInitiated(line : Line, groupID: String, sideTapped: String) {
+    func singleBetInitiated(line : Line, groupID: String) {
         guard let lineID = line.documentId else {return}
-        LineService.checkUserPlaceLineBet(groupID: groupID, lineID: lineID, selectedLine: sideTapped) { (didPlaceBet) in
+        LineService.checkUserPlaceLineBet(groupID: groupID, lineID: lineID) { (didPlaceBet) in
             if !didPlaceBet {
-                LineService.addUser_ToLineSide(groupID: groupID, lineID: lineID, sideTapped: sideTapped)
+                LineService.addUser_ToSingleBet(groupID: groupID, lineID: lineID)
             }
         }
     }
     
-    @IBAction func firstBetButtonTapped(sender : UIButton) {
-        self.delegate?.minusButtonTapped(at: indexPath)
+    func doubleDownBetInitiated(line : Line, groupID: String) {
+        guard let lineID = line.documentId else {return}
+        LineService.checkUserPlaceLineBet(groupID: groupID, lineID: lineID) { (didPlaceBet) in
+            if !didPlaceBet {
+                LineService.addUser_ToDoubleDown(groupID: groupID, lineID: lineID)
+            }
+        }
     }
     
-    @IBAction func secondBetButtonTapped(sender : UIButton) {
-        self.delegate?.plusButtonTapped(at: indexPath)
+    @IBAction func singleBetButtonTapped(sender : UIButton) {
+        self.delegate?.singleBetButtonTapped(at: indexPath)
+    }
+    
+    @IBAction func DoubleDownButtonTapped(sender : UIButton) {
+        self.delegate?.doubleDownButtonTapped(at: indexPath)
     }
 
 }

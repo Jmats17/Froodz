@@ -16,20 +16,59 @@ struct GroupService {
     static let user = User.current
     static let FBRef = Firestore.firestore().collection("Groups")
 
-    static func addPointsToWinners(line: Line, lineWinners: [String], group : Group, amountToWinners: Double, winningSide: String, completion: @escaping (_ didSucceed: Bool) -> Void) {
+    static func addPointsToWinners(line: Line, singleWinners: [String], doubleWinners: [String], group : Group, singleAmount: Double, completion: @escaping (_ didSucceed: Bool) -> Void) {
         
         let ref = Firestore.firestore()
         let batch = ref.batch()
         
         for winner in group.users {
-            if lineWinners.contains(winner.key) {
+            if singleWinners.contains(winner.key) {
                 let group = ref.collection("Groups").document(group.documentId)
                 let key = "users.\(winner.key)"
                 batch.updateData([
-                    key : FieldValue.increment(amountToWinners)
+                    key : FieldValue.increment(singleAmount)
+                ], forDocument: group)
+            }
+            
+            if doubleWinners.contains(winner.key) {
+                let group = ref.collection("Groups").document(group.documentId)
+                let key = "users.\(winner.key)"
+                let double = singleAmount * 2.0
+                batch.updateData([
+                    key : FieldValue.increment(double)
                 ], forDocument: group)
             }
         }
+        GroupService.deleteData_PushToPastLines(group: group, line: line, ref: ref, batch: batch, completion: completion)
+    }
+    
+    static func deductPointsToLosers(line: Line, singleLosers: [String], doubleLosers: [String], group : Group, singleAmount: Double, completion: @escaping (_ didSucceed: Bool) -> Void) {
+        
+        let ref = Firestore.firestore()
+        let batch = ref.batch()
+        
+        for winner in group.users {
+            if singleLosers.contains(winner.key) {
+                let group = ref.collection("Groups").document(group.documentId)
+                let key = "users.\(winner.key)"
+                batch.updateData([
+                    key : FieldValue.increment(-singleAmount)
+                ], forDocument: group)
+            }
+            
+            if doubleLosers.contains(winner.key) {
+                let group = ref.collection("Groups").document(group.documentId)
+                let key = "users.\(winner.key)"
+                let double = singleAmount * 2.0
+                batch.updateData([
+                    key : FieldValue.increment(-double)
+                ], forDocument: group)
+            }
+        }
+        GroupService.deleteData_PushToPastLines(group: group, line: line, ref: ref, batch: batch, completion: completion)
+    }
+    
+    static func deleteData_PushToPastLines(group: Group, line: Line, ref: Firestore, batch: WriteBatch, completion: @escaping (_ didSucceed: Bool) -> Void) {
         guard let lineID = line.documentId else { completion(false) ; return}
         let lineData = try! FirestoreEncoder().encode(line)
 
@@ -56,7 +95,7 @@ struct GroupService {
         ref = FBRef.addDocument(data: [
             "groupName" : groupName,
             "code": Helper.return_RandomGeneratedCode(),
-            "users": [ User.current.username : 0.0 ]
+            "users": [ User.current.username : 500.0 ]
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -89,7 +128,7 @@ struct GroupService {
                 let group = try! FirestoreDecoder().decode(Group.self, from: documents[0].prepareForDecoding())
                 if !group.users.keys.contains(User.current.username) {
                     FBRef.document(group.documentId).updateData([
-                        "users" : FieldValue.arrayUnion([User.current.username])
+                        "users" : [user.username : 500.0]
                     ]) { error in
                         if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
                         else {

@@ -44,61 +44,52 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func minusButtonTapped(at indexPath: IndexPath) {
+    func singleBetButtonTapped(at indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! LiveLineTableViewCell
         let line = lines[indexPath.row]
         guard let groupID = group?.documentId else {return}
         
-        cell.betInitiated(line: line, groupID: groupID, sideTapped: "Minus")
-        guard let lineID = line.documentId else {return}
+        cell.singleBetInitiated(line: line, groupID: groupID)
 
     }
     
-    func plusButtonTapped(at indexPath: IndexPath) {
+    func doubleDownButtonTapped(at indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! LiveLineTableViewCell
         let line = lines[indexPath.row]
         guard let groupID = group?.documentId else {return}
-        guard let lineID = line.documentId else {return}
 
-        cell.betInitiated(line: line, groupID: groupID, sideTapped: "Plus")
+        cell.doubleDownBetInitiated(line: line, groupID: groupID)
 
     }
     
     func lineCompletedTapped(at indexPath: IndexPath) {
         guard let group = group else {return }
         let line = lines[indexPath.row]
-        let alertController = UIAlertController(title: "Who's the winnner?", message: "Which side of the bet hit?", preferredStyle: .alert)
-        if line.type != "Coin Line" {
-            let minusAction = UIAlertAction(title: "-\(line.numOnLine)", style: .default) { (action) in
-                GroupService.addPointsToWinners(line: line, lineWinners: line.under, group: group, amountToWinners: line.numOnLine, winningSide: "Minus") { (didSucceed) in
-                    if didSucceed {
-                        self.allLineData.removeAll(where: { $0.lineName == line.lineName })
-                        self.lines.removeAll(where: { $0.lineName == line.lineName })
-                        self.tableView.reloadData()
-                    }
+        let alertController = UIAlertController(title: "Did the bet hit?", message: "Select if the bet hit or not so we can reward the players!", preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Yes it did 🤝", style: .destructive) { (action) in
+            GroupService.addPointsToWinners(line: line, singleWinners: line.single, doubleWinners: line.doubleDown, group: group, singleAmount: line.numOnLine) { (didSucceed) in
+                if didSucceed {
+                    self.allLineData.removeAll(where: { $0.lineName == line.lineName })
+                    self.lines.removeAll(where: { $0.lineName == line.lineName })
+                    self.tableView.reloadData()
                 }
             }
-            let plusAction = UIAlertAction(title: "+\(line.numOnLine)", style: .default) { (action) in
-                GroupService.addPointsToWinners(line: line, lineWinners: line.over, group: group, amountToWinners: line.numOnLine, winningSide: "Plus") { (didSucceed) in
-                    if didSucceed {
-                        self.allLineData.removeAll(where: { $0.lineName == line.lineName })
-                        self.lines.removeAll(where: { $0.lineName == line.lineName })
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-            alertController.addAction(minusAction)
-            alertController.addAction(plusAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-        } else {
-            let action = UIAlertAction(title: "\(line.numOnLine)", style: .default) { (action) in
-                
-            }
-            alertController.addAction(action)
-            
-            self.present(alertController, animated: true, completion: nil)
         }
         
+        let noAction = UIAlertAction(title: "Nope 👎", style: .destructive) { (action) in
+            GroupService.deductPointsToLosers(line: line, singleLosers: line.single, doubleLosers: line.doubleDown, group: group, singleAmount: line.numOnLine) { (didSucceed) in
+                if didSucceed {
+                    self.allLineData.removeAll(where: { $0.lineName == line.lineName })
+                    self.lines.removeAll(where: { $0.lineName == line.lineName })
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+                 
+        self.present(alertController, animated: true, completion: nil)
+
     }
 }
