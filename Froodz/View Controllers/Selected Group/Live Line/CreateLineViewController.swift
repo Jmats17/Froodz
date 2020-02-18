@@ -62,7 +62,9 @@ class CreateLineViewController: UIViewController {
         guard let lineValues = return_LineValues() else { return }
         LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, groupID: lineValues.groupID) { (didComplete) in
             if didComplete {
-                print("Success. Create alert for user here")
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                //present error view
             }
         }
     }

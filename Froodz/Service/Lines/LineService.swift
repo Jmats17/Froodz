@@ -17,7 +17,6 @@ struct LineService {
     static let user = User.current
     
     static func pushNewLine_ToGroup(lineName : String, amount : Double, groupID : String, completion: @escaping (Bool) -> Void) {
-
         let line = Line(documentId: nil, lineName: lineName, numOnLine: amount, users: [user.username], creator: user.username, single: [], doubleDown: [])
 
             let lineData = try! FirestoreEncoder().encode(line)
@@ -74,17 +73,16 @@ struct LineService {
     
     static func retrieve_CurrentLines(groupID: String, completion: @escaping ([Line]) -> Void) {
         
-        FBRef.document(groupID).collection("Lines").getDocuments { (documentSnapshot, error) in
-            
+        FBRef.document(groupID).collection("Lines").addSnapshotListener { (snapshot, err) in
             var lines = [Line]()
             
-            if let error = error {
+            if let error = err {
                 print(error.localizedDescription)
                 completion([])
                 return
             }
             
-            guard let documents = documentSnapshot?.documents else { completion([]); return }
+            guard let documents = snapshot?.documents else { completion([]); return }
             
             for document in documents {
                 let line = try! FirestoreDecoder().decode(Line.self, from: document.prepareForDecoding())
@@ -92,6 +90,7 @@ struct LineService {
             }
             
             completion(lines)
+            
         }
         
     }
