@@ -30,6 +30,7 @@
 		D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */; };
 		D07269C323F246BD002760ED /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C223F246BC002760ED /* Line.swift */; };
 		D07269C623F257FB002760ED /* LineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C523F257FB002760ED /* LineService.swift */; };
+		D0CDC58923FB70E6001B3DAC /* CrteLinePicker-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CDC58823FB70E6001B3DAC /* CrteLinePicker-Ext.swift */; };
 		D0DF8D1623F5D47100590C60 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1523F5D47100590C60 /* LoginViewController.swift */; };
 		D0DF8D1823F5D54300590C60 /* LoginTxtfield-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */; };
 		D0DF8D1A23F6008100590C60 /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1923F6008100590C60 /* VerificationVC.swift */; };
@@ -80,6 +81,7 @@
 		D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CrteLineTxtFld-Ext.swift"; sourceTree = "<group>"; };
 		D07269C223F246BC002760ED /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		D07269C523F257FB002760ED /* LineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineService.swift; sourceTree = "<group>"; };
+		D0CDC58823FB70E6001B3DAC /* CrteLinePicker-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CrteLinePicker-Ext.swift"; sourceTree = "<group>"; };
 		D0DF8D1523F5D47100590C60 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginTxtfield-Ext.swift"; sourceTree = "<group>"; };
 		D0DF8D1923F6008100590C60 /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				D07269BE23F239C7002760ED /* CreateLineViewController.swift */,
 				D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */,
+				D0CDC58823FB70E6001B3DAC /* CrteLinePicker-Ext.swift */,
 			);
 			path = "Live Line";
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				D07269C323F246BD002760ED /* Line.swift in Sources */,
 				D07269B223F20E56002760ED /* User.swift in Sources */,
 				D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */,
+				D0CDC58923FB70E6001B3DAC /* CrteLinePicker-Ext.swift in Sources */,
 				D0DF8D1E23F6037E00590C60 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,4 +15,23 @@ extension CreateLineViewController : UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    
+}
+
+extension CreateLineViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Santa Clause not making to to my house before 7AM"
+            textView.textColor = UIColor.lightGray
+        }
+    }
 }

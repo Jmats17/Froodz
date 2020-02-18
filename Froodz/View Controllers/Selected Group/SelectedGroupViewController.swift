@@ -15,7 +15,12 @@ class SelectedGroupViewController: UIViewController {
     @IBOutlet weak var totalMembersLbl : UILabel!
     @IBOutlet weak var createLineButton: UIButton! {
         didSet {
-            createLineButton.layer.cornerRadius = 7.0
+            createLineButton.layer.cornerRadius = 4.0
+        }
+    }
+    @IBOutlet weak var rankingView: UIView! {
+        didSet {
+            rankingView.layer.cornerRadius = 7.0
         }
     }
     @IBOutlet weak var firstPlaceLbl : UILabel!
@@ -33,11 +38,48 @@ class SelectedGroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkGroupValue()
+        didUpdate_TopLeaderboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkGroupValue()
+        didUpdate_TopLeaderboard()
+    }
+    
+    func didUpdate_TopLeaderboard() {
+        guard let users = group?.users else {return}
+        DispatchQueue.main.async {
+            let topUsers = users.sorted(by: { $0.value > $1.value })
+            
+            switch topUsers.count {
+            case 1:
+                self.firstPlaceLbl.text =
+                    self.returnTopUserText(user: topUsers[0].key, num: topUsers[0].value)
+                self.secondPlaceLbl.text =
+                    self.returnTopUserText(user: "No User", num: 0)
+                self.thirdPlaceLbl.text =
+                    self.returnTopUserText(user: "No User", num: 0)
+            case 2:
+                self.firstPlaceLbl.text =
+                    self.returnTopUserText(user: topUsers[0].key, num: topUsers[0].value)
+                self.secondPlaceLbl.text =
+                    self.returnTopUserText(user: topUsers[1].key, num: topUsers[1].value)
+                self.thirdPlaceLbl.text =
+                    self.returnTopUserText(user: "No User", num: 0)
+            default:
+                self.firstPlaceLbl.text =
+                    self.returnTopUserText(user: topUsers[0].key, num: topUsers[0].value)
+                self.secondPlaceLbl.text =
+                    self.returnTopUserText(user: topUsers[1].key, num: topUsers[1].value)
+                self.thirdPlaceLbl.text =
+                    self.returnTopUserText(user: topUsers[2].key, num: topUsers[2].value)
+            }
+        }
+    }
+    
+    private func returnTopUserText(user: String, num: Double) -> String {
+        " \(num) \(user.uppercased())"
     }
     
     private func checkGroupValue() {
@@ -45,9 +87,11 @@ class SelectedGroupViewController: UIViewController {
             groupNameLbl.text = group.groupName
             totalMembersLbl.text = group.users.count.isSingular()
             LineService.retrieve_CurrentLines(groupID: group.documentId) { (lines) in
-                self.lines = lines
-                self.allLineData = lines
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.lines = lines
+                    self.allLineData = lines
+                    self.tableView.reloadData()
+                }
             }
         } else {
             groupNameLbl.text = "No Group Found"

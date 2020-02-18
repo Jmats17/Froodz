@@ -44,40 +44,47 @@ extension UITextField {
         self.leftViewMode = .always
     }
     
-    func addMinusToolBar(view : UIView) {
+    func addPointFive_ToolBar(view : UIView) {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
-        let minusButton = UIBarButtonItem(title: "-", style: .plain, target: self, action: #selector(toggleMinus))
-        toolbar.items = [minusButton]
+        let pointFiveButton = UIBarButtonItem(title: "Add .5", style: .plain, target: self, action: #selector(addPointFive))
+        toolbar.items = [pointFiveButton]
         self.inputAccessoryView = toolbar
     }
+    
+    @objc
+    func addPointFive() -> Double {
+        return 0.5
+    }
+    
+    func addPlusMinusToolBar(view : UIView) {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
+        let plusButton = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(togglePlus))
+        let minusButton = UIBarButtonItem(title: "-", style: .plain, target: self, action: #selector(toggleMinus))
+        toolbar.items = [plusButton, minusButton]
+        self.inputAccessoryView = toolbar
+    }
+    
     
     @objc func toggleMinus(){
         if var text = self.text , text.isEmpty == false{
             if text.hasPrefix("-") {
                 text = text.replacingOccurrences(of: "-", with: "")
-            }
-            else
-            {
+            }else if text.hasPrefix("+") {
+                text = text.replacingOccurrences(of: "+", with: "-")
+            }else {
                 text = "-\(text)"
             }
             self.text = text
         }
     }
     
-    func addPlusToolBar(view : UIView) {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
-        let plusButton = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(togglePlus))
-        toolbar.items = [plusButton]
-        self.inputAccessoryView = toolbar
-    }
-    
     @objc func togglePlus(){
         if var text = self.text , text.isEmpty == false{
             if text.hasPrefix("+") {
                 text = text.replacingOccurrences(of: "+", with: "")
-            }
-            else
-            {
+            } else if text.hasPrefix("-") {
+                text = text.replacingOccurrences(of: "-", with: "+")
+            } else {
                 text = "+\(text)"
             }
             self.text = text

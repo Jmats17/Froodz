@@ -12,61 +12,35 @@ import CodableFirebase
 
 class CreateLineViewController: UIViewController {
 
-    @IBOutlet weak var lineNameTextField : UITextField!
-    @IBOutlet weak var betTypeSegmentControl : UISegmentedControl!
+    @IBOutlet weak var lineNameTextField : UITextView! {
+        didSet {
+            lineNameTextField.text = "Santa Clause not making to to my house before 7AM"
+            lineNameTextField.textColor = .lightGray
+        }
+    }
+    @IBOutlet weak var betTypePickerView : UIPickerView!
+    @IBOutlet weak var numberTextField : UITextField!
+    @IBOutlet weak var createButton : UIButton! {
+        didSet {
+            createButton.layer.cornerRadius = 7.0
+        }
+    }
     
-    @IBOutlet weak var first_SideTextField : UITextField!
-    @IBOutlet weak var second_SideTextField : UITextField!
-    
-    @IBOutlet weak var second_SideLbl : UILabel!
-    @IBOutlet weak var first_SideLbl : UILabel!
-
     var groupID : String?
+    var pickerData = ["Odds", "Total", "Coin Line"]
+    var pickerValue = "Odds"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         endEditingTapRecgonizer()
-        betTypeSegmentControl.addTarget(self, action: #selector(CreateLineViewController.selectedSegmentControl(_:)), for:.valueChanged)
     }
     
-    @objc
-    func selectedSegmentControl(_ sender: UISegmentedControl) {
-        switch betTypeSegmentControl.selectedSegmentIndex {
-        case 0:
-            hideSecondChangeFirstText()
-        case 1:
-            hideSecondChangeFirstText()
-        case 2:
-            showSecondChangeFirstText()
-        default:
-            break
-        }
-    }
-    
-    func showSecondChangeFirstText() {
-        first_SideLbl.text = "Moneyline (-)"
-        second_SideLbl.isHidden = false
-        second_SideTextField.isHidden = false
-        first_SideTextField.text = ""
-    }
-    
-    func hideSecondChangeFirstText() {
-        first_SideTextField.text = ""
-        first_SideLbl.text = "Number on Line (+ / -)"
-        second_SideLbl.isHidden = true
-        second_SideTextField.isHidden = true
-    }
-    
-    func return_LineValues() -> (lineName : String, amount : Double, groupID : String, type: String)? {
-        let index = betTypeSegmentControl.selectedSegmentIndex
-        
+    func return_LineValues() -> (lineName : String, amount : Double, groupID : String, betType: String)? {
         if let lineName = lineNameTextField.text, lineName != "" {
-            if let amountStr = first_SideTextField.text, amountStr != "" {
-                if let type = betTypeSegmentControl.titleForSegment(at: index) {
-                    if let amount = Double(amountStr) {
-                        if let groupID = groupID {
-                            return (lineName, amount + 0.5, groupID, type)
-                        }
+            if let amountStr = numberTextField.text, amountStr != "" {
+                if let amount = Double(amountStr) {
+                    if let groupID = groupID {
+                        return (lineName, amount, groupID, pickerValue)
                     }
                 }
             }
@@ -81,25 +55,28 @@ class CreateLineViewController: UIViewController {
     }
     
     @IBAction func tappedCreate(sender : UIButton) {
-                
-        guard let lineValues = return_LineValues() else { return }
-        
-        if betTypeSegmentControl.selectedSegmentIndex == 2 {
-            guard let secondAmtStr = second_SideTextField.text, secondAmtStr != "" else {return }
-            guard let secondAmt = Double(secondAmtStr) else {return}
-            LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: secondAmt, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
-                if didComplete {
-                    print("Success. Create alert for user here")
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        } else {
-            LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: nil, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
-                if didComplete {
-                    print("Success. Create alert for user here")
-                }
-            }
-        }
+//
+//        guard let lineValues = return_LineValues() else { return }
+//
+//
+//
+//
+//        if betTypeSegmentControl.selectedSegmentIndex == 2 {
+//            guard let secondAmtStr = second_SideTextField.text, secondAmtStr != "" else {return }
+//            guard let secondAmt = Double(secondAmtStr) else {return}
+//            LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: secondAmt, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
+//                if didComplete {
+//                    print("Success. Create alert for user here")
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+//            }
+//        } else {
+//            LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, secondAmt: nil, groupID: lineValues.groupID, type: lineValues.type) { (didComplete) in
+//                if didComplete {
+//                    print("Success. Create alert for user here")
+//                }
+//            }
+//        }
         
     }
 
