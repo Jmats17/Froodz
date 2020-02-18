@@ -16,56 +16,78 @@ struct GroupService {
     static let user = User.current
     static let FBRef = Firestore.firestore().collection("Groups")
 
-    static func addPointsToWinners(line: Line, singleWinners: [String], doubleWinners: [String], group : Group, singleAmount: Double, completion: @escaping (_ didSucceed: Bool) -> Void) {
+    static func addPointsToWinners(line: String, group : Group, singleAmount: Double, completion: @escaping (_ didSucceed: Bool) -> Void) {
         
-        let ref = Firestore.firestore()
-        let batch = ref.batch()
-        
-        for winner in group.users {
-            if singleWinners.contains(winner.key) {
-                let group = ref.collection("Groups").document(group.documentId)
-                let key = "users.\(winner.key)"
-                batch.updateData([
-                    key : FieldValue.increment(singleAmount)
-                ], forDocument: group)
+        FBRef.document(group.documentId).collection("Lines").document(line).getDocument { (snapshot, err) in
+            if let err = err {
+                print(err.localizedDescription)
+                completion(false)
+                return
             }
             
-            if doubleWinners.contains(winner.key) {
-                let group = ref.collection("Groups").document(group.documentId)
-                let key = "users.\(winner.key)"
-                let double = singleAmount * 2.0
-                batch.updateData([
-                    key : FieldValue.increment(double)
-                ], forDocument: group)
+            guard let snapshot = snapshot else { completion(false) ; return }
+            let retrievedLine = try! FirestoreDecoder().decode(Line.self, from: snapshot.prepareForDecoding())
+            let ref = Firestore.firestore()
+            let batch = ref.batch()
+            
+            for winner in group.users {
+                if retrievedLine.single.contains(winner.key) {
+                    let groupRef = ref.collection("Groups").document(group.documentId)
+                    let key = "users.\(winner.key)"
+                    batch.updateData([
+                        key : FieldValue.increment(singleAmount)
+                    ], forDocument: groupRef)
+                }
+                
+                if retrievedLine.doubleDown.contains(winner.key) {
+                    let groupRef = ref.collection("Groups").document(group.documentId)
+                    let key = "users.\(winner.key)"
+                    let double = singleAmount * 2.0
+                    batch.updateData([
+                        key : FieldValue.increment(double)
+                    ], forDocument: groupRef)
+                }
             }
+            GroupService.deleteData_PushToPastLines(group: group, line: retrievedLine, ref: ref, batch: batch, completion: completion)
         }
-        GroupService.deleteData_PushToPastLines(group: group, line: line, ref: ref, batch: batch, completion: completion)
+        
     }
     
-    static func deductPointsToLosers(line: Line, singleLosers: [String], doubleLosers: [String], group : Group, singleAmount: Double, completion: @escaping (_ didSucceed: Bool) -> Void) {
+    static func deductPointsToLosers(line: String, group : Group, singleAmount: Double, completion: @escaping (_ didSucceed: Bool) -> Void) {
         
-        let ref = Firestore.firestore()
-        let batch = ref.batch()
-        
-        for winner in group.users {
-            if singleLosers.contains(winner.key) {
-                let group = ref.collection("Groups").document(group.documentId)
-                let key = "users.\(winner.key)"
-                batch.updateData([
-                    key : FieldValue.increment(-singleAmount)
-                ], forDocument: group)
+        FBRef.document(group.documentId).collection("Lines").document(line).getDocument { (snapshot, err) in
+            if let err = err {
+                print(err.localizedDescription)
+                completion(false)
+                return
             }
             
-            if doubleLosers.contains(winner.key) {
-                let group = ref.collection("Groups").document(group.documentId)
-                let key = "users.\(winner.key)"
-                let double = singleAmount * 2.0
-                batch.updateData([
-                    key : FieldValue.increment(-double)
-                ], forDocument: group)
+            guard let snapshot = snapshot else { completion(false) ; return }
+            let retrievedLine = try! FirestoreDecoder().decode(Line.self, from: snapshot.prepareForDecoding())
+            let ref = Firestore.firestore()
+            let batch = ref.batch()
+            
+            for loser in group.users {
+                if retrievedLine.single.contains(loser.key) {
+                    let group = ref.collection("Groups").document(group.documentId)
+                    let key = "users.\(loser.key)"
+                    batch.updateData([
+                        key : FieldValue.increment(-singleAmount)
+                    ], forDocument: group)
+                }
+                
+                if retrievedLine.doubleDown.contains(loser.key) {
+                    let group = ref.collection("Groups").document(group.documentId)
+                    let key = "users.\(loser.key)"
+                    let double = singleAmount * 2.0
+                    batch.updateData([
+                        key : FieldValue.increment(-double)
+                    ], forDocument: group)
+                }
             }
+            GroupService.deleteData_PushToPastLines(group: group, line: retrievedLine, ref: ref, batch: batch, completion: completion)
         }
-        GroupService.deleteData_PushToPastLines(group: group, line: line, ref: ref, batch: batch, completion: completion)
+        
     }
     
     static func deleteData_PushToPastLines(group: Group, line: Line, ref: Firestore, batch: WriteBatch, completion: @escaping (_ didSucceed: Bool) -> Void) {
@@ -86,6 +108,21 @@ struct GroupService {
                 print("Batch write succeeded.")
                 completion(true)
             }
+        }
+    }
+    
+    static func didReturn_RequestedGroup(groupID: String, completion: @escaping (Group?) -> Void) {
+        FBRef.document(groupID).getDocument { (snapshot, error) in
+            if let err = error {
+                print(err.localizedDescription)
+                completion(nil)
+                return
+            }
+            
+            guard let snapshot = snapshot else {completion(nil) ; return}
+            
+            let group = try! FirestoreDecoder().decode(Group.self, from: snapshot.prepareForDecoding())
+            completion(group)
         }
     }
     

@@ -65,30 +65,33 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
     func lineCompletedTapped(at indexPath: IndexPath) {
         guard let group = group else {return }
         let line = lines[indexPath.row]
+        guard let lineID = line.documentId else {return}
         let alertController = UIAlertController(title: "Did the bet hit?", message: "Select if the bet hit or not so we can reward the players!", preferredStyle: .alert)
         
-        let yesAction = UIAlertAction(title: "Yes it did 🤝", style: .destructive) { (action) in
-            GroupService.addPointsToWinners(line: line, singleWinners: line.single, doubleWinners: line.doubleDown, group: group, singleAmount: line.numOnLine) { (didSucceed) in
+        let yesAction = UIAlertAction(title: "Yes it did 🤝", style: .default) { (action) in
+            GroupService.addPointsToWinners(line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
                     self.allLineData.removeAll(where: { $0.lineName == line.lineName })
                     self.lines.removeAll(where: { $0.lineName == line.lineName })
-                    self.tableView.reloadData()
+                    self.reloadGroup(groupID: group.documentId)
                 }
             }
         }
         
-        let noAction = UIAlertAction(title: "Nope 👎", style: .destructive) { (action) in
-            GroupService.deductPointsToLosers(line: line, singleLosers: line.single, doubleLosers: line.doubleDown, group: group, singleAmount: line.numOnLine) { (didSucceed) in
+        let noAction = UIAlertAction(title: "Nope 👎", style: .default) { (action) in
+            GroupService.deductPointsToLosers(line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
                     self.allLineData.removeAll(where: { $0.lineName == line.lineName })
                     self.lines.removeAll(where: { $0.lineName == line.lineName })
-                    self.tableView.reloadData()
+                    self.reloadGroup(groupID: group.documentId)
                 }
             }
+
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
-                 
+        alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
 
     }

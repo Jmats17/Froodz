@@ -83,6 +83,17 @@ class SelectedGroupViewController: UIViewController {
         " \(num) \(user.uppercased())"
     }
     
+    func reloadGroup(groupID: String) {
+        GroupService.didReturn_RequestedGroup(groupID: groupID) { (group) in
+            self.group = group
+            DispatchQueue.main.async {
+                self.checkGroupValue()
+                self.didUpdate_TopLeaderboard()
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     private func checkGroupValue() {
         if let group = group {
             groupNameLbl.text = group.groupName
