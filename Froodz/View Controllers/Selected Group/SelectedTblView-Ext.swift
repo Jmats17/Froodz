@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Haptico
+import Haptica
 
 extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSource, BetButtonDelegate {
     
@@ -32,7 +32,7 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
     }
   
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        Haptico.shared().generate(.medium)
+        Haptic.impact(.light).generate()
         if lines[indexPath.row].creator == user.username {
             let endAction = UIContextualAction(style: .destructive, title: "End Line", handler: { (action, view, completionHandler) in
                 self.lineCompletedTapped(at: indexPath)
@@ -55,14 +55,14 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func singleBetButtonTapped(at indexPath: IndexPath) {
-        Haptico.shared().generate(.medium)
+        Haptic.impact(.light).generate()
         guard let data = returnDataForBet(indexPath: indexPath) else {return}
         data.cell.singleBetInitiated(line: data.line, groupID: data.id)
 
     }
     
     func doubleDownButtonTapped(at indexPath: IndexPath) {
-        Haptico.shared().generate(.medium)
+        Haptic.impact(.light).generate()
         guard let data = returnDataForBet(indexPath: indexPath) else {return}
         data.cell.doubleDownBetInitiated(line: data.line, groupID: data.id)
     }
@@ -80,7 +80,7 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
         let alertController = UIAlertController(title: "Did the bet hit?", message: "Select if the bet hit or not so we can reward the players!", preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Yes it did 🤝", style: .default) { (action) in
-            Haptico.shared().generate(.medium)
+            Haptic.impact(.light).generate()
             GroupService.addPointsToWinners(line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
                     self.removeCell_ReloadGroup(line: line, group: group)
@@ -88,7 +88,7 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
             }
         }
         let noAction = UIAlertAction(title: "Nope 👎", style: .default) { (action) in
-            Haptico.shared().generate(.medium)
+            Haptic.impact(.light).generate()
             GroupService.deductPointsToLosers(line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
                     self.removeCell_ReloadGroup(line: line, group: group)

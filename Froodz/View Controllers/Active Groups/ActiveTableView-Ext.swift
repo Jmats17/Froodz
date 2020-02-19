@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Haptico
+import Haptica
 
 extension ActiveGroupsViewController : UITableViewDelegate, UITableViewDataSource {
     
@@ -20,7 +20,7 @@ extension ActiveGroupsViewController : UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Haptico.shared().generate(.medium)
+        Haptic.impact(.light).generate()
         let group = groups[indexPath.row]
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -71,7 +71,7 @@ extension ActiveGroupsViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        Haptico.shared().generate(.medium)
+        Haptic.impact(.light).generate()
         joinGroup()
         textField.resignFirstResponder()
         return true

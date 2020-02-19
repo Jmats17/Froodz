@@ -51,6 +51,19 @@ extension Int {
             return "\(self) Members"
         }
     }
+
+}
+
+extension Double {
+    func isEndingPointZero() -> String {
+        let isInteger = self.truncatingRemainder(dividingBy: 1) == 0
+
+        if isInteger {
+            return "\(Int(self))"
+        } else {
+            return "\(self)"
+        }
+    }
 }
 
 //Add Document ID to the data before turning into object

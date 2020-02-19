@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double HapticoVersionNumber;
-FOUNDATION_EXPORT const unsigned char HapticoVersionString[];
+FOUNDATION_EXPORT double HapticaVersionNumber;
+FOUNDATION_EXPORT const unsigned char HapticaVersionString[];
 

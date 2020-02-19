@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Haptico
+import Haptica
+
 class SelectedGroupViewController: UIViewController {
 
     @IBOutlet weak var tableView : UITableView!
@@ -87,7 +88,7 @@ class SelectedGroupViewController: UIViewController {
     }
     
     private func returnTopUserText(user: String, num: Double) -> String {
-        " \(num) \(user.uppercased())"
+        " \(num.isEndingPointZero()) \(user.uppercased())"
     }
     
     func reloadGroup(groupID: String) {
@@ -129,7 +130,7 @@ class SelectedGroupViewController: UIViewController {
     }
     
     @IBAction func tappedCreateLine(sender : UIButton) {
-        Haptico.shared().generate(.medium)
+        Haptic.impact(.light).generate()
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = mainStoryboard.instantiateViewController(withIdentifier: "CreateLineVC") as? CreateLineViewController {
             vc.groupID = group?.documentId
@@ -138,7 +139,7 @@ class SelectedGroupViewController: UIViewController {
     }
     
     @IBAction func segmentDidChange(sender: UISegmentedControl) {
-        Haptico.shared().generate(.medium)
+        Haptic.impact(.light).generate()
         self.lines = self.allLineData
         switch sender.selectedSegmentIndex {
         case 0:
@@ -158,7 +159,7 @@ class SelectedGroupViewController: UIViewController {
     
     
     @IBAction func didTapBack(sender: UIButton) {
-        Haptico.shared().generate(.medium)
+        Haptic.impact(.light).generate()
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -9,7 +9,7 @@ pod 'Firebase/Firestore'
 pod 'Firebase/Auth'
 pod 'CodableFirebase'
 pod 'PMSuperButton'
-pod 'Haptico'
+pod "Haptica"
 
   # Pods for Froodz
 

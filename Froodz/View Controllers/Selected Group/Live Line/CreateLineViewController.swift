@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseFirestore
 import CodableFirebase
-import Haptico
+import Haptica
 
 class CreateLineViewController: UIViewController {
 
@@ -59,7 +59,7 @@ class CreateLineViewController: UIViewController {
     }
     
     @IBAction func tappedCreate(sender : UIButton) {
-        Haptico.shared().generate(.medium)
+        Haptic.impact(.light).generate()
         guard let lineValues = return_LineValues() else { return }
         LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, groupID: lineValues.groupID) { (didComplete) in
             if didComplete {

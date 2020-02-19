@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6EB9AEE9A59747F5A6B5763D6754E351"
-               BuildableName = "Haptico.framework"
-               BlueprintName = "Haptico"
+               BlueprintIdentifier = "D42DC7F21005DF10871F318716326E5E"
+               BuildableName = "Haptica.framework"
+               BlueprintName = "Haptica"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

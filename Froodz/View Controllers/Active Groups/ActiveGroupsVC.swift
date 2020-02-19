@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Haptico
+import Haptica
 
 class ActiveGroupsViewController: UIViewController {
 
@@ -89,14 +89,14 @@ class ActiveGroupsViewController: UIViewController {
     }
 
     @IBAction func tappedCreateGroup(sender : UIButton) {
-        Haptico.shared().generate(.medium)
+        Haptic.impact(.light).generate()
         let alertVC = UIAlertController(title: "Create Group", message: "Please enter the name of the group", preferredStyle: .alert)
         alertVC.addTextField { (textfield) in
             textfield.placeholder = "Wombats"
             textfield.autocapitalizationType = .words
         }
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            Haptico.shared().generate(.medium)
+            Haptic.impact(.light).generate()
             guard let groupName = (alertVC.textFields?[0].text) else { return }
             GroupService.didCreateNewGroup(userID: self.user.documentId, groupName: groupName) { (didRegister) in
                 if didRegister {
