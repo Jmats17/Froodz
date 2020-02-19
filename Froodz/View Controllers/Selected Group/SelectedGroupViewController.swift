@@ -15,6 +15,7 @@ class SelectedGroupViewController: UIViewController {
     @IBOutlet weak var groupNameLbl : UILabel!
     @IBOutlet weak var totalMembersLbl : UILabel!
     @IBOutlet weak var numOfUsersCoinsLbl: UILabel!
+    @IBOutlet weak var segmentedView: UISegmentedControl!
     @IBOutlet weak var createLineButton: UIButton! {
         didSet {
             createLineButton.layer.cornerRadius = 7.0
@@ -41,7 +42,7 @@ class SelectedGroupViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 147
+        tableView.estimatedRowHeight = UITableView.automaticDimension
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTapLeaderboard(_:)))
         rankingView.addGestureRecognizer(tap)
@@ -109,7 +110,8 @@ class SelectedGroupViewController: UIViewController {
             numOfUsersCoinsLbl.text = "\(UserService.returnUsersBalance_FromGroup(group: group))"
             LineService.get_CurrentLines(groupID: group.documentId) { (lines) in
                 DispatchQueue.main.async {
-                    self.lines = lines
+                    let newLines = lines.filter({ !$0.single.contains(User.current.username) && !$0.doubleDown.contains(User.current.username) })
+                    self.lines = newLines
                     self.allLineData = lines
                     self.tableView.reloadData()
                 }
@@ -122,6 +124,7 @@ class SelectedGroupViewController: UIViewController {
 
     
     @objc func didTapLeaderboard(_ sender: UITapGestureRecognizer? = nil) {
+        Haptic.impact(.medium).generate()
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = mainStoryboard.instantiateViewController(withIdentifier: "LeaderboardVC") as? LeaderboardViewController {
             vc.users = group?.users

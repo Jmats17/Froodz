@@ -28,6 +28,12 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
         let line = lines[indexPath.row]
         cell.setCellData(line)
         
+        if segmentedView.selectedSegmentIndex == 1 || segmentedView.selectedSegmentIndex == 2 {
+            cell.buttonDeactivated()
+        } else {
+            cell.buttonActivated()
+        }
+        
         return cell
     }
   
@@ -47,6 +53,9 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     private func returnDataForBet(indexPath: IndexPath) -> (cell: LiveLineTableViewCell,line: Line,id: String)? {
+        if segmentedView.selectedSegmentIndex == 1 || segmentedView.selectedSegmentIndex == 2 {
+            Haptic.impact(.light).generate()
+        }
         let cell = tableView.cellForRow(at: indexPath) as! LiveLineTableViewCell
         let line = lines[indexPath.row]
         guard let groupID = group?.documentId else {return nil}
@@ -55,22 +64,22 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func singleBetButtonTapped(at indexPath: IndexPath) {
-        Haptic.impact(.light).generate()
         guard let data = returnDataForBet(indexPath: indexPath) else {return}
         data.cell.singleBetInitiated(line: data.line, groupID: data.id)
-
+        self.tableView.reloadData()
     }
     
     func doubleDownButtonTapped(at indexPath: IndexPath) {
-        Haptic.impact(.light).generate()
         guard let data = returnDataForBet(indexPath: indexPath) else {return}
         data.cell.doubleDownBetInitiated(line: data.line, groupID: data.id)
+        self.tableView.reloadData()
     }
     
     func removeCell_ReloadGroup(line: Line, group: Group) {
         self.allLineData.removeAll(where: { $0.lineName == line.lineName })
         self.lines.removeAll(where: { $0.lineName == line.lineName })
         self.reloadGroup(groupID: group.documentId)
+        self.tableView.reloadData()
     }
     
     func lineCompletedTapped(at indexPath: IndexPath) {

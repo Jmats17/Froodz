@@ -58,6 +58,18 @@ class LiveLineTableViewCell: UITableViewCell {
         }
     }
     
+    func buttonActivated() {
+        self.single_BetButton.backgroundColor = Constants.Color.secondaryDarkBlue
+        self.doubleDown_BetButton.layer.borderColor = Constants.Color.secondaryDarkBlue.cgColor
+        self.doubleDown_BetButton.setTitleColor(Constants.Color.secondaryDarkBlue, for: .normal)
+    }
+    
+    func buttonDeactivated() {
+        self.single_BetButton.backgroundColor = Constants.Color.placeholderColor
+        self.doubleDown_BetButton.layer.borderColor = Constants.Color.placeholderColor.cgColor
+        self.doubleDown_BetButton.setTitleColor(Constants.Color.placeholderColor, for: .normal)
+    }
+    
     func singleBetInitiated(line : Line, groupID: String) {
         guard let lineID = line.documentId else {return}
         LineService.checkUserPlaceLineBet(groupID: groupID, lineID: lineID) { (didPlaceBet) in
