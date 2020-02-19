@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D041C5CC23FC80C100D230B2 /* CodableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5CB23FC80C100D230B2 /* CodableService.swift */; };
+		D041C5CF23FCA81300D230B2 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */; };
+		D041C5D123FCB04100D230B2 /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5D023FCB04100D230B2 /* LeaderboardTableViewCell.swift */; };
 		D072697A23F0C85F002760ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072697923F0C85F002760ED /* AppDelegate.swift */; };
 		D072697C23F0C85F002760ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072697B23F0C85F002760ED /* SceneDelegate.swift */; };
 		D072698123F0C85F002760ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D072697F23F0C85F002760ED /* Main.storyboard */; };
@@ -55,6 +58,9 @@
 		31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.release.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.release.xcconfig"; sourceTree = "<group>"; };
 		3304F30116A359A2908B18E3 /* Pods_Froodz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Froodz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EDD8752165AD430FFF64E7 /* Pods-Froodz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.debug.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.debug.xcconfig"; sourceTree = "<group>"; };
+		D041C5CB23FC80C100D230B2 /* CodableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableService.swift; sourceTree = "<group>"; };
+		D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		D041C5D023FCB04100D230B2 /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 		D072697623F0C85F002760ED /* Handshake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handshake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D072697923F0C85F002760ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D072697B23F0C85F002760ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +121,14 @@
 				31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D041C5CD23FC80C700D230B2 /* CodableFirestore */ = {
+			isa = PBXGroup;
+			children = (
+				D041C5CB23FC80C100D230B2 /* CodableService.swift */,
+			);
+			path = CodableFirestore;
 			sourceTree = "<group>";
 		};
 		D072696D23F0C85F002760ED = {
@@ -182,6 +196,7 @@
 				D07269B723F2155A002760ED /* User+Groups */,
 				D07269A923F2022C002760ED /* Groups */,
 				D07269AE23F206DB002760ED /* Users */,
+				D041C5CD23FC80C700D230B2 /* CodableFirestore */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -201,6 +216,7 @@
 			children = (
 				D072699C23F1FC3D002760ED /* ActiveGroupTableViewCell.swift */,
 				D072699E23F1FC79002760ED /* LiveLineTableViewCell.swift */,
+				D041C5D023FCB04100D230B2 /* LeaderboardTableViewCell.swift */,
 			);
 			path = "Tableview Cells";
 			sourceTree = "<group>";
@@ -243,6 +259,7 @@
 			children = (
 				D07269BD23F239A7002760ED /* Live Line */,
 				D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */,
+				D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */,
 				D07269BB23F225CE002760ED /* SelectedTblView-Ext.swift */,
 			);
 			path = "Selected Group";
@@ -394,6 +411,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D07269C623F257FB002760ED /* LineService.swift in Sources */,
+				D041C5CC23FC80C100D230B2 /* CodableService.swift in Sources */,
+				D041C5CF23FCA81300D230B2 /* LeaderboardViewController.swift in Sources */,
 				D0DF8D1823F5D54300590C60 /* LoginTxtfield-Ext.swift in Sources */,
 				D07269B923F2156F002760ED /* User+Groups_Service.swift in Sources */,
 				D07269BC23F225CE002760ED /* SelectedTblView-Ext.swift in Sources */,
@@ -409,6 +428,7 @@
 				D072699A23F1FB6D002760ED /* SelectedGroupViewController.swift in Sources */,
 				D07269B623F214F1002760ED /* Group.swift in Sources */,
 				D072699D23F1FC3D002760ED /* ActiveGroupTableViewCell.swift in Sources */,
+				D041C5D123FCB04100D230B2 /* LeaderboardTableViewCell.swift in Sources */,
 				D07269B423F21082002760ED /* Extensions.swift in Sources */,
 				D07269AD23F202D7002760ED /* Helper.swift in Sources */,
 				D072697C23F0C85F002760ED /* SceneDelegate.swift in Sources */,

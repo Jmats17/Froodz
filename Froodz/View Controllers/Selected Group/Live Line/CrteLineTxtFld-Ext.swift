@@ -8,10 +8,12 @@
 
 import Foundation
 import UIKit
+import Haptico
 
 extension CreateLineViewController : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        Haptico.shared().generate(.medium)
         textField.resignFirstResponder()
         return true
     }

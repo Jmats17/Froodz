@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseFirestore
 import CodableFirebase
+import Haptico
 
 class CreateLineViewController: UIViewController {
 
@@ -36,7 +37,6 @@ class CreateLineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         endEditingTapRecgonizer()
-        numberTextField.addPointFive_ToolBar(view: self.view)
     }
     
     func return_LineValues() -> (lineName : String, amount : Double, groupID : String)? {
@@ -59,6 +59,7 @@ class CreateLineViewController: UIViewController {
     }
     
     @IBAction func tappedCreate(sender : UIButton) {
+        Haptico.shared().generate(.medium)
         guard let lineValues = return_LineValues() else { return }
         LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, groupID: lineValues.groupID) { (didComplete) in
             if didComplete {

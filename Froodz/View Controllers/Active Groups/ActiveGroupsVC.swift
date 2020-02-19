@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Haptico
 
 class ActiveGroupsViewController: UIViewController {
 
@@ -22,7 +23,7 @@ class ActiveGroupsViewController: UIViewController {
     @IBOutlet weak var joinGroupTextField : UITextField! {
         didSet {
             joinGroupTextField.attributedPlaceholder = NSAttributedString(string: "6ixCde",
-                                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+                                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         }
     }
     @IBOutlet weak var createGroupButton: UIButton! {
@@ -35,10 +36,12 @@ class ActiveGroupsViewController: UIViewController {
             groupLbl.text = "\(user.fullName)'s Groups"
         }
     }
+    
     var groups = [Group]()
     let user = User.current
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent
     }
@@ -86,12 +89,14 @@ class ActiveGroupsViewController: UIViewController {
     }
 
     @IBAction func tappedCreateGroup(sender : UIButton) {
+        Haptico.shared().generate(.medium)
         let alertVC = UIAlertController(title: "Create Group", message: "Please enter the name of the group", preferredStyle: .alert)
         alertVC.addTextField { (textfield) in
             textfield.placeholder = "Wombats"
             textfield.autocapitalizationType = .words
         }
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
+            Haptico.shared().generate(.medium)
             guard let groupName = (alertVC.textFields?[0].text) else { return }
             GroupService.didCreateNewGroup(userID: self.user.documentId, groupName: groupName) { (didRegister) in
                 if didRegister {

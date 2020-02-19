@@ -8,11 +8,12 @@
 
 import Foundation
 import UIKit
+import Haptico
 
 extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSource, BetButtonDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 148
+        return 147
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,6 +32,7 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
     }
   
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        Haptico.shared().generate(.medium)
         if lines[indexPath.row].creator == user.username {
             let endAction = UIContextualAction(style: .destructive, title: "End Line", handler: { (action, view, completionHandler) in
                 self.lineCompletedTapped(at: indexPath)
@@ -44,22 +46,31 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func singleBetButtonTapped(at indexPath: IndexPath) {
+    private func returnDataForBet(indexPath: IndexPath) -> (cell: LiveLineTableViewCell,line: Line,id: String)? {
         let cell = tableView.cellForRow(at: indexPath) as! LiveLineTableViewCell
         let line = lines[indexPath.row]
-        guard let groupID = group?.documentId else {return}
+        guard let groupID = group?.documentId else {return nil}
         
-        cell.singleBetInitiated(line: line, groupID: groupID)
+        return (cell, line, groupID)
+    }
+    
+    func singleBetButtonTapped(at indexPath: IndexPath) {
+        Haptico.shared().generate(.medium)
+        guard let data = returnDataForBet(indexPath: indexPath) else {return}
+        data.cell.singleBetInitiated(line: data.line, groupID: data.id)
 
     }
     
     func doubleDownButtonTapped(at indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! LiveLineTableViewCell
-        let line = lines[indexPath.row]
-        guard let groupID = group?.documentId else {return}
-
-        cell.doubleDownBetInitiated(line: line, groupID: groupID)
-
+        Haptico.shared().generate(.medium)
+        guard let data = returnDataForBet(indexPath: indexPath) else {return}
+        data.cell.doubleDownBetInitiated(line: data.line, groupID: data.id)
+    }
+    
+    func removeCell_ReloadGroup(line: Line, group: Group) {
+        self.allLineData.removeAll(where: { $0.lineName == line.lineName })
+        self.lines.removeAll(where: { $0.lineName == line.lineName })
+        self.reloadGroup(groupID: group.documentId)
     }
     
     func lineCompletedTapped(at indexPath: IndexPath) {
@@ -69,21 +80,18 @@ extension SelectedGroupViewController: UITableViewDelegate, UITableViewDataSourc
         let alertController = UIAlertController(title: "Did the bet hit?", message: "Select if the bet hit or not so we can reward the players!", preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Yes it did 🤝", style: .default) { (action) in
+            Haptico.shared().generate(.medium)
             GroupService.addPointsToWinners(line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
-                    self.allLineData.removeAll(where: { $0.lineName == line.lineName })
-                    self.lines.removeAll(where: { $0.lineName == line.lineName })
-                    self.reloadGroup(groupID: group.documentId)
+                    self.removeCell_ReloadGroup(line: line, group: group)
                 }
             }
         }
-        
         let noAction = UIAlertAction(title: "Nope 👎", style: .default) { (action) in
+            Haptico.shared().generate(.medium)
             GroupService.deductPointsToLosers(line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
-                    self.allLineData.removeAll(where: { $0.lineName == line.lineName })
-                    self.lines.removeAll(where: { $0.lineName == line.lineName })
-                    self.reloadGroup(groupID: group.documentId)
+                    self.removeCell_ReloadGroup(line: line, group: group)
                 }
             }
 

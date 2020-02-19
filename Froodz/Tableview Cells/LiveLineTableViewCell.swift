@@ -46,8 +46,6 @@ class LiveLineTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-   
-    
     func setCellData(_ line: Line) {
         self.liveLineNameLbl.text = line.lineName
         self.createdLbl.text = "@\(line.creator.uppercased())"

@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseFirestore
 
+//Self sizing tableviews for scrolling and content
 class SelfSizedTableView: UITableView {
      override var intrinsicContentSize: CGSize {
        self.layoutIfNeeded()
@@ -27,14 +28,9 @@ class SelfSizedTableView: UITableView {
    }
 }
 
-extension JSONDecoder {
-    func decode<T>(_ type: T.Type, fromJSONObject object: Any) throws -> T where T: Decodable {
-        return try decode(T.self, from: try JSONSerialization.data(withJSONObject: object, options: []))
-    }
-}
-
 extension UITextField {
     
+    //For the login textfield, set a style
     func loginTextfieldStyle() {
         self.layer.borderWidth = 1.0
         self.layer.cornerRadius = 13.0
@@ -43,61 +39,10 @@ extension UITextField {
         self.leftView = paddingView
         self.leftViewMode = .always
     }
-    
-    func addPointFive_ToolBar(view : UIView) {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
-        let pointFiveButton = UIBarButtonItem(title: "Add .5", style: .plain, target: self, action: #selector(addPointFive))
-        toolbar.items = [pointFiveButton]
-        self.inputAccessoryView = toolbar
-    }
-    
-    @objc
-    func addPointFive() {
-        if var text = self.text , text.isEmpty == false{
-            guard let val = Double(text) else {return}
-            let newVal = val + 0.5
-            text = "\(newVal)"
-            self.text = text
-        }
-    }
-    
-    func addPlusMinusToolBar(view : UIView) {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
-        let plusButton = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(togglePlus))
-        let minusButton = UIBarButtonItem(title: "-", style: .plain, target: self, action: #selector(toggleMinus))
-        toolbar.items = [plusButton, minusButton]
-        self.inputAccessoryView = toolbar
-    }
-    
-    
-    @objc func toggleMinus(){
-        if var text = self.text , text.isEmpty == false{
-            if text.hasPrefix("-") {
-                text = text.replacingOccurrences(of: "-", with: "")
-            }else if text.hasPrefix("+") {
-                text = text.replacingOccurrences(of: "+", with: "-")
-            }else {
-                text = "-\(text)"
-            }
-            self.text = text
-        }
-    }
-    
-    @objc func togglePlus(){
-        if var text = self.text , text.isEmpty == false{
-            if text.hasPrefix("+") {
-                text = text.replacingOccurrences(of: "+", with: "")
-            } else if text.hasPrefix("-") {
-                text = text.replacingOccurrences(of: "-", with: "+")
-            } else {
-                text = "+\(text)"
-            }
-            self.text = text
-        }
-    }
-    
+
 }
 
+//Returns singular or plural for number of users
 extension Int {
     func isSingular() -> String {
         if self == 1 {
@@ -108,6 +53,7 @@ extension Int {
     }
 }
 
+//Add Document ID to the data before turning into object
 extension DocumentSnapshot {
 
     func prepareForDecoding() -> [String: Any] {

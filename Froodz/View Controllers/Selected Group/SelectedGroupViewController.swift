@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Haptico
 class SelectedGroupViewController: UIViewController {
 
     @IBOutlet weak var tableView : UITableView!
@@ -38,8 +38,13 @@ class SelectedGroupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 148
+        tableView.estimatedRowHeight = 147
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTapLeaderboard(_:)))
+        rankingView.addGestureRecognizer(tap)
+        
         checkGroupValue()
         didUpdate_TopLeaderboard()
     }
@@ -101,7 +106,7 @@ class SelectedGroupViewController: UIViewController {
             groupNameLbl.text = group.groupName
             totalMembersLbl.text = group.users.count.isSingular()
             numOfUsersCoinsLbl.text = "\(UserService.returnUsersBalance_FromGroup(group: group))"
-            LineService.retrieve_CurrentLines(groupID: group.documentId) { (lines) in
+            LineService.get_CurrentLines(groupID: group.documentId) { (lines) in
                 DispatchQueue.main.async {
                     self.lines = lines
                     self.allLineData = lines
@@ -113,8 +118,18 @@ class SelectedGroupViewController: UIViewController {
             totalMembersLbl.text = "0 Active Members"
         }
     }
+
+    
+    @objc func didTapLeaderboard(_ sender: UITapGestureRecognizer? = nil) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if let vc = mainStoryboard.instantiateViewController(withIdentifier: "LeaderboardVC") as? LeaderboardViewController {
+            vc.users = group?.users
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
     
     @IBAction func tappedCreateLine(sender : UIButton) {
+        Haptico.shared().generate(.medium)
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = mainStoryboard.instantiateViewController(withIdentifier: "CreateLineVC") as? CreateLineViewController {
             vc.groupID = group?.documentId
@@ -123,6 +138,7 @@ class SelectedGroupViewController: UIViewController {
     }
     
     @IBAction func segmentDidChange(sender: UISegmentedControl) {
+        Haptico.shared().generate(.medium)
         self.lines = self.allLineData
         switch sender.selectedSegmentIndex {
         case 0:
@@ -142,6 +158,7 @@ class SelectedGroupViewController: UIViewController {
     
     
     @IBAction func didTapBack(sender: UIButton) {
+        Haptico.shared().generate(.medium)
         self.dismiss(animated: true, completion: nil)
     }
 }
