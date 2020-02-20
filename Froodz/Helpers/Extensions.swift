@@ -28,6 +28,29 @@ class SelfSizedTableView: UITableView {
    }
 }
 
+extension UIButton {
+    @IBInspectable var cornerRadius: CGFloat {
+        
+        get {
+            return self.layer.cornerRadius
+        }
+        set {
+            self.layer.cornerRadius = newValue
+        }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat {
+        
+        get {
+            return self.layer.borderWidth
+        }
+        
+        set {
+            self.layer.borderWidth = newValue
+        }
+    }
+}
+
 extension UITextField {
     
     //For the login textfield, set a style

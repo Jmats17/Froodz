@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D03C1BC623FE1AB5009F8543 /* LineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03C1BC523FE1AB5009F8543 /* LineViewController.swift */; };
+		D03C1BC823FE1AD7009F8543 /* LineTblView-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03C1BC723FE1AD7009F8543 /* LineTblView-Ext.swift */; };
+		D03C1BCA23FE285E009F8543 /* BetSideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03C1BC923FE285E009F8543 /* BetSideTableViewCell.swift */; };
 		D041C5CC23FC80C100D230B2 /* CodableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5CB23FC80C100D230B2 /* CodableService.swift */; };
 		D041C5CF23FCA81300D230B2 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */; };
 		D041C5D123FCB04100D230B2 /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5D023FCB04100D230B2 /* LeaderboardTableViewCell.swift */; };
@@ -58,10 +61,13 @@
 		31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.release.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.release.xcconfig"; sourceTree = "<group>"; };
 		3304F30116A359A2908B18E3 /* Pods_Froodz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Froodz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EDD8752165AD430FFF64E7 /* Pods-Froodz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.debug.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.debug.xcconfig"; sourceTree = "<group>"; };
+		D03C1BC523FE1AB5009F8543 /* LineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineViewController.swift; sourceTree = "<group>"; };
+		D03C1BC723FE1AD7009F8543 /* LineTblView-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineTblView-Ext.swift"; sourceTree = "<group>"; };
+		D03C1BC923FE285E009F8543 /* BetSideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetSideTableViewCell.swift; sourceTree = "<group>"; };
 		D041C5CB23FC80C100D230B2 /* CodableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableService.swift; sourceTree = "<group>"; };
 		D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		D041C5D023FCB04100D230B2 /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
-		D072697623F0C85F002760ED /* Handshake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handshake.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D072697623F0C85F002760ED /* Shake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D072697923F0C85F002760ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D072697B23F0C85F002760ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D072698023F0C85F002760ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,6 +129,33 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D03C1BC323FE1A94009F8543 /* Create Line */ = {
+			isa = PBXGroup;
+			children = (
+				D07269BE23F239C7002760ED /* CreateLineViewController.swift */,
+				D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */,
+			);
+			path = "Create Line";
+			sourceTree = "<group>";
+		};
+		D03C1BC423FE1A9E009F8543 /* Line View */ = {
+			isa = PBXGroup;
+			children = (
+				D03C1BC523FE1AB5009F8543 /* LineViewController.swift */,
+				D03C1BC723FE1AD7009F8543 /* LineTblView-Ext.swift */,
+			);
+			path = "Line View";
+			sourceTree = "<group>";
+		};
+		D03C1BCB23FE309D009F8543 /* Selected Group View */ = {
+			isa = PBXGroup;
+			children = (
+				D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */,
+				D07269BB23F225CE002760ED /* SelectedTblView-Ext.swift */,
+			);
+			path = "Selected Group View";
+			sourceTree = "<group>";
+		};
 		D041C5CD23FC80C700D230B2 /* CodableFirestore */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +177,7 @@
 		D072697723F0C85F002760ED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D072697623F0C85F002760ED /* Handshake.app */,
+				D072697623F0C85F002760ED /* Shake.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,6 +250,7 @@
 				D072699C23F1FC3D002760ED /* ActiveGroupTableViewCell.swift */,
 				D072699E23F1FC79002760ED /* LiveLineTableViewCell.swift */,
 				D041C5D023FCB04100D230B2 /* LeaderboardTableViewCell.swift */,
+				D03C1BC923FE285E009F8543 /* BetSideTableViewCell.swift */,
 			);
 			path = "Tableview Cells";
 			sourceTree = "<group>";
@@ -258,9 +292,8 @@
 			isa = PBXGroup;
 			children = (
 				D07269BD23F239A7002760ED /* Live Line */,
-				D072699923F1FB6D002760ED /* SelectedGroupViewController.swift */,
+				D03C1BCB23FE309D009F8543 /* Selected Group View */,
 				D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */,
-				D07269BB23F225CE002760ED /* SelectedTblView-Ext.swift */,
 			);
 			path = "Selected Group";
 			sourceTree = "<group>";
@@ -268,8 +301,8 @@
 		D07269BD23F239A7002760ED /* Live Line */ = {
 			isa = PBXGroup;
 			children = (
-				D07269BE23F239C7002760ED /* CreateLineViewController.swift */,
-				D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */,
+				D03C1BC423FE1A9E009F8543 /* Line View */,
+				D03C1BC323FE1A94009F8543 /* Create Line */,
 			);
 			path = "Live Line";
 			sourceTree = "<group>";
@@ -313,7 +346,7 @@
 			);
 			name = Froodz;
 			productName = Froodz;
-			productReference = D072697623F0C85F002760ED /* Handshake.app */;
+			productReference = D072697623F0C85F002760ED /* Shake.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -410,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D03C1BC823FE1AD7009F8543 /* LineTblView-Ext.swift in Sources */,
 				D07269C623F257FB002760ED /* LineService.swift in Sources */,
 				D041C5CC23FC80C100D230B2 /* CodableService.swift in Sources */,
 				D041C5CF23FCA81300D230B2 /* LeaderboardViewController.swift in Sources */,
@@ -435,7 +469,9 @@
 				D072699223F0CA3D002760ED /* UserService.swift in Sources */,
 				D07269C323F246BD002760ED /* Line.swift in Sources */,
 				D07269B223F20E56002760ED /* User.swift in Sources */,
+				D03C1BCA23FE285E009F8543 /* BetSideTableViewCell.swift in Sources */,
 				D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */,
+				D03C1BC623FE1AB5009F8543 /* LineViewController.swift in Sources */,
 				D0DF8D1E23F6037E00590C60 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,7 +628,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinmatsnev.Froodz;
-				PRODUCT_NAME = Handshake;
+				PRODUCT_NAME = Shake;
 				PROVISIONING_PROFILE_SPECIFIER = "Froodz PP";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -615,7 +651,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinmatsnev.Froodz;
-				PRODUCT_NAME = Handshake;
+				PRODUCT_NAME = Shake;
 				PROVISIONING_PROFILE_SPECIFIER = "Froodz PP";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

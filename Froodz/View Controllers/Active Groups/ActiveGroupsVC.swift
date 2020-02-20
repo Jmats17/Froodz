@@ -26,11 +26,7 @@ class ActiveGroupsViewController: UIViewController {
                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         }
     }
-    @IBOutlet weak var createGroupButton: UIButton! {
-        didSet {
-            createGroupButton.layer.cornerRadius = 7.0
-        }
-    }
+    @IBOutlet weak var createGroupButton: UIButton!
     @IBOutlet weak var groupLbl : UILabel! {
         didSet {
             groupLbl.text = "\(user.fullName)'s Groups"
