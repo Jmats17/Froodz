@@ -17,8 +17,8 @@ struct Line: Codable {
     let numOnLine: Double
     let users : [String]
     let creator: String
-    let single: [String]
-    let doubleDown: [String]
+    var single: [String]
+    var doubleDown: [String]
     
     enum CodingKeys: String, CodingKey {
         case documentId

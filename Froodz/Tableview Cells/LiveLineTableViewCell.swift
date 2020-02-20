@@ -18,20 +18,20 @@ class LiveLineTableViewCell: UITableViewCell {
         // Initialization code
         // Initialization code
         // add shadow on cell
-        
+        self.layer.masksToBounds = false
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowRadius = 4
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+
+        // add corner radius on `contentView`
+        self.layer.cornerRadius = 7
+        // Configure the view for the selected state
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.contentView.layer.masksToBounds = false
-        self.contentView.layer.shadowOpacity = 0.2
-        self.contentView.layer.shadowRadius = 4
-        self.contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.contentView.layer.shadowColor = UIColor.lightGray.cgColor
-
-        // add corner radius on `contentView`
-        self.contentView.layer.cornerRadius = 7
-        // Configure the view for the selected state
+        
     }
     
     func setCellData(_ line: Line) {

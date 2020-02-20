@@ -24,14 +24,13 @@ extension LineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BetSideCell", for: indexPath) as! BetSideTableViewCell
         guard let line = line else { return cell }
-        var username = String()
         
         if segmentedControl.selectedSegmentIndex == 0 {
-            username = line.single[indexPath.row]
+            let username = line.single[indexPath.row]
             cell.setCellData(username: username)
             return cell
         } else {
-            username = line.single[indexPath.row]
+            let username = line.doubleDown[indexPath.row]
             cell.setCellData(username: username)
             return cell
         }

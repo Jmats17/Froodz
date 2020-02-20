@@ -34,7 +34,6 @@ class LineViewController: UIViewController {
         super.viewDidLoad()
         setButtonAttributes()
         setLabelAttributes()
-        segmentedControl.selectedSegmentIndex = 0
     }
     
     private func setLabelAttributes() {
@@ -48,17 +47,17 @@ class LineViewController: UIViewController {
         let isInteger = line.numOnLine.truncatingRemainder(dividingBy: 1) == 0
 
         if isInteger {
-            self.wagerLbl.text = "\(Int(line.numOnLine))"
+            self.wagerLbl.text = "\(Int(line.numOnLine)) Wager"
             self.singleButton.setTitle("\(Int(line.numOnLine))", for: .normal)
         } else {
-            self.wagerLbl.text = "\(line.numOnLine)"
+            self.wagerLbl.text = "\(line.numOnLine) Wager"
             self.singleButton.setTitle("\(line.numOnLine)", for: .normal)
         }
         
         if line.doubleDown.contains(user.username) ||
             line.single.contains(user.username) {
             buttonDeactivated()
-        } else { buttonDeactivated() }
+        } else { buttonActivated() }
         
     }
     
@@ -84,6 +83,9 @@ class LineViewController: UIViewController {
         LineService.checkUserPlaceLineBet(groupID: group.documentId, lineID: id) { (didPlaceBet) in
             if !didPlaceBet {
                 LineService.addUser_ToSingleBet(groupID: group.documentId, lineID: id)
+                completion(true)
+            } else {
+                completion(false)
             }
         }
     }
@@ -95,6 +97,9 @@ class LineViewController: UIViewController {
         LineService.checkUserPlaceLineBet(groupID: group.documentId, lineID: id) { (didPlaceBet) in
             if !didPlaceBet {
                 LineService.addUser_ToDoubleDown(groupID: group.documentId, lineID: id)
+                completion(true)
+            } else {
+                completion(false)
             }
         }
     }
@@ -110,7 +115,7 @@ class LineViewController: UIViewController {
             Haptic.impact(.light).generate()
             GroupService.addPointsToWinners(line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
-                    self.buttonDeactivated()
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }
@@ -118,7 +123,7 @@ class LineViewController: UIViewController {
             Haptic.impact(.light).generate()
             GroupService.deductPointsToLosers(line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
-                    self.buttonDeactivated()
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }
@@ -135,27 +140,43 @@ class LineViewController: UIViewController {
     //Tap line to close, tap single bet or double, settings
     
     @IBAction func didSwitchSideControl(sender: UISegmentedControl) {
+        Haptic.impact(.light).generate()
         self.tableView.reloadData()
     }
     
     @IBAction func didTapEndLine(sender: UIButton) {
+        Haptic.impact(.light).generate()
         self.lineCompletedTapped()
     }
     
     @IBAction func didTapSingleBet(sender: UIButton) {
+        Haptic.impact(.light).generate()
         singleBetInitiated { (didComplete) in
-            if didComplete { self.buttonDeactivated() }
+            if didComplete {
+                self.buttonDeactivated()
+                guard var line = self.line else {return}
+                line.single.append(self.user.username)
+                self.line = line
+                self.tableView.reloadData()
+            }
         }
     }
     
     @IBAction func didTapDoubleDown(sender: UIButton) {
+        Haptic.impact(.light).generate()
         doubleDownBetInitiated { (didComplete) in
-            if didComplete { self.buttonDeactivated() }
+            if didComplete {
+                self.buttonDeactivated()
+                guard var line = self.line else {return}
+                line.doubleDown.append(self.user.username)
+                self.line = line
+                self.tableView.reloadData()
+            }
         }
     }
     
     @IBAction func didTapSettings(sender: UIButton) {
-        
+        Haptic.impact(.light).generate()
     }
 
 }

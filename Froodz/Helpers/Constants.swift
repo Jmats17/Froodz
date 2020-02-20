@@ -23,6 +23,7 @@ struct Constants {
         static let primaryBlue = UIColor(red: 70/255, green: 171/255, blue: 242/255, alpha: 1.0)
         static let primaryBlackText = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1.0)
         static let secondaryDarkBlue = UIColor(red: 55/255, green: 135/255, blue: 191/255, alpha: 1.0)
+        static let tertiaryRed = UIColor(red: 244/255, green: 98/255, blue: 95/255, alpha: 1.0)
 
     }
 }

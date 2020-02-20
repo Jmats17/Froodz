@@ -42,7 +42,7 @@ class SelectedGroupViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 99
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTapLeaderboard(_:)))
         rankingView.addGestureRecognizer(tap)
@@ -103,6 +103,34 @@ class SelectedGroupViewController: UIViewController {
         }
     }
     
+    func filtered_NewLines(lines: [Line]) -> [Line] {
+        return lines.filter({ !$0.single.contains(User.current.username)
+        && !$0.doubleDown.contains(User.current.username)})
+    }
+    
+    func filtered_CreatedLines(lines: [Line]) -> [Line] {
+        return lines.filter({ $0.creator == user.username })
+    }
+    
+    private func filtered_PlacedLines(lines: [Line]) -> [Line] {
+        return lines.filter({ $0.single.contains(User.current.username)
+        || $0.doubleDown.contains(User.current.username)})
+    }
+    
+    private func next_FilledLines(lines: [Line]) -> ([Line], Int) {
+        if !filtered_NewLines(lines: lines).isEmpty {
+            return (filtered_NewLines(lines: lines), 0)
+        }
+        if !filtered_CreatedLines(lines: lines).isEmpty {
+            return (filtered_CreatedLines(lines: lines), 1)
+        }
+        if !filtered_PlacedLines(lines: lines).isEmpty {
+            return (filtered_PlacedLines(lines: lines), 2)
+        }
+        
+        return (filtered_NewLines(lines: lines), 0)
+    }
+    
     private func checkGroupValue() {
         if let group = group {
             groupNameLbl.text = group.groupName
@@ -110,8 +138,9 @@ class SelectedGroupViewController: UIViewController {
             numOfUsersCoinsLbl.text = "\(UserService.returnUsersBalance_FromGroup(group: group))"
             LineService.get_CurrentLines(groupID: group.documentId) { (lines) in
                 DispatchQueue.main.async {
-                    let newLines = lines.filter({ !$0.single.contains(User.current.username) && !$0.doubleDown.contains(User.current.username) })
-                    self.lines = newLines
+                    self.lines = self.next_FilledLines(lines: lines).0
+                    self.segmentedView.selectedSegmentIndex =
+                        self.next_FilledLines(lines: lines).1
                     self.allLineData = lines
                     self.tableView.reloadData()
                 }
@@ -146,13 +175,13 @@ class SelectedGroupViewController: UIViewController {
         self.lines = self.allLineData
         switch sender.selectedSegmentIndex {
         case 0:
-            self.lines = self.lines.filter({ !$0.single.contains(user.username) && !$0.doubleDown.contains(user.username) })
+            self.lines = filtered_NewLines(lines: lines)
             self.tableView.reloadData()
         case 1:
-            self.lines = self.lines.filter({ $0.creator == user.username })
+            self.lines = filtered_CreatedLines(lines: lines)
             self.tableView.reloadData()
         case 2:
-            self.lines = self.lines.filter({ $0.single.contains(user.username) || $0.doubleDown.contains(user.username) })
+            self.lines = filtered_PlacedLines(lines: lines)
             self.tableView.reloadData()
         default:
             self.lines = self.allLineData
