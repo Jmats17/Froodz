@@ -170,6 +170,16 @@ class SelectedGroupViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func tappedSettings(sender: UIButton) {
+        Haptic.impact(.light).generate()
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if let vc = mainStoryboard.instantiateViewController(withIdentifier: "SettingsVC") as? SettingsViewController {
+            vc.group = group
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func segmentDidChange(sender: UISegmentedControl) {
         Haptic.impact(.light).generate()
         self.lines = self.allLineData

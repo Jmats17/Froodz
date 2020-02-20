@@ -10,6 +10,7 @@
 		D03C1BC623FE1AB5009F8543 /* LineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03C1BC523FE1AB5009F8543 /* LineViewController.swift */; };
 		D03C1BC823FE1AD7009F8543 /* LineTblView-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03C1BC723FE1AD7009F8543 /* LineTblView-Ext.swift */; };
 		D03C1BCA23FE285E009F8543 /* BetSideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03C1BC923FE285E009F8543 /* BetSideTableViewCell.swift */; };
+		D03C1BCD23FEFE41009F8543 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03C1BCC23FEFE41009F8543 /* SettingsViewController.swift */; };
 		D041C5CC23FC80C100D230B2 /* CodableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5CB23FC80C100D230B2 /* CodableService.swift */; };
 		D041C5CF23FCA81300D230B2 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */; };
 		D041C5D123FCB04100D230B2 /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5D023FCB04100D230B2 /* LeaderboardTableViewCell.swift */; };
@@ -64,6 +65,7 @@
 		D03C1BC523FE1AB5009F8543 /* LineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineViewController.swift; sourceTree = "<group>"; };
 		D03C1BC723FE1AD7009F8543 /* LineTblView-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineTblView-Ext.swift"; sourceTree = "<group>"; };
 		D03C1BC923FE285E009F8543 /* BetSideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetSideTableViewCell.swift; sourceTree = "<group>"; };
+		D03C1BCC23FEFE41009F8543 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D041C5CB23FC80C100D230B2 /* CodableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableService.swift; sourceTree = "<group>"; };
 		D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		D041C5D023FCB04100D230B2 /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				D07269BD23F239A7002760ED /* Live Line */,
 				D03C1BCB23FE309D009F8543 /* Selected Group View */,
 				D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */,
+				D03C1BCC23FEFE41009F8543 /* SettingsViewController.swift */,
 			);
 			path = "Selected Group";
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				D07269B623F214F1002760ED /* Group.swift in Sources */,
 				D072699D23F1FC3D002760ED /* ActiveGroupTableViewCell.swift in Sources */,
 				D041C5D123FCB04100D230B2 /* LeaderboardTableViewCell.swift in Sources */,
+				D03C1BCD23FEFE41009F8543 /* SettingsViewController.swift in Sources */,
 				D07269B423F21082002760ED /* Extensions.swift in Sources */,
 				D07269AD23F202D7002760ED /* Helper.swift in Sources */,
 				D072697C23F0C85F002760ED /* SceneDelegate.swift in Sources */,
@@ -623,6 +627,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 96QE7H4LVL;
 				INFOPLIST_FILE = Froodz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -646,6 +651,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 96QE7H4LVL;
 				INFOPLIST_FILE = Froodz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

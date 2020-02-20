@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="WTU-fp-ShJ">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" id="rn8-WB-GmZ" customClass="LoginViewController" customModule="Handshake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="rn8-WB-GmZ" customClass="LoginViewController" customModule="Shake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S86-uO-lxG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -136,7 +136,7 @@
         <!--Verification View Controller-->
         <scene sceneID="xXf-16-ETY">
             <objects>
-                <viewController storyboardIdentifier="VerifyVC" id="rZo-44-sTh" customClass="VerificationViewController" customModule="Handshake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VerifyVC" id="rZo-44-sTh" customClass="VerificationViewController" customModule="Shake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1nF-hS-wen">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -225,7 +225,7 @@
         <!--Active Groups View Controller-->
         <scene sceneID="jdE-CZ-sNb">
             <objects>
-                <viewController storyboardIdentifier="ActiveGroupsVC" interfaceStyle="light" id="LEQ-GF-Wd2" customClass="ActiveGroupsViewController" customModule="Handshake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ActiveGroupsVC" interfaceStyle="light" id="LEQ-GF-Wd2" customClass="ActiveGroupsViewController" customModule="Shake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KV3-Pd-Osn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,7 +234,7 @@
                                 <rect key="frame" x="0.0" y="229" width="414" height="643"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActiveGroupCell" rowHeight="119" id="rgc-x0-OG8" customClass="ActiveGroupTableViewCell" customModule="Handshake" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActiveGroupCell" rowHeight="119" id="rgc-x0-OG8" customClass="ActiveGroupTableViewCell" customModule="Shake" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgc-x0-OG8" id="B9r-13-NEP">
@@ -276,8 +276,8 @@
                                                                 <constraint firstAttribute="height" constant="17" id="tDg-Kl-khR"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="view" translatesAutoresizingMaskIntoConstraints="NO" id="kUu-Q0-AWe">
-                                                            <rect key="frame" x="307" y="42.5" width="43" height="12"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="viewgroup" translatesAutoresizingMaskIntoConstraints="NO" id="kUu-Q0-AWe">
+                                                            <rect key="frame" x="255" y="40" width="95" height="17"/>
                                                             <color key="tintColor" red="0.27450980390000002" green="0.6705882353" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
                                                     </subviews>
@@ -410,7 +410,7 @@
         <!--Leaderboard View Controller-->
         <scene sceneID="o3b-xn-tZR">
             <objects>
-                <viewController storyboardIdentifier="LeaderboardVC" id="be7-da-Yai" customClass="LeaderboardViewController" customModule="Handshake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeaderboardVC" id="be7-da-Yai" customClass="LeaderboardViewController" customModule="Shake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0ce-UO-NqO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -419,7 +419,7 @@
                                 <rect key="frame" x="0.0" y="126" width="414" height="730"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeaderboardCell" rowHeight="99" id="NUV-Vr-EiF" customClass="LeaderboardTableViewCell" customModule="Handshake" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeaderboardCell" rowHeight="99" id="NUV-Vr-EiF" customClass="LeaderboardTableViewCell" customModule="Shake" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NUV-Vr-EiF" id="Fjv-R4-UI2">
@@ -502,10 +502,90 @@
             </objects>
             <point key="canvasLocation" x="582.60869565217399" y="-526.33928571428567"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="iC3-Tx-yxD">
+            <objects>
+                <viewController storyboardIdentifier="SettingsVC" id="dW6-Dh-O9D" customClass="SettingsViewController" customModule="Shake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n7C-0j-pnN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0d3-Zy-ew7">
+                                <rect key="frame" x="20" y="76" width="106.5" height="34"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CODE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4q-VQ-272">
+                                <rect key="frame" x="20" y="118" width="62" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2R-0P-Rux">
+                                <rect key="frame" x="184.5" y="60" width="45" height="3"/>
+                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="nZ8-nj-wxJ"/>
+                                    <constraint firstAttribute="height" constant="3" id="see-ej-YGX"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1a-j8-tp8">
+                                <rect key="frame" x="20" y="748" width="374" height="50"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.38431372549999998" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="va7-Hu-re8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="Delete Group">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapSingleBetWithSender:" destination="5vL-Rq-Uu7" eventType="touchUpInside" id="RfV-sB-wY4"/>
+                                    <action selector="tappedCreateGroupWithSender:" destination="LEQ-GF-Wd2" eventType="touchUpInside" id="jnN-9f-0HG"/>
+                                    <action selector="tappedDeleteGroupWithSender:" destination="dW6-Dh-O9D" eventType="touchUpInside" id="Yio-7x-1pi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6ixCDE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gs4-If-R40">
+                                <rect key="frame" x="90" y="118" width="69" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="v2R-0P-Rux" firstAttribute="centerX" secondItem="iC9-2y-Skv" secondAttribute="centerX" id="48R-sF-wbM"/>
+                            <constraint firstItem="iC9-2y-Skv" firstAttribute="trailing" secondItem="L1a-j8-tp8" secondAttribute="trailing" constant="20" id="5az-TC-OzF"/>
+                            <constraint firstItem="0d3-Zy-ew7" firstAttribute="top" secondItem="iC9-2y-Skv" secondAttribute="top" constant="32" id="MK0-cz-KM3"/>
+                            <constraint firstItem="D4q-VQ-272" firstAttribute="top" secondItem="0d3-Zy-ew7" secondAttribute="bottom" constant="8" id="XQ7-30-y3V"/>
+                            <constraint firstItem="gs4-If-R40" firstAttribute="centerY" secondItem="D4q-VQ-272" secondAttribute="centerY" id="Zvs-39-OaB"/>
+                            <constraint firstItem="gs4-If-R40" firstAttribute="leading" secondItem="D4q-VQ-272" secondAttribute="trailing" constant="8" id="arg-ys-XsY"/>
+                            <constraint firstItem="D4q-VQ-272" firstAttribute="leading" secondItem="0d3-Zy-ew7" secondAttribute="leading" id="mYI-QE-DgQ"/>
+                            <constraint firstItem="0d3-Zy-ew7" firstAttribute="leading" secondItem="iC9-2y-Skv" secondAttribute="leading" constant="20" id="qyz-dB-lZU"/>
+                            <constraint firstItem="v2R-0P-Rux" firstAttribute="top" secondItem="iC9-2y-Skv" secondAttribute="top" constant="16" id="wPb-Sq-VZF"/>
+                            <constraint firstItem="iC9-2y-Skv" firstAttribute="bottom" secondItem="L1a-j8-tp8" secondAttribute="bottom" constant="64" id="yT7-Mf-bq8"/>
+                            <constraint firstItem="L1a-j8-tp8" firstAttribute="leading" secondItem="iC9-2y-Skv" secondAttribute="leading" constant="20" id="zyy-bv-ZxM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iC9-2y-Skv"/>
+                    </view>
+                    <connections>
+                        <outlet property="codeLbl" destination="gs4-If-R40" id="iWd-Cm-uQB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="njH-sD-d4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1348" y="-526"/>
+        </scene>
         <!--Selected Group View Controller-->
         <scene sceneID="mb0-je-ncW">
             <objects>
-                <viewController storyboardIdentifier="SelectedGroupVC" modalPresentationStyle="fullScreen" id="mRj-fs-KBu" customClass="SelectedGroupViewController" customModule="Handshake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectedGroupVC" modalPresentationStyle="fullScreen" id="mRj-fs-KBu" customClass="SelectedGroupViewController" customModule="Shake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bGC-1e-7eo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -543,11 +623,11 @@
                                                     <constraint firstAttribute="width" constant="15" id="re6-si-I9F"/>
                                                 </constraints>
                                             </imageView>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JMp-0S-hAd" customClass="SelfSizedTableView" customModule="Handshake" customModuleProvider="target">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JMp-0S-hAd" customClass="SelfSizedTableView" customModule="Shake" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="308.5" width="414" height="527.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LiveLineCell" rowHeight="99" id="Hc8-ao-3ZY" customClass="LiveLineTableViewCell" customModule="Handshake" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LiveLineCell" rowHeight="99" id="Hc8-ao-3ZY" customClass="LiveLineTableViewCell" customModule="Shake" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="414" height="99"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hc8-ao-3ZY" id="tSI-au-n0L">
@@ -725,6 +805,9 @@
                                                 </constraints>
                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="gear" catalog="system"/>
+                                                <connections>
+                                                    <action selector="tappedSettingsWithSender:" destination="mRj-fs-KBu" eventType="touchUpInside" id="MIK-J7-7Xf"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -799,7 +882,7 @@
         <!--Line View Controller-->
         <scene sceneID="moD-A4-o00">
             <objects>
-                <viewController storyboardIdentifier="LineViewVC" id="5vL-Rq-Uu7" customClass="LineViewController" customModule="Handshake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LineViewVC" id="5vL-Rq-Uu7" customClass="LineViewController" customModule="Shake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YnU-S3-w4q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -853,7 +936,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="separatorColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BetSideCell" rowHeight="63" id="3OX-jR-Rjb" customClass="BetSideTableViewCell" customModule="Handshake" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BetSideCell" rowHeight="63" id="3OX-jR-Rjb" customClass="BetSideTableViewCell" customModule="Shake" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3OX-jR-Rjb" id="Q9b-rf-4O8">
@@ -1009,12 +1092,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y4r-gw-Vfq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1292.753623188406" y="150.66964285714286"/>
+            <point key="canvasLocation" x="1348" y="151"/>
         </scene>
         <!--Create Line View Controller-->
         <scene sceneID="V0M-Bt-bTs">
             <objects>
-                <viewController storyboardIdentifier="CreateLineVC" id="UaO-dD-Ogh" customClass="CreateLineViewController" customModule="Handshake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateLineVC" id="UaO-dD-Ogh" customClass="CreateLineViewController" customModule="Shake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zSk-2O-Huc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1132,5 +1215,6 @@
         <image name="person.fill" catalog="system" width="64" height="60"/>
         <image name="signup" width="135" height="133"/>
         <image name="view" width="43" height="12"/>
+        <image name="viewgroup" width="95" height="17"/>
     </resources>
 </document>

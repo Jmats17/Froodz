@@ -27,11 +27,11 @@ extension LineViewController: UITableViewDelegate, UITableViewDataSource {
         
         if segmentedControl.selectedSegmentIndex == 0 {
             let username = line.single[indexPath.row]
-            cell.setCellData(username: username)
+            cell.setCellData(username: username, row: indexPath.row)
             return cell
         } else {
             let username = line.doubleDown[indexPath.row]
-            cell.setCellData(username: username)
+            cell.setCellData(username: username, row: indexPath.row)
             return cell
         }
     }

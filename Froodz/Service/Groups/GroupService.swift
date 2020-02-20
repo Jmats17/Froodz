@@ -126,13 +126,35 @@ struct GroupService {
         }
     }
     
+    static func deleteCurrentGroup(groupID: String, completion: @escaping (Bool) -> Void) {
+        
+        FBRef.document(groupID).delete { (error) in
+            if let error = error { print(error.localizedDescription) ; completion(false) ; return }
+            Firestore.firestore().collection("Users").whereField("active_groups", arrayContains: groupID).getDocuments { (snapshot, err) in
+                if let error = err { print(error.localizedDescription) ; completion(false) ; return }
+                guard let documents = snapshot?.documents else {completion(false) ; return }
+                
+                for document in documents {
+                    var user = CodableService.CodableUser.getUser(snapshot: document)
+                    user.active_groups.removeAll(where: { $0 == groupID })
+                    Firestore.firestore().collection("Users").document(user.documentId).updateData(["active_groups" : user.active_groups])
+                }
+                completion(true)
+                return
+            }
+            
+        }
+        
+    }
+    
     //Creating new group to push to FB
     static func didCreateNewGroup(userID: String, groupName : String, didRegister: @escaping (Bool) -> Void) {
         var ref: DocumentReference? = nil
         ref = FBRef.addDocument(data: [
             "groupName" : groupName,
             "code": Helper.return_RandomGeneratedCode(),
-            "users": [ User.current.username : 500.0 ]
+            "users": [ User.current.username : 500.0 ],
+            "creator": user.username
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

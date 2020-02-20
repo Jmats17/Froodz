@@ -27,7 +27,7 @@ struct UserGroups_Service {
 
     //Get list of groups from Group snapshot and return as Group array
     private static func retrieveGroups_FromGroupsArr(groupIds : [String], completion: @escaping ([Group]) -> Void) {
-        FBRef.getDocuments { (documentSnapshot, error) in
+        FBRef.addSnapshotListener { (documentSnapshot, error) in
             var groups = [Group]()
             if let err = error {
                 print(err.localizedDescription)

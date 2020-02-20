@@ -16,7 +16,7 @@ struct User : Codable {
     let documentId: String
     let username: String
     let fullName: String
-    let active_groups : [String]
+    var active_groups : [String]
     
     private static var _current: User?
     static var current: User {

@@ -68,12 +68,19 @@ class ActiveGroupsViewController: UIViewController {
     }
     
     func retrieveActiveGroups() {
-        UserGroups_Service.return_ActiveGroups(userID: user.documentId) { (groups) in
-            DispatchQueue.main.async {
+        UserService.return_UserActiveGroupsIDS(userID: user.documentId) { (groups) in
+            if groups.count > 0 {
+                UserGroups_Service.return_ActiveGroups(userID: self.user.documentId) { (groups) in
+                    DispatchQueue.main.async {
+                        self.refreshControl.endRefreshing()
+                        self.activityIndicator.stopAnimating()
+                        self.groups = groups
+                        self.tableView.reloadData()
+                    }
+                }
+            } else {
                 self.refreshControl.endRefreshing()
                 self.activityIndicator.stopAnimating()
-                self.groups = groups
-                self.tableView.reloadData()
             }
         }
     }
@@ -101,8 +108,11 @@ class ActiveGroupsViewController: UIViewController {
                 }
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertVC.addAction(addAction)
+        alertVC.addAction(cancelAction)
         self.present(alertVC, animated: true, completion: nil)
     }
+    
 }
 
