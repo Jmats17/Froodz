@@ -153,7 +153,9 @@ struct GroupService {
         ref = FBRef.addDocument(data: [
             "groupName" : groupName,
             "code": Helper.return_RandomGeneratedCode(),
-            "users": [ User.current.username : 500.0 ],
+            "users": [
+                User.current.username : 500.0
+            ],
             "creator": user.username
         ]) { err in
             if let err = err {
@@ -187,7 +189,7 @@ struct GroupService {
                 let group = try! FirestoreDecoder().decode(Group.self, from: documents[0].prepareForDecoding())
                 if !group.users.keys.contains(User.current.username) {
                     FBRef.document(group.documentId).updateData([
-                        "users" : [user.username : 500.0]
+                        "users.\(user.username)" :  500.0
                     ]) { error in
                         if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
                         else {
@@ -197,11 +199,10 @@ struct GroupService {
                         }
                     }
                     
-                }
-            }
+                } else {didJoin(false) ; return}
+            } else {didJoin(false) ; return}
             
-            didJoin(false)
-            return
+            
         }
     }
     

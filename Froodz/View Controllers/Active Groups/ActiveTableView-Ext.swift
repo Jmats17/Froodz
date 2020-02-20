@@ -58,7 +58,9 @@ extension ActiveGroupsViewController: UITextFieldDelegate {
         GroupService.didJoinExistingGroup(userID: user.documentId, code: code) { (didJoin) in
             if didJoin {
                 self.joinGroupTextField.text = ""
+                self.refreshGroupData(self)
             } else {
+                self.joinGroupTextField.text = ""
                 self.codeNotFoundAlert()
             }
         }

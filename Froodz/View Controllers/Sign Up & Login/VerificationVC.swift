@@ -75,7 +75,7 @@ class VerificationViewController: UIViewController {
                 print("Created new user: \(user.username)")
                 let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 if let vc = mainStoryboard.instantiateViewController(withIdentifier: "ActiveGroupsVC") as? ActiveGroupsViewController {
-                    
+                    vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: true, completion: nil)
                 }
                 

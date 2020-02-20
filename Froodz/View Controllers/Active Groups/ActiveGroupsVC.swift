@@ -62,7 +62,7 @@ class ActiveGroupsViewController: UIViewController {
         self.view.addSubview(activityIndicator)
     }
     
-    @objc private func refreshGroupData(_ sender: Any) {
+    @objc func refreshGroupData(_ sender: Any) {
         startAnimatingIndicator()
         retrieveActiveGroups()
     }

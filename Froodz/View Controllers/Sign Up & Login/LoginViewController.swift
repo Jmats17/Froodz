@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addDoneButtonOnKeyboard()
-
+        configureKeyboardResponses()
     }
    
     private func configureKeyboardResponses() {

@@ -23,6 +23,9 @@
                                 <color key="textColor" red="0.1529411765" green="0.16078431369999999" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" textContentType="name"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rn8-WB-GmZ" id="qhR-eT-yPQ"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Srimmage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjG-I0-NYO">
                                 <rect key="frame" x="40" y="249" width="245.5" height="29"/>
@@ -50,6 +53,9 @@
                                 <color key="textColor" red="0.1529411765" green="0.16078431369999999" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" textContentType="username"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rn8-WB-GmZ" id="inb-Ej-w0k"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4f-nn-h77">
                                 <rect key="frame" x="40" y="423" width="75" height="20"/>
@@ -62,6 +68,9 @@
                                 <color key="textColor" red="0.1529411765" green="0.16078431369999999" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad" returnKeyType="go" textContentType="tel"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rn8-WB-GmZ" id="Jd9-de-QGl"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9n-6g-p3L">
                                 <rect key="frame" x="40" y="507" width="107" height="20"/>
@@ -168,6 +177,9 @@
                                 <color key="textColor" red="0.1529411765" green="0.16078431369999999" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="numberPad" textContentType="one-time-code"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rZo-44-sTh" id="PcY-SD-AOp"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZDO-56-4Wc" customClass="PMSuperButton" customModule="PMSuperButton">
                                 <rect key="frame" x="94.5" y="726" width="225" height="50"/>
