@@ -40,6 +40,8 @@ class LineViewController: UIViewController {
         guard let line = line else {return}
         lineNameLbl.text = line.lineName
         numMembersLbl.text = "\(line.users.count.isSingular())"
+        segmentedControl.setTitle("Single - \(line.single.count)", forSegmentAt: 0)
+        segmentedControl.setTitle("Double Down - \(line.doubleDown.count)", forSegmentAt: 1)
     }
     
     private func setButtonAttributes() {
@@ -59,6 +61,30 @@ class LineViewController: UIViewController {
             buttonDeactivated()
         } else { buttonActivated() }
         
+        endButton_IsEnabled(line: line)
+        
+    }
+    
+    private func getLinePercentFilled(line: Line) -> Double {
+        return Double(line.single.count + line.doubleDown.count)
+        / Double(line.users.count)
+    }
+    
+    private func endButton_IsEnabled(line: Line) {
+        if line.creator != user.username {
+            endButton.isHidden = true
+        } else {
+            print(getLinePercentFilled(line: line))
+            if getLinePercentFilled(line: line) < 0.8 {
+                endButton.setTitle("\(Int(getLinePercentFilled(line: line) * 100.0))% Filled", for: .normal)
+                endButton.setTitleColor(Constants.Color.primaryBlackText, for: .normal)
+                endButton.isEnabled = false
+            } else {
+                endButton.setTitle("End The Line - \(Int(getLinePercentFilled(line: line) * 100.0))% Filled", for: .normal)
+                endButton.setTitleColor(Constants.Color.tertiaryRed, for: .normal)
+                endButton.isEnabled = true
+            }
+        }
     }
     
     private func buttonActivated() {
@@ -157,6 +183,8 @@ class LineViewController: UIViewController {
                 guard var line = self.line else {return}
                 line.single.append(self.user.username)
                 self.line = line
+                self.endButton_IsEnabled(line: line)
+                self.segmentedControl.setTitle("Single - \(line.single.count)", forSegmentAt: 0)
                 self.tableView.reloadData()
             }
         }
@@ -170,6 +198,8 @@ class LineViewController: UIViewController {
                 guard var line = self.line else {return}
                 line.doubleDown.append(self.user.username)
                 self.line = line
+                self.endButton_IsEnabled(line: line)
+                self.segmentedControl.setTitle("Single - \(line.doubleDown.count)", forSegmentAt: 1)
                 self.tableView.reloadData()
             }
         }
