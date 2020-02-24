@@ -16,10 +16,10 @@ class LineViewController: UIViewController {
     @IBOutlet weak var wagerLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var singleButton: UIButton!
-    @IBOutlet weak var doubleDownButton: UIButton! {
+    @IBOutlet weak var agreedButton: UIButton!
+    @IBOutlet weak var disagreedButton: UIButton! {
         didSet {
-            doubleDownButton.layer.borderColor =
+            disagreedButton.layer.borderColor =
                 Constants.Color.primaryBlue.cgColor
         }
     }
@@ -40,8 +40,8 @@ class LineViewController: UIViewController {
         guard let line = line else {return}
         lineNameLbl.text = line.lineName
         numMembersLbl.text = "\(line.users.count.isSingular())"
-        segmentedControl.setTitle("Single - \(line.single.count)", forSegmentAt: 0)
-        segmentedControl.setTitle("Double Down - \(line.doubleDown.count)", forSegmentAt: 1)
+        segmentedControl.setTitle("Agreed - \(line.agreedUsers.count)", forSegmentAt: 0)
+        segmentedControl.setTitle("Disagreed - \(line.disagreedUsers.count)", forSegmentAt: 1)
     }
     
     private func setButtonAttributes() {
@@ -50,14 +50,12 @@ class LineViewController: UIViewController {
 
         if isInteger {
             self.wagerLbl.text = "\(Int(line.numOnLine)) Wager"
-            self.singleButton.setTitle("\(Int(line.numOnLine))", for: .normal)
         } else {
             self.wagerLbl.text = "\(line.numOnLine) Wager"
-            self.singleButton.setTitle("\(line.numOnLine)", for: .normal)
         }
         
-        if line.doubleDown.contains(user.username) ||
-            line.single.contains(user.username) {
+        if line.disagreedUsers.contains(user.username) ||
+            line.agreedUsers.contains(user.username) {
             buttonDeactivated()
         } else { buttonActivated() }
         
@@ -66,15 +64,15 @@ class LineViewController: UIViewController {
     }
     
     private func getLinePercentFilled(line: Line) -> Double {
-        return Double(line.single.count + line.doubleDown.count)
-        / Double(line.users.count)
+        guard let group = group else {return 0.0 }
+        return Double(line.agreedUsers.count + line.disagreedUsers.count)
+        / Double(group.users.count)
     }
     
     private func endButton_IsEnabled(line: Line) {
         if line.creator != user.username {
             endButton.isHidden = true
         } else {
-            print(getLinePercentFilled(line: line))
             if getLinePercentFilled(line: line) < 0.8 {
                 endButton.setTitle("\(Int(getLinePercentFilled(line: line) * 100.0))% Filled", for: .normal)
                 endButton.setTitleColor(Constants.Color.primaryBlackText, for: .normal)
@@ -88,17 +86,17 @@ class LineViewController: UIViewController {
     }
     
     private func buttonActivated() {
-        self.singleButton.backgroundColor = Constants.Color.primaryBlue
-        self.doubleDownButton.layer.borderColor = Constants.Color.primaryBlue.cgColor
-        self.doubleDownButton.setTitleColor(Constants.Color.primaryBlue, for: .normal)
+        self.agreedButton.backgroundColor = Constants.Color.primaryBlue
+        self.disagreedButton.layer.borderColor = Constants.Color.primaryBlue.cgColor
+        self.disagreedButton.setTitleColor(Constants.Color.primaryBlue, for: .normal)
     }
     
     private func buttonDeactivated() {
-        self.singleButton.backgroundColor = Constants.Color.placeholderColor
-        self.doubleDownButton.layer.borderColor = Constants.Color.placeholderColor.cgColor
-        self.doubleDownButton.setTitleColor(Constants.Color.placeholderColor, for: .normal)
-        self.singleButton.isEnabled = false
-        self.doubleDownButton.isEnabled = false
+        self.agreedButton.backgroundColor = Constants.Color.placeholderColor
+        self.disagreedButton.layer.borderColor = Constants.Color.placeholderColor.cgColor
+        self.disagreedButton.setTitleColor(Constants.Color.placeholderColor, for: .normal)
+        self.agreedButton.isEnabled = false
+        self.disagreedButton.isEnabled = false
     }
     
     
@@ -108,7 +106,7 @@ class LineViewController: UIViewController {
         
         LineService.checkUserPlaceLineBet(groupID: group.documentId, lineID: id) { (didPlaceBet) in
             if !didPlaceBet {
-                LineService.addUser_ToSingleBet(groupID: group.documentId, lineID: id)
+                LineService.addUser_ToAgreedBet(groupID: group.documentId, lineID: id)
                 completion(true)
             } else {
                 completion(false)
@@ -122,7 +120,7 @@ class LineViewController: UIViewController {
         
         LineService.checkUserPlaceLineBet(groupID: group.documentId, lineID: id) { (didPlaceBet) in
             if !didPlaceBet {
-                LineService.addUser_ToDoubleDown(groupID: group.documentId, lineID: id)
+                LineService.addUser_ToDisagreedBet(groupID: group.documentId, lineID: id)
                 completion(true)
             } else {
                 completion(false)
@@ -139,15 +137,15 @@ class LineViewController: UIViewController {
         
         let yesAction = UIAlertAction(title: "Yes it did 🤝", style: .default) { (action) in
             Haptic.impact(.light).generate()
-            GroupService.addPointsToWinners(line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
+            GroupService.addPointsToWinners(winningSide: "Agreed", line: lineID, group: group, amount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
                     self.dismiss(animated: true, completion: nil)
                 }
             }
         }
-        let noAction = UIAlertAction(title: "Nope 👎", style: .default) { (action) in
+        let noAction = UIAlertAction(title: "Nah 👎", style: .default) { (action) in
             Haptic.impact(.light).generate()
-            GroupService.deductPointsToLosers(line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
+            GroupService.deductPointsToLosers(losingSide: "Disagreed",line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
                     self.dismiss(animated: true, completion: nil)
                 }
@@ -175,31 +173,31 @@ class LineViewController: UIViewController {
         self.lineCompletedTapped()
     }
     
-    @IBAction func didTapSingleBet(sender: UIButton) {
+    @IBAction func didTapAgree(sender: UIButton) {
         Haptic.impact(.light).generate()
         singleBetInitiated { (didComplete) in
             if didComplete {
                 self.buttonDeactivated()
                 guard var line = self.line else {return}
-                line.single.append(self.user.username)
+                line.agreedUsers.append(self.user.username)
                 self.line = line
                 self.endButton_IsEnabled(line: line)
-                self.segmentedControl.setTitle("Single - \(line.single.count)", forSegmentAt: 0)
+                self.segmentedControl.setTitle("Agreed - \(line.agreedUsers.count)", forSegmentAt: 0)
                 self.tableView.reloadData()
             }
         }
     }
     
-    @IBAction func didTapDoubleDown(sender: UIButton) {
+    @IBAction func didTapDisagree(sender: UIButton) {
         Haptic.impact(.light).generate()
         doubleDownBetInitiated { (didComplete) in
             if didComplete {
                 self.buttonDeactivated()
                 guard var line = self.line else {return}
-                line.doubleDown.append(self.user.username)
+                line.disagreedUsers.append(self.user.username)
                 self.line = line
                 self.endButton_IsEnabled(line: line)
-                self.segmentedControl.setTitle("Single - \(line.doubleDown.count)", forSegmentAt: 1)
+                self.segmentedControl.setTitle("Disagreed - \(line.disagreedUsers.count)", forSegmentAt: 1)
                 self.tableView.reloadData()
             }
         }

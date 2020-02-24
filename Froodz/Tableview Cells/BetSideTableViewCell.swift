@@ -15,8 +15,8 @@ class BetSideTableViewCell:  UITableViewCell {
     
     override func awakeFromNib() {}
     
-    func setCellData(username: String, row: Int) {
-        self.usernameLbl.text = "\(row + 1). " + username
+    func setCellData(username: String) {
+        self.usernameLbl.text = " @" + username
     }
     
 }

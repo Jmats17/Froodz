@@ -15,9 +15,9 @@ extension LineViewController: UITableViewDelegate, UITableViewDataSource {
         guard let line = line else {return 0}
         
         if segmentedControl.selectedSegmentIndex == 0 {
-            return line.single.count
+            return line.agreedUsers.count
         } else {
-            return line.doubleDown.count
+            return line.disagreedUsers.count
         }
     }
     
@@ -26,12 +26,12 @@ extension LineViewController: UITableViewDelegate, UITableViewDataSource {
         guard let line = line else { return cell }
         
         if segmentedControl.selectedSegmentIndex == 0 {
-            let username = line.single[indexPath.row]
-            cell.setCellData(username: username, row: indexPath.row)
+            let username = line.agreedUsers[indexPath.row]
+            cell.setCellData(username: username)
             return cell
         } else {
-            let username = line.doubleDown[indexPath.row]
-            cell.setCellData(username: username, row: indexPath.row)
+            let username = line.disagreedUsers[indexPath.row]
+            cell.setCellData(username: username)
             return cell
         }
     }

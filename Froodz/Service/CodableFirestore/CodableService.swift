@@ -33,7 +33,7 @@ struct CodableService {
     struct CodableLine {
         //Convert Line object to data to push to firebase
         static func toLineData(lineName: String, amount: Double, users: [String], creator: String) -> [String: Any] {
-            let line = Line(documentId: nil, lineName: lineName, numOnLine: amount, users: users, creator: creator, single: [], doubleDown: [])
+            let line = Line(documentId: nil, lineName: lineName, numOnLine: amount, users: users, creator: creator, agreedUsers: [], disagreedUsers: [])
             return try! FirestoreEncoder().encode(line)
         }
         

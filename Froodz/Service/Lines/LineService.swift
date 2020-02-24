@@ -52,10 +52,10 @@ struct LineService {
             guard let data = snapshot else {completion(true) ; return}
             let line = CodableService.CodableLine.getLine(snapshot: data)
 
-            if !line.single.isEmpty, line.single.contains(user.username) {
+            if !line.agreedUsers.isEmpty, line.agreedUsers.contains(user.username) {
                 completion(true)
                 return
-            } else if !line.doubleDown.isEmpty, line.doubleDown.contains(user.username) {
+            } else if !line.disagreedUsers.isEmpty, line.disagreedUsers.contains(user.username) {
                 completion(true)
                 return
             }
@@ -66,16 +66,16 @@ struct LineService {
     }
     
     //Update Single bet array for Line to include user
-    static func addUser_ToSingleBet(groupID : String, lineID: String) {
+    static func addUser_ToAgreedBet(groupID : String, lineID: String) {
         FBRef.document(groupID).collection("Lines").document(lineID).updateData([
-            "single": FieldValue.arrayUnion([user.username]),
+            "agreedUsers": FieldValue.arrayUnion([user.username]),
         ])
     }
     
     //Update double bet array for Line to include user
-    static func addUser_ToDoubleDown(groupID : String, lineID: String) {
+    static func addUser_ToDisagreedBet(groupID : String, lineID: String) {
         FBRef.document(groupID).collection("Lines").document(lineID).updateData([
-            "doubleDown": FieldValue.arrayUnion([user.username]),
+            "disagreedUsers": FieldValue.arrayUnion([user.username]),
         ])
     }
     

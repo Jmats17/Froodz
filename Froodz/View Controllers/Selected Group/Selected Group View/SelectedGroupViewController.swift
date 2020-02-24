@@ -26,6 +26,7 @@ class SelectedGroupViewController: UIViewController {
             rankingView.layer.cornerRadius = 7.0
         }
     }
+    @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var firstPlaceLbl : UILabel!
     @IBOutlet weak var secondPlaceLbl : UILabel!
     @IBOutlet weak var thirdPlaceLbl : UILabel!
@@ -104,8 +105,8 @@ class SelectedGroupViewController: UIViewController {
     }
     
     func filtered_NewLines(lines: [Line]) -> [Line] {
-        return lines.filter({ !$0.single.contains(User.current.username)
-        && !$0.doubleDown.contains(User.current.username)})
+        return lines.filter({ !$0.agreedUsers.contains(User.current.username)
+        && !$0.disagreedUsers.contains(User.current.username)})
     }
     
     func filtered_CreatedLines(lines: [Line]) -> [Line] {
@@ -113,8 +114,8 @@ class SelectedGroupViewController: UIViewController {
     }
     
     private func filtered_PlacedLines(lines: [Line]) -> [Line] {
-        return lines.filter({ $0.single.contains(User.current.username)
-        || $0.doubleDown.contains(User.current.username)})
+        return lines.filter({ $0.agreedUsers.contains(User.current.username)
+        || $0.disagreedUsers.contains(User.current.username)})
     }
     
     private func next_FilledLines(lines: [Line]) -> ([Line], Int) {
@@ -136,6 +137,8 @@ class SelectedGroupViewController: UIViewController {
             groupNameLbl.text = group.groupName
             totalMembersLbl.text = group.users.count.isSingular()
             numOfUsersCoinsLbl.text = "\(UserService.returnUsersBalance_FromGroup(group: group))"
+            if group.creator != user.username { settingsButton.isHidden = true }
+            
             LineService.get_CurrentLines(groupID: group.documentId) { (lines) in
                 DispatchQueue.main.async {
                     self.lines = self.next_FilledLines(lines: lines).0
