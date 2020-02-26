@@ -16,82 +16,44 @@ struct GroupService {
     
     static let user = User.current
     static let FBRef = Firestore.firestore().collection("Groups")
-
-    static func addPointsToWinners(winningSide: String, line: String, group : Group, amount: Double, completion: @escaping (_ didSucceed: Bool) -> Void) {
-        
+    
+    static func distributePoints_ToUsers(winningSide: String, line: String, group : Group, amount: Double, completion: @escaping (_ didSucceed: Bool) -> Void) {
         FBRef.document(group.documentId).collection("Lines").document(line).getDocument { (snapshot, err) in
             if let err = err {
                 print(err.localizedDescription)
                 completion(false)
                 return
             }
-            
             guard let snapshot = snapshot else { completion(false) ; return }
             let retrievedLine = try! FirestoreDecoder().decode(Line.self, from: snapshot.prepareForDecoding())
             let ref = Firestore.firestore()
             let batch = ref.batch()
+            let groupRef = ref.collection("Groups").document(group.documentId)
             
-            for winner in group.users {
+            for winner in group.leaderboard {
                 if winningSide == "Agreed" {
                     if retrievedLine.agreedUsers.contains(winner.key) {
-                        let groupRef = ref.collection("Groups").document(group.documentId)
-                        let key = "users.\(winner.key)"
-                        batch.updateData([
-                            key : FieldValue.increment(amount)
-                        ], forDocument: groupRef)
+                        assignValue(batch: batch, key: "leaderboard.\(winner.key)", amount: amount, groupRef: groupRef)
+                    } else if retrievedLine.disagreedUsers.contains(winner.key) {
+                        assignValue(batch: batch, key: "leaderboard.\(winner.key)", amount: -amount, groupRef: groupRef)
                     }
-                } else {
-                    if retrievedLine.disagreedUsers.contains(winner.key) {
-                        let groupRef = ref.collection("Groups").document(group.documentId)
-                        let key = "users.\(winner.key)"
-                        batch.updateData([
-                            key : FieldValue.increment(amount)
-                        ], forDocument: groupRef)
+                }
+                if winningSide == "Disagreed" {
+                    if retrievedLine.agreedUsers.contains(winner.key) {
+                        assignValue(batch: batch, key: "leaderboard.\(winner.key)", amount: -amount, groupRef: groupRef)
+                    } else if retrievedLine.disagreedUsers.contains(winner.key) {
+                        assignValue(batch: batch, key: "leaderboard.\(winner.key)", amount: amount, groupRef: groupRef)
                     }
                 }
             }
             GroupService.deleteData_PushToPastLines(group: group, line: retrievedLine, ref: ref, batch: batch, completion: completion)
         }
-        
     }
     
-    static func deductPointsToLosers(losingSide: String, line: String, group : Group, singleAmount: Double, completion: @escaping (_ didSucceed: Bool) -> Void) {
-        
-        FBRef.document(group.documentId).collection("Lines").document(line).getDocument { (snapshot, err) in
-            if let err = err {
-                print(err.localizedDescription)
-                completion(false)
-                return
-            }
-            
-            guard let snapshot = snapshot else { completion(false) ; return }
-            let retrievedLine = try! FirestoreDecoder().decode(Line.self, from: snapshot.prepareForDecoding())
-            let ref = Firestore.firestore()
-            let batch = ref.batch()
-            
-            for loser in group.users {
-                if losingSide == "Agreed" {
-                    if retrievedLine.agreedUsers.contains(loser.key) {
-                        let group = ref.collection("Groups").document(group.documentId)
-                        let key = "users.\(loser.key)"
-                        batch.updateData([
-                            key : FieldValue.increment(-singleAmount)
-                        ], forDocument: group)
-                    }
-                } else {
-                    if retrievedLine.disagreedUsers.contains(loser.key) {
-                        let group = ref.collection("Groups").document(group.documentId)
-                        let key = "users.\(loser.key)"
-                        batch.updateData([
-                            key : FieldValue.increment(-singleAmount)
-                        ], forDocument: group)
-                    }
-                }
-                
-            }
-            GroupService.deleteData_PushToPastLines(group: group, line: retrievedLine, ref: ref, batch: batch, completion: completion)
-        }
-        
+    static func assignValue(batch: WriteBatch, key: String, amount: Double, groupRef: DocumentReference) {
+        batch.updateData([
+            key : FieldValue.increment(amount)
+        ], forDocument: groupRef)
     }
     
     static func deleteData_PushToPastLines(group: Group, line: Line, ref: Firestore, batch: WriteBatch, completion: @escaping (_ didSucceed: Bool) -> Void) {
@@ -201,7 +163,8 @@ struct GroupService {
                 let group = try! FirestoreDecoder().decode(Group.self, from: documents[0].prepareForDecoding())
                 if !group.users.keys.contains(User.current.username) {
                     FBRef.document(group.documentId).updateData([
-                        "users.\(user.username)" :  500.0
+                        "leaderboard.\(user.username)" :  500.0,
+                        "users.\(user.documentId)": user.username
                     ]) { error in
                         if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
                         else {

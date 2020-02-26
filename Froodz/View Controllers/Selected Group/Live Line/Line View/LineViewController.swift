@@ -137,7 +137,7 @@ class LineViewController: UIViewController {
         
         let yesAction = UIAlertAction(title: "Yes it did 🤝", style: .default) { (action) in
             Haptic.impact(.light).generate()
-            GroupService.addPointsToWinners(winningSide: "Agreed", line: lineID, group: group, amount: line.numOnLine) { (didSucceed) in
+            GroupService.distributePoints_ToUsers(winningSide: "Agreed", line: lineID, group: group, amount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
                     self.dismiss(animated: true, completion: nil)
                 }
@@ -145,7 +145,7 @@ class LineViewController: UIViewController {
         }
         let noAction = UIAlertAction(title: "Nah 👎", style: .default) { (action) in
             Haptic.impact(.light).generate()
-            GroupService.deductPointsToLosers(losingSide: "Disagreed",line: lineID, group: group, singleAmount: line.numOnLine) { (didSucceed) in
+            GroupService.distributePoints_ToUsers(winningSide: "Disagreed", line: lineID, group: group, amount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
                     self.dismiss(animated: true, completion: nil)
                 }
