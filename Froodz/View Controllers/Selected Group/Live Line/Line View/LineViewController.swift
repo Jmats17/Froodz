@@ -208,7 +208,7 @@ class LineViewController: UIViewController {
             }
         }
     }
-    
+  
     @IBAction func didTapSettings(sender: UIButton) {
         Haptic.impact(.light).generate()
     }

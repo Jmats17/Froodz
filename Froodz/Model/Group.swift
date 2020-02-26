@@ -16,7 +16,7 @@ struct Group : Codable {
     let groupName: String
     let code: String
     let creator: String
-    let users: [String: String]
+    let users: [String]
     let leaderboard: [String: Double]
     let startingAmt: Double
     

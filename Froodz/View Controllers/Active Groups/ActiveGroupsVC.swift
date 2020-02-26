@@ -53,6 +53,11 @@ class ActiveGroupsViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        retrieveActiveGroups()
+    }
+    
     private func startAnimatingIndicator() {
         activityIndicator = UIActivityIndicatorView(style: .medium)
         activityIndicator.color = .black
@@ -68,19 +73,27 @@ class ActiveGroupsViewController: UIViewController {
     }
     
     func retrieveActiveGroups() {
-        UserService.return_UserActiveGroupsIDS(userID: user.documentId) { (groups) in
-            if groups.count > 0 {
-                UserGroups_Service.return_ActiveGroups(userID: self.user.documentId) { (groups) in
-                    DispatchQueue.main.async {
-                        self.refreshControl.endRefreshing()
-                        self.activityIndicator.stopAnimating()
-                        self.groups = groups
-                        self.tableView.reloadData()
-                    }
-                }
-            } else {
+//        UserService.return_UserActiveGroupsIDS(userID: user.documentId) { (groups) in
+//            if groups.count > 0 {
+//                UserGroups_Service.return_ActiveGroups(userID: self.user.documentId) { (groups) in
+//                    DispatchQueue.main.async {
+//                        self.refreshControl.endRefreshing()
+//                        self.activityIndicator.stopAnimating()
+//                        self.groups = groups
+//                        self.tableView.reloadData()
+//                    }
+//                }
+//            } else {
+//                self.refreshControl.endRefreshing()
+//                self.activityIndicator.stopAnimating()
+//            }
+//        }
+        UserGroups_Service.retrieveGroups_FromGroupsArr(userID: user.documentId) { (groups) in
+             DispatchQueue.main.async {
                 self.refreshControl.endRefreshing()
                 self.activityIndicator.stopAnimating()
+                self.groups = groups
+                self.tableView.reloadData()
             }
         }
     }
@@ -92,32 +105,7 @@ class ActiveGroupsViewController: UIViewController {
     }
 
     @IBAction func tappedCreateGroup(sender : UIButton) {
-        Haptic.impact(.light).generate()
-        let alertVC = UIAlertController(title: "Create Group", message: "Please enter the name of the group", preferredStyle: .alert)
-        alertVC.addTextField { (textfield) in
-            textfield.placeholder = "Group Name"
-            textfield.autocapitalizationType = .words
-        }
-        alertVC.addTextField { (textfield) in
-            textfield.placeholder = "Starting Coins Amount"
-            textfield.keyboardType = .numberPad
-            textfield.addDoneButtonOnKeyboard()
-        }
-        let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            Haptic.impact(.light).generate()
-            guard let groupName = (alertVC.textFields?[0].text) else { return }
-            guard let amountStr = (alertVC.textFields?[1].text), let amount = Double(amountStr) else { return }
-            GroupService.didCreateNewGroup(userID: self.user.documentId, groupName: groupName, amount: amount) { (didRegister) in
-                if didRegister {
-                    print("Success")
-                    self.retrieveActiveGroups()
-                }
-            }
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertVC.addAction(addAction)
-        alertVC.addAction(cancelAction)
-        self.present(alertVC, animated: true, completion: nil)
+       
     }
     
 }

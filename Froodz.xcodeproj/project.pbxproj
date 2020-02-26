@@ -37,6 +37,8 @@
 		D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */; };
 		D07269C323F246BD002760ED /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C223F246BC002760ED /* Line.swift */; };
 		D07269C623F257FB002760ED /* LineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C523F257FB002760ED /* LineService.swift */; };
+		D0789741240719B40008B0EB /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0789740240719B40008B0EB /* CreateGroupViewController.swift */; };
+		D078974324071A550008B0EB /* CrteGrp-Txtfield-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D078974224071A550008B0EB /* CrteGrp-Txtfield-Ext.swift */; };
 		D090C1132406172500997ED2 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D090C1122406172500997ED2 /* PushNotificationService.swift */; };
 		D0DF8D1623F5D47100590C60 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1523F5D47100590C60 /* LoginViewController.swift */; };
 		D0DF8D1823F5D54300590C60 /* LoginTxtfield-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */; };
@@ -95,6 +97,8 @@
 		D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CrteLineTxtFld-Ext.swift"; sourceTree = "<group>"; };
 		D07269C223F246BC002760ED /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		D07269C523F257FB002760ED /* LineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineService.swift; sourceTree = "<group>"; };
+		D0789740240719B40008B0EB /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		D078974224071A550008B0EB /* CrteGrp-Txtfield-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CrteGrp-Txtfield-Ext.swift"; sourceTree = "<group>"; };
 		D090C1122406172500997ED2 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		D0DF8D1523F5D47100590C60 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginTxtfield-Ext.swift"; sourceTree = "<group>"; };
@@ -265,6 +269,8 @@
 			children = (
 				D072699723F1FB10002760ED /* ActiveGroupsVC.swift */,
 				D07269A223F1FED0002760ED /* ActiveTableView-Ext.swift */,
+				D0789740240719B40008B0EB /* CreateGroupViewController.swift */,
+				D078974224071A550008B0EB /* CrteGrp-Txtfield-Ext.swift */,
 			);
 			path = "Active Groups";
 			sourceTree = "<group>";
@@ -465,6 +471,7 @@
 				D07269B923F2156F002760ED /* User+Groups_Service.swift in Sources */,
 				D07269BC23F225CE002760ED /* SelectedTblView-Ext.swift in Sources */,
 				D0DF8D1A23F6008100590C60 /* VerificationVC.swift in Sources */,
+				D0789741240719B40008B0EB /* CreateGroupViewController.swift in Sources */,
 				D072699823F1FB10002760ED /* ActiveGroupsVC.swift in Sources */,
 				D07269AB23F20253002760ED /* GroupService.swift in Sources */,
 				D07269BF23F239C7002760ED /* CreateLineViewController.swift in Sources */,
@@ -489,6 +496,7 @@
 				D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */,
 				D03C1BC623FE1AB5009F8543 /* LineViewController.swift in Sources */,
 				D0DF8D1E23F6037E00590C60 /* Constants.swift in Sources */,
+				D078974324071A550008B0EB /* CrteGrp-Txtfield-Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

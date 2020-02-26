@@ -19,6 +19,7 @@ class SettingsViewController : UIViewController {
         guard let group = group else {return}
         codeLbl.text = group.code
     }
+  
     
     @IBAction func tappedDeleteGroup(sender : UIButton) {
         guard  let group = group else {return}
