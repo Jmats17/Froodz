@@ -56,9 +56,11 @@ extension LoginViewController: UITextFieldDelegate {
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if phoneTextfield.isFirstResponder {
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -= keyboardSize.height
+            UIView.animate(withDuration: 1.0) {
+                if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                    if self.view.frame.origin.y == 0 {
+                        self.view.frame.origin.y -= keyboardSize.height / 2
+                    }
                 }
             }
         }
@@ -66,12 +68,14 @@ extension LoginViewController: UITextFieldDelegate {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         if phoneTextfield.isFirstResponder {
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y != 0 {
-                    if phoneTextfield.isFirstResponder {
-                        self.view.frame.origin.y += keyboardSize.height
-                    } else {
-                        self.view.frame.origin.y += (keyboardSize.height)
+            UIView.animate(withDuration: 1.0) {
+                if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                    if self.view.frame.origin.y != 0 {
+                        if self.phoneTextfield.isFirstResponder {
+                            self.view.frame.origin.y += keyboardSize.height / 2
+                        } else {
+                            self.view.frame.origin.y += (keyboardSize.height) / 2
+                        }
                     }
                 }
             }
