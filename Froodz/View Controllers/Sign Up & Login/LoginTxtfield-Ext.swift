@@ -15,14 +15,26 @@ extension LoginViewController: UITextFieldDelegate {
         
         switch textField {
         case fullnameTextfield:
+            checkTextValue(textfield: textField, lbl: fullNameLbl)
             fullnameTextfield.resignFirstResponder()
+            usernameTextfield.becomeFirstResponder()
         case usernameTextfield:
+            checkTextValue(textfield: textField, lbl: usernameLbl)
             usernameTextfield.resignFirstResponder()
+            phoneTextfield.becomeFirstResponder()
         default:
+            checkTextValue(textfield: textField, lbl: phoneLbl)
             phoneTextfield.resignFirstResponder()
         }
-        
         return true
+    }
+    
+    func checkTextValue(textfield: UITextField, lbl: UILabel) {
+        if textfield.text != "", textfield.text != nil {
+            lbl.textColor = Constants.Color.lightGray
+        } else {
+            lbl.textColor = Constants.Color.primaryBlackText
+        }
     }
    
     func addDoneButtonOnKeyboard(){
@@ -38,6 +50,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     @objc func doneButtonAction(){
+        checkTextValue(textfield: phoneTextfield, lbl: phoneLbl)
         phoneTextfield.resignFirstResponder()
     }
     

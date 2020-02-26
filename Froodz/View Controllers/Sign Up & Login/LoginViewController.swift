@@ -14,21 +14,12 @@ typealias FIRUser = FirebaseAuth.User
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet var phoneTextfield : UITextField! {
-           didSet {
-               phoneTextfield.loginTextfieldStyle()
-           }
-       }
-    @IBOutlet var usernameTextfield : UITextField! {
-           didSet {
-               usernameTextfield.loginTextfieldStyle()
-           }
-       }
-    @IBOutlet var fullnameTextfield : UITextField! {
-        didSet {
-            fullnameTextfield.loginTextfieldStyle()
-        }
-    }
+    @IBOutlet var phoneTextfield : UITextField!
+    @IBOutlet var usernameTextfield : UITextField!
+    @IBOutlet var fullnameTextfield : UITextField!
+    @IBOutlet var fullNameLbl: UILabel!
+    @IBOutlet var usernameLbl: UILabel!
+    @IBOutlet var phoneLbl: UILabel!
     @IBOutlet var confirmButton : PMSuperButton!
     
     var username : String?
@@ -38,6 +29,24 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         addDoneButtonOnKeyboard()
         configureKeyboardResponses()
+        endEditingTapRecgonizer()
+    }
+    
+    func endEditingTapRecgonizer() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(configureLabels))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc func configureLabels() {
+            self.view.endEditing(true)
+            checkAllThreeFields()
+    }
+    
+    private func checkAllThreeFields() {
+        checkTextValue(textfield: phoneTextfield, lbl: phoneLbl)
+        checkTextValue(textfield: usernameTextfield, lbl: usernameLbl)
+        checkTextValue(textfield: fullnameTextfield, lbl: fullNameLbl)
     }
    
     private func configureKeyboardResponses() {
@@ -66,14 +75,22 @@ class LoginViewController: UIViewController {
             
             if isTaken {
                 //Show alert for taken
+                let takenAlert = UIAlertController(title: "Oops! Username is taken.", message: "Please try a different username.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Got it", style: .default) { (action) in
+                    self.usernameTextfield.text = ""
+                    self.checkTextValue(textfield: self.usernameTextfield, lbl: self.usernameLbl)
+                    self.confirmButton.hideLoader()
+                    self.confirmButton.setTitleColor(.white, for: .normal)
+                }
+                takenAlert.addAction(action)
+                self.present(takenAlert, animated: true, completion: nil)
             } else {
-                //let phoneNumber = "+10000000000"
                 PhoneAuthProvider.provider().verifyPhoneNumber("+1" + phoneNum, uiDelegate: nil) { (verificationID, error) in
                     if let err = error {
                         //Show error here
                         print(err.localizedDescription)
                     } else {
-                        self.username = username
+                        self.username = username.lowercased()
                         self.fullname = fullname
                         self.confirmButton.hideLoader()
                         self.confirmButton.setTitleColor(.white, for: .normal)

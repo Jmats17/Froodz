@@ -23,13 +23,13 @@ class ActiveGroupsViewController: UIViewController {
     @IBOutlet weak var joinGroupTextField : UITextField! {
         didSet {
             joinGroupTextField.attributedPlaceholder = NSAttributedString(string: "6ixCde",
-                                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+                                                                          attributes: [NSAttributedString.Key.foregroundColor: Constants.Color.lightGray])
         }
     }
     @IBOutlet weak var createGroupButton: UIButton!
     @IBOutlet weak var groupLbl : UILabel! {
         didSet {
-            groupLbl.text = "\(user.fullName)'s Groups"
+            groupLbl.text = "My Groups"
         }
     }
     
@@ -73,21 +73,6 @@ class ActiveGroupsViewController: UIViewController {
     }
     
     func retrieveActiveGroups() {
-//        UserService.return_UserActiveGroupsIDS(userID: user.documentId) { (groups) in
-//            if groups.count > 0 {
-//                UserGroups_Service.return_ActiveGroups(userID: self.user.documentId) { (groups) in
-//                    DispatchQueue.main.async {
-//                        self.refreshControl.endRefreshing()
-//                        self.activityIndicator.stopAnimating()
-//                        self.groups = groups
-//                        self.tableView.reloadData()
-//                    }
-//                }
-//            } else {
-//                self.refreshControl.endRefreshing()
-//                self.activityIndicator.stopAnimating()
-//            }
-//        }
         UserGroups_Service.retrieveGroups_FromGroupsArr(userID: user.documentId) { (groups) in
              DispatchQueue.main.async {
                 self.refreshControl.endRefreshing()
@@ -104,9 +89,5 @@ class ActiveGroupsViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
 
-    @IBAction func tappedCreateGroup(sender : UIButton) {
-       
-    }
-    
 }
 

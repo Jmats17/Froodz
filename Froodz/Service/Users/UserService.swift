@@ -84,7 +84,7 @@ struct UserService {
     
     //Check for existing usernames, if no username exists, push new username otherwise return taken
     static func checkForExistingUsername(username: String, completion: @escaping (_ isTaken : Bool) -> Void) {
-        usernameRef.whereField("username", isEqualTo: username).getDocuments { (snapshot, error) in
+        usernameRef.whereField("username", isEqualTo: username.lowercased()).getDocuments { (snapshot, error) in
             
             if self.errorExists(err: error) { completion(true) ; return }
 
