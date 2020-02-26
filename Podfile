@@ -10,7 +10,7 @@ pod 'Firebase/Auth'
 pod 'CodableFirebase'
 pod 'PMSuperButton'
 pod "Haptica"
-
+pod 'Firebase/Messaging'
   # Pods for Froodz
 
 end

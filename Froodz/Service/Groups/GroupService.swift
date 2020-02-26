@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import CodableFirebase
+import FirebaseMessaging
 
 struct GroupService {
     
@@ -157,7 +158,10 @@ struct GroupService {
             "groupName" : groupName,
             "code": Helper.return_RandomGeneratedCode(),
             "users": [
-                User.current.username : 500.0
+                "\(user.documentId)": user.username
+            ],
+            "leaderboard": [
+                user.username : 500.0
             ],
             "creator": user.username
         ]) { err in
@@ -166,11 +170,16 @@ struct GroupService {
                 didRegister(false)
             } else {
                 guard let id = ref?.documentID else {didRegister(false); return}
+                subscribeToGroup(id: id)
                 UserService.addGroupTo_ActiveGroups(userID: userID, groupID: id)
                 didRegister(true)
             }
         }
         
+    }
+    
+    static func subscribeToGroup(id: String) {
+        Messaging.messaging().subscribe(toTopic: id)
     }
     
     //Joining existing group as a user and pushing data to FB
@@ -196,6 +205,7 @@ struct GroupService {
                     ]) { error in
                         if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
                         else {
+                            subscribeToGroup(id: group.documentId)
                             UserService.addGroupTo_ActiveGroups(userID: userID, groupID: group.documentId)
                             didJoin(true)
                             return

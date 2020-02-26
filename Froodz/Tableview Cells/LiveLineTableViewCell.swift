@@ -10,7 +10,6 @@ import UIKit
 
 class LiveLineTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var createdLbl : UILabel!
     @IBOutlet weak var liveLineNameLbl : UILabel!
     
     override func awakeFromNib() {
@@ -35,8 +34,19 @@ class LiveLineTableViewCell: UITableViewCell {
     }
     
     func setCellData(_ line: Line) {
-        self.liveLineNameLbl.text = line.lineName
-        self.createdLbl.text = "@\(line.creator.uppercased())"
+        self.liveLineNameLbl.attributedText = makeAttributedString(title: line.lineName, subtitle: "@\(line.creator.uppercased())")
+    }
+    
+    func makeAttributedString(title: String, subtitle: String) -> NSAttributedString {
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .semibold), NSAttributedString.Key.foregroundColor: Constants.Color.primaryBlackText]
+        let subtitleAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13.0, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+
+        let titleString = NSMutableAttributedString(string: "\(title)\n", attributes: titleAttributes)
+        let subtitleString = NSAttributedString(string: subtitle, attributes: subtitleAttributes)
+
+        titleString.append(subtitleString)
+
+        return titleString
     }
 
 }

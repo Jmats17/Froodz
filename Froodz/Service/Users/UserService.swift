@@ -49,8 +49,8 @@ struct UserService {
     
     //Return Current Users's balance from selected Group
     static func returnUsersBalance_FromGroup(group : Group) -> Double {
-        if group.users.keys.contains(User.current.username) {
-            guard let amount = group.users[User.current.username] else { return 0.0 }
+        if group.leaderboard.keys.contains(User.current.username) {
+            guard let amount = group.leaderboard[User.current.username] else { return 0.0 }
             return amount
         }
         return 0.0

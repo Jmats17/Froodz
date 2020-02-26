@@ -17,6 +17,7 @@ struct User : Codable {
     let username: String
     let fullName: String
     var active_groups : [String]
+    var notificationToken : String? = ""
     
     private static var _current: User?
     static var current: User {

@@ -59,7 +59,7 @@ class SelectedGroupViewController: UIViewController {
     }
     
     func didUpdate_TopLeaderboard() {
-        guard let users = group?.users else {return}
+        guard let users = group?.leaderboard else {return}
         DispatchQueue.main.async {
             let topUsers = users.sorted(by: { $0.value > $1.value })
             
@@ -67,17 +67,14 @@ class SelectedGroupViewController: UIViewController {
             case 1:
                 self.firstPlaceLbl.text =
                     self.returnTopUserText(user: topUsers[0].key, num: topUsers[0].value)
-                self.secondPlaceLbl.text =
-                    self.returnTopUserText(user: "No User", num: 0)
-                self.thirdPlaceLbl.text =
-                    self.returnTopUserText(user: "No User", num: 0)
+                self.secondPlaceLbl.text = "(Insert your name here 🙂)"
+                self.thirdPlaceLbl.text = "(Or maybe here 🧐)"
             case 2:
                 self.firstPlaceLbl.text =
                     self.returnTopUserText(user: topUsers[0].key, num: topUsers[0].value)
                 self.secondPlaceLbl.text =
                     self.returnTopUserText(user: topUsers[1].key, num: topUsers[1].value)
-                self.thirdPlaceLbl.text =
-                    self.returnTopUserText(user: "No User", num: 0)
+                self.thirdPlaceLbl.text = "(Insert your name here 🙂)"
             default:
                 self.firstPlaceLbl.text =
                     self.returnTopUserText(user: topUsers[0].key, num: topUsers[0].value)
@@ -90,7 +87,7 @@ class SelectedGroupViewController: UIViewController {
     }
     
     private func returnTopUserText(user: String, num: Double) -> String {
-        " \(num.isEndingPointZero()) \(user.uppercased())"
+        "\(user.uppercased()) — \(num.isEndingPointZero())"
     }
     
     func reloadGroup(groupID: String) {
@@ -136,7 +133,7 @@ class SelectedGroupViewController: UIViewController {
         if let group = group {
             groupNameLbl.text = group.groupName
             totalMembersLbl.text = group.users.count.isSingular()
-            numOfUsersCoinsLbl.text = "\(UserService.returnUsersBalance_FromGroup(group: group))"
+            numOfUsersCoinsLbl.text = "\(UserService.returnUsersBalance_FromGroup(group: group).isEndingPointZero())"
             if group.creator != user.username { settingsButton.isHidden = true }
             
             LineService.get_CurrentLines(groupID: group.documentId) { (lines) in
@@ -159,7 +156,7 @@ class SelectedGroupViewController: UIViewController {
         Haptic.impact(.medium).generate()
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = mainStoryboard.instantiateViewController(withIdentifier: "LeaderboardVC") as? LeaderboardViewController {
-            vc.users = group?.users
+            vc.users = group?.leaderboard
             self.present(vc, animated: true, completion: nil)
         }
     }
