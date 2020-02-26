@@ -63,7 +63,7 @@ class CreateLineViewController: UIViewController {
         guard let lineValues = return_LineValues() else { return }
         LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, groupID: lineValues.group.documentId) { (didComplete) in
             if didComplete {
-                PushNotificationService.sendPushNotification(to: lineValues.group.documentId, title: "New line in\(lineValues.group.groupName)👀" , body: "\(User.current.fullName) wants to shake on " + lineValues.lineName + " for " + "\(lineValues.amount.isEndingPointZero()) coins")
+                PushNotificationService.sendPushNotification(to: lineValues.group.documentId, title: "New line in \(lineValues.group.groupName)👀" , body: "\(User.current.fullName) wants to shake on " + lineValues.lineName + " for " + "\(lineValues.amount.isEndingPointZero()) coins")
                 self.dismiss(animated: true, completion: nil)
             } else {
                 //present error view

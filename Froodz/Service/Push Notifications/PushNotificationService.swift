@@ -46,8 +46,17 @@ class PushNotificationService: NSObject, MessagingDelegate, UNUserNotificationCe
             User.setCurrent(user, writeToUserDefaults: true)
         }
     }
-    static func subscribeToTopic(topic: String) {
-        Messaging.messaging().subscribe(toTopic: "\(topic)") { (err) in
+    
+    static func subscribeToLine(line: String) {
+        Messaging.messaging().subscribe(toTopic: "\(line)") { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {print("success")}
+        }
+    }
+    
+    static func subscribeToGroup(group: String) {
+        Messaging.messaging().subscribe(toTopic: "\(group)") { (err) in
             if let error = err {
                 print(error.localizedDescription)
             } else {
@@ -69,7 +78,7 @@ class PushNotificationService: NSObject, MessagingDelegate, UNUserNotificationCe
         let urlString = "https://fcm.googleapis.com/fcm/send"
         let url = NSURL(string: urlString)!
         let paramString: [String : Any] = ["to" : "/topics/\(topic)",
-                                           "notification" : ["title" : title, "body" : body]
+            "notification" : ["title" : title, "body" : body, "sound": "default"]
         ]
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "POST"

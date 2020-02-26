@@ -139,6 +139,8 @@ class LineViewController: UIViewController {
             Haptic.impact(.light).generate()
             GroupService.distributePoints_ToUsers(winningSide: "Agreed", line: lineID, group: group, amount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
+                    PushNotificationService.sendPushNotification(to: lineID + "Agreed", title: "You won \(line.numOnLine.isEndingPointZero()) Coins 💰", body: "You shook on \"\(line.lineName)\" and it hit!")
+                    PushNotificationService.sendPushNotification(to: lineID + "Disagreed", title: "You lost \(line.numOnLine.isEndingPointZero()) Coins 😕", body: "You disagreed on \"\(line.lineName)\" and it hit.")
                     self.dismiss(animated: true, completion: nil)
                 }
             }
@@ -147,6 +149,8 @@ class LineViewController: UIViewController {
             Haptic.impact(.light).generate()
             GroupService.distributePoints_ToUsers(winningSide: "Disagreed", line: lineID, group: group, amount: line.numOnLine) { (didSucceed) in
                 if didSucceed {
+                    PushNotificationService.sendPushNotification(to: lineID + "Agreed", title: "You lost \(line.numOnLine.isEndingPointZero()) Coins 😕", body: "You shook on \"\(line.lineName)\" and it didn't hit.")
+                    PushNotificationService.sendPushNotification(to: lineID + "Disagreed", title: "You won \(line.numOnLine.isEndingPointZero()) Coins 💰", body: "You disagreed on \"\(line.lineName)\" and you were right!")
                     self.dismiss(animated: true, completion: nil)
                 }
             }
@@ -178,7 +182,8 @@ class LineViewController: UIViewController {
         singleBetInitiated { (didComplete) in
             if didComplete {
                 self.buttonDeactivated()
-                guard var line = self.line else {return}
+                guard var line = self.line, let lineID = line.documentId else {return}
+                PushNotificationService.subscribeToLine(line: lineID + "Agreed")
                 line.agreedUsers.append(self.user.username)
                 self.line = line
                 self.endButton_IsEnabled(line: line)
@@ -193,7 +198,8 @@ class LineViewController: UIViewController {
         doubleDownBetInitiated { (didComplete) in
             if didComplete {
                 self.buttonDeactivated()
-                guard var line = self.line else {return}
+                guard var line = self.line, let lineID = line.documentId else {return}
+                PushNotificationService.subscribeToLine(line: lineID + "Disagreed")
                 line.disagreedUsers.append(self.user.username)
                 self.line = line
                 self.endButton_IsEnabled(line: line)
