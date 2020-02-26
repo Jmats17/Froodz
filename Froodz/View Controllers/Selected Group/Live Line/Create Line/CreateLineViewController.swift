@@ -32,19 +32,19 @@ class CreateLineViewController: UIViewController {
         }
     }
     
-    var groupID : String?
+    var group : Group?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         endEditingTapRecgonizer()
     }
     
-    func return_LineValues() -> (lineName : String, amount : Double, groupID : String)? {
+    func return_LineValues() -> (lineName : String, amount : Double, group : Group)? {
         if let lineName = lineNameTextField.text, lineName != "" {
             if let amountStr = numberTextField.text, amountStr != "" {
                 if let amount = Double(amountStr) {
-                    if let groupID = groupID {
-                        return (lineName, amount, groupID)
+                    if let group = group {
+                        return (lineName, amount, group)
                     }
                 }
             }
@@ -61,10 +61,9 @@ class CreateLineViewController: UIViewController {
     @IBAction func tappedCreate(sender : UIButton) {
         Haptic.impact(.light).generate()
         guard let lineValues = return_LineValues() else { return }
-        LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, groupID: lineValues.groupID) { (didComplete) in
+        LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, groupID: lineValues.group.documentId) { (didComplete) in
             if didComplete {
-                print(lineValues.groupID)
-                PushNotificationService.sendPushNotification(to: lineValues.groupID, title: User.current.fullName + " created a new line 👀..." , body: "Do you want to shake on " + lineValues.lineName)
+                PushNotificationService.sendPushNotification(to: lineValues.group.documentId, title: "New line in\(lineValues.group.groupName)👀" , body: "\(User.current.fullName) wants to shake on " + lineValues.lineName + " for " + "\(lineValues.amount.isEndingPointZero()) coins")
                 self.dismiss(animated: true, completion: nil)
             } else {
                 //present error view

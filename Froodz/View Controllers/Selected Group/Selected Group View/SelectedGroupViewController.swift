@@ -165,7 +165,7 @@ class SelectedGroupViewController: UIViewController {
         Haptic.impact(.light).generate()
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = mainStoryboard.instantiateViewController(withIdentifier: "CreateLineVC") as? CreateLineViewController {
-            vc.groupID = group?.documentId
+            vc.group = group
             self.present(vc, animated: true, completion: nil)
         }
     }

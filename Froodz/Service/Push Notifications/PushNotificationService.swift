@@ -79,9 +79,6 @@ class PushNotificationService: NSObject, MessagingDelegate, UNUserNotificationCe
 
         let task =  URLSession.shared.dataTask(with: request as URLRequest)  { (data, response, error) in
             do {
-                print(data)
-                print(response)
-                print(error)
                 if let jsonData = data {
                     if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
                         NSLog("Received data:\n\(jsonDataDict))")
