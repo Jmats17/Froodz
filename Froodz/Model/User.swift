@@ -17,7 +17,7 @@ struct User : Codable {
     let username: String
     let fullName: String
     var active_groups : [String]
-    var notificationToken : String? = ""
+    var fcmToken : String?
     
     private static var _current: User?
     static var current: User {
@@ -33,6 +33,7 @@ struct User : Codable {
         case username
         case fullName
         case active_groups
+        case fcmToken
     }
     
     static func setCurrent(_ user: User, writeToUserDefaults: Bool = false) {

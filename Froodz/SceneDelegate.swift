@@ -30,7 +30,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 let user = try! FirestoreDecoder().decode(User.self, from: userData)
                 User.setCurrent(user)
-                
+                let pushManager = PushNotificationService()
+                pushManager.registerForPushNotifications()
                 let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let welcomeVC : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "ActiveGroupsVC") as! ActiveGroupsViewController
                 self.window?.rootViewController = welcomeVC

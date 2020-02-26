@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
                 //Show alert for taken
             } else {
                 //let phoneNumber = "+10000000000"
-                PhoneAuthProvider.provider().verifyPhoneNumber(phoneNum, uiDelegate: nil) { (verificationID, error) in
+                PhoneAuthProvider.provider().verifyPhoneNumber("+1" + phoneNum, uiDelegate: nil) { (verificationID, error) in
                     if let err = error {
                         //Show error here
                         print(err.localizedDescription)
@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
                         self.confirmButton.hideLoader()
                         self.confirmButton.setTitleColor(.white, for: .normal)
                         UserDefaults.standard.set(verificationID, forKey: "authVerifyID")
-                        UserDefaults.standard.set(phoneNum, forKey: "phoneNum")
+                        UserDefaults.standard.set("+1" + phoneNum, forKey: "phoneNum")
                         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                         if let vc = mainStoryboard.instantiateViewController(withIdentifier: "VerifyVC") as? VerificationViewController {
                             vc.username = username

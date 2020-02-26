@@ -116,35 +116,56 @@ struct GroupService {
     //Creating new group to push to FB
     static func didCreateNewGroup(userID: String, groupName : String, amount: Double, didRegister: @escaping (Bool) -> Void) {
         var ref: DocumentReference? = nil
-        ref = FBRef.addDocument(data: [
-            "groupName" : groupName,
-            "code": Helper.return_RandomGeneratedCode(),
-            "users": [
-                "\(user.documentId)": user.username
-            ],
-            "leaderboard": [
-                user.username : amount
-            ],
-            "creator": user.username,
-            "startingAmt": amount
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-                didRegister(false)
-            } else {
-                guard let id = ref?.documentID else {didRegister(false); return}
-                subscribeToGroup(id: id)
-                UserService.addGroupTo_ActiveGroups(userID: userID, groupID: id)
-                didRegister(true)
+        if let token = User.current.fcmToken {
+            ref = FBRef.addDocument(data: [
+                "groupName" : groupName,
+                "code": Helper.return_RandomGeneratedCode(),
+                "users": [
+                    "\(user.documentId)": user.username
+                ],
+                "leaderboard": [
+                    user.username : amount
+                ],
+                "creator": user.username,
+                "startingAmt": amount,
+                "userTokens": FieldValue.arrayUnion([token])
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                    didRegister(false)
+                } else {
+                    guard let id = ref?.documentID else {didRegister(false); return}
+                    UserService.addGroupTo_ActiveGroups(userID: userID, groupID: id)
+                    PushNotificationService.subscribeToTopic(topic: id)
+                    didRegister(true)
+                }
+            }
+        } else {
+            ref = FBRef.addDocument(data: [
+                "groupName" : groupName,
+                "code": Helper.return_RandomGeneratedCode(),
+                "users": [
+                    "\(user.documentId)": user.username
+                ],
+                "leaderboard": [
+                    user.username : amount
+                ],
+                "creator": user.username,
+                "startingAmt": amount
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                    didRegister(false)
+                } else {
+                    guard let id = ref?.documentID else {didRegister(false); return}
+                    UserService.addGroupTo_ActiveGroups(userID: userID, groupID: id)
+                    didRegister(true)
+                }
             }
         }
         
     }
-    
-    static func subscribeToGroup(id: String) {
-        Messaging.messaging().subscribe(toTopic: id)
-    }
-    
+
     //Joining existing group as a user and pushing data to FB
     static func didJoinExistingGroup(userID: String, code: String,_ didJoin: @escaping (Bool) -> Void) {
 
@@ -163,19 +184,33 @@ struct GroupService {
             if documents.count > 0 {
                 let group = try! FirestoreDecoder().decode(Group.self, from: documents[0].prepareForDecoding())
                 if !group.users.keys.contains(User.current.username) {
-                    FBRef.document(group.documentId).updateData([
-                        "leaderboard.\(user.username)" : group.startingAmt,
-                        "users.\(user.documentId)": user.username
-                    ]) { error in
-                        if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
-                        else {
-                            subscribeToGroup(id: group.documentId)
-                            UserService.addGroupTo_ActiveGroups(userID: userID, groupID: group.documentId)
-                            didJoin(true)
-                            return
+                    if let token = User.current.fcmToken {
+                        FBRef.document(group.documentId).updateData([
+                            "leaderboard.\(user.username)" : group.startingAmt,
+                            "users.\(user.documentId)": user.username,
+                            "userTokens": FieldValue.arrayUnion([token])
+                        ]) { error in
+                            if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
+                            else {
+                                UserService.addGroupTo_ActiveGroups(userID: userID, groupID: group.documentId)
+                                PushNotificationService.subscribeToTopic(topic: group.documentId)
+                                didJoin(true)
+                                return
+                            }
+                        }
+                    } else {
+                        FBRef.document(group.documentId).updateData([
+                            "leaderboard.\(user.username)" : group.startingAmt,
+                            "users.\(user.documentId)": user.username
+                        ]) { error in
+                            if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
+                            else {
+                                UserService.addGroupTo_ActiveGroups(userID: userID, groupID: group.documentId)
+                                didJoin(true)
+                                return
+                            }
                         }
                     }
-                    
                 } else {didJoin(false) ; return}
             } else {didJoin(false) ; return}
             

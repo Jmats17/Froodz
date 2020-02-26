@@ -37,6 +37,7 @@
 		D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */; };
 		D07269C323F246BD002760ED /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C223F246BC002760ED /* Line.swift */; };
 		D07269C623F257FB002760ED /* LineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07269C523F257FB002760ED /* LineService.swift */; };
+		D090C1132406172500997ED2 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D090C1122406172500997ED2 /* PushNotificationService.swift */; };
 		D0DF8D1623F5D47100590C60 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1523F5D47100590C60 /* LoginViewController.swift */; };
 		D0DF8D1823F5D54300590C60 /* LoginTxtfield-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */; };
 		D0DF8D1A23F6008100590C60 /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1923F6008100590C60 /* VerificationVC.swift */; };
@@ -94,6 +95,7 @@
 		D07269C023F2426B002760ED /* CrteLineTxtFld-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CrteLineTxtFld-Ext.swift"; sourceTree = "<group>"; };
 		D07269C223F246BC002760ED /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		D07269C523F257FB002760ED /* LineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineService.swift; sourceTree = "<group>"; };
+		D090C1122406172500997ED2 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		D0DF8D1523F5D47100590C60 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0DF8D1723F5D54300590C60 /* LoginTxtfield-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginTxtfield-Ext.swift"; sourceTree = "<group>"; };
 		D0DF8D1923F6008100590C60 /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		D072698F23F0C9C9002760ED /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				D090C1112406171200997ED2 /* Push Notifications */,
 				D07269C423F257EB002760ED /* Lines */,
 				D07269B723F2155A002760ED /* User+Groups */,
 				D07269A923F2022C002760ED /* Groups */,
@@ -316,6 +319,14 @@
 				D07269C523F257FB002760ED /* LineService.swift */,
 			);
 			path = Lines;
+			sourceTree = "<group>";
+		};
+		D090C1112406171200997ED2 /* Push Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				D090C1122406172500997ED2 /* PushNotificationService.swift */,
+			);
+			path = "Push Notifications";
 			sourceTree = "<group>";
 		};
 		D0DF8D1423F5D44900590C60 /* Sign Up & Login */ = {
@@ -462,6 +473,7 @@
 				D072699F23F1FC79002760ED /* LiveLineTableViewCell.swift in Sources */,
 				D0DF8D1623F5D47100590C60 /* LoginViewController.swift in Sources */,
 				D072697A23F0C85F002760ED /* AppDelegate.swift in Sources */,
+				D090C1132406172500997ED2 /* PushNotificationService.swift in Sources */,
 				D072699A23F1FB6D002760ED /* SelectedGroupViewController.swift in Sources */,
 				D07269B623F214F1002760ED /* Group.swift in Sources */,
 				D072699D23F1FC3D002760ED /* ActiveGroupTableViewCell.swift in Sources */,

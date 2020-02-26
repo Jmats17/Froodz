@@ -8,6 +8,7 @@
 
 import UIKit
 import Haptica
+import FirebaseMessaging
 
 class LineViewController: UIViewController {
 
@@ -132,7 +133,6 @@ class LineViewController: UIViewController {
     func lineCompletedTapped() {
         guard let group = group else {return}
         guard let line = line, let lineID = line.documentId else {return}
-        
         let alertController = UIAlertController(title: "Did the bet hit?", message: "Select if the bet hit or not so we can reward the players!", preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Yes it did 🤝", style: .default) { (action) in

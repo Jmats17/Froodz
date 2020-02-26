@@ -72,6 +72,8 @@ class VerificationViewController: UIViewController {
                 self.confirmButton.hideLoader()
                 self.confirmButton.setTitleColor(.white, for: .normal)
                 User.setCurrent(user, writeToUserDefaults: true)
+                let pushManager = PushNotificationService()
+                pushManager.registerForPushNotifications()
                 print("Created new user: \(user.username)")
                 let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 if let vc = mainStoryboard.instantiateViewController(withIdentifier: "ActiveGroupsVC") as? ActiveGroupsViewController {
