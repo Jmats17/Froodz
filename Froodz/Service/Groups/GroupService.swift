@@ -114,7 +114,7 @@ struct GroupService {
     }
     
     //Creating new group to push to FB
-    static func didCreateNewGroup(userID: String, groupName : String, didRegister: @escaping (Bool) -> Void) {
+    static func didCreateNewGroup(userID: String, groupName : String, amount: Double, didRegister: @escaping (Bool) -> Void) {
         var ref: DocumentReference? = nil
         ref = FBRef.addDocument(data: [
             "groupName" : groupName,
@@ -123,9 +123,10 @@ struct GroupService {
                 "\(user.documentId)": user.username
             ],
             "leaderboard": [
-                user.username : 500.0
+                user.username : amount
             ],
-            "creator": user.username
+            "creator": user.username,
+            "startingAmt": amount
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -163,7 +164,7 @@ struct GroupService {
                 let group = try! FirestoreDecoder().decode(Group.self, from: documents[0].prepareForDecoding())
                 if !group.users.keys.contains(User.current.username) {
                     FBRef.document(group.documentId).updateData([
-                        "leaderboard.\(user.username)" :  500.0,
+                        "leaderboard.\(user.username)" : group.startingAmt,
                         "users.\(user.documentId)": user.username
                     ]) { error in
                         if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }

@@ -95,13 +95,19 @@ class ActiveGroupsViewController: UIViewController {
         Haptic.impact(.light).generate()
         let alertVC = UIAlertController(title: "Create Group", message: "Please enter the name of the group", preferredStyle: .alert)
         alertVC.addTextField { (textfield) in
-            textfield.placeholder = "Wombats"
+            textfield.placeholder = "Group Name"
             textfield.autocapitalizationType = .words
+        }
+        alertVC.addTextField { (textfield) in
+            textfield.placeholder = "Starting Coins Amount"
+            textfield.keyboardType = .numberPad
+            textfield.addDoneButtonOnKeyboard()
         }
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
             Haptic.impact(.light).generate()
             guard let groupName = (alertVC.textFields?[0].text) else { return }
-            GroupService.didCreateNewGroup(userID: self.user.documentId, groupName: groupName) { (didRegister) in
+            guard let amountStr = (alertVC.textFields?[1].text), let amount = Double(amountStr) else { return }
+            GroupService.didCreateNewGroup(userID: self.user.documentId, groupName: groupName, amount: amount) { (didRegister) in
                 if didRegister {
                     print("Success")
                     self.retrieveActiveGroups()

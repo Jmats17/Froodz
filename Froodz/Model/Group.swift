@@ -18,6 +18,7 @@ struct Group : Codable {
     let creator: String
     let users: [String: String]
     let leaderboard: [String: Double]
+    let startingAmt: Double
     
     enum CodingKeys: String, CodingKey {
         case documentId
@@ -26,6 +27,7 @@ struct Group : Codable {
         case users
         case creator
         case leaderboard
+        case startingAmt
     }
 }
 
