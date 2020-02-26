@@ -64,7 +64,7 @@ class CreateLineViewController: UIViewController {
         LineService.pushNewLine_ToGroup(lineName: lineValues.lineName, amount: lineValues.amount, groupID: lineValues.groupID) { (didComplete) in
             if didComplete {
                 print(lineValues.groupID)
-                PushNotificationService.sendPushNotification(to: lineValues.groupID, title: "@" + User.current.username + " created a new line 👀" , body: lineValues.lineName)
+                PushNotificationService.sendPushNotification(to: lineValues.groupID, title: User.current.fullName + " created a new line 👀..." , body: "Do you want to shake on " + lineValues.lineName)
                 self.dismiss(animated: true, completion: nil)
             } else {
                 //present error view
