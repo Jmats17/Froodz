@@ -40,17 +40,29 @@ extension VerificationViewController: UITextFieldDelegate {
     
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= 20
+        if codeTextfield.isFirstResponder {
+            UIView.animate(withDuration: 1.0) {
+                if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                    if self.view.frame.origin.y == 0 {
+                        self.view.frame.origin.y -= keyboardSize.height / 2
+                    }
+                }
             }
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += 20
+        if codeTextfield.isFirstResponder {
+            UIView.animate(withDuration: 1.0) {
+                if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                    if self.view.frame.origin.y != 0 {
+                        if self.codeTextfield.isFirstResponder {
+                            self.view.frame.origin.y += keyboardSize.height / 2
+                        } else {
+                            self.view.frame.origin.y += (keyboardSize.height) / 2
+                        }
+                    }
+                }
             }
         }
     }

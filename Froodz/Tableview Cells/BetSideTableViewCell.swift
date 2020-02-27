@@ -16,7 +16,7 @@ class BetSideTableViewCell:  UITableViewCell {
     override func awakeFromNib() {}
     
     func setCellData(username: String) {
-        self.usernameLbl.text = " @" + username
+        self.usernameLbl.text = username.uppercased()
     }
     
 }

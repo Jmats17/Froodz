@@ -16,19 +16,6 @@ struct UserService {
     private static let FBUserRef = Firestore.firestore().collection("Users")
     private static let usernameRef = Firestore.firestore().collection("Usernames")
 
-    //Retrieve the User's group IDs and send to Groups+Users Service class
-    static func return_UserActiveGroupsIDS(userID: String, completion : @escaping ([String]) -> Void) {
-        FBUserRef.document(userID).getDocument { (documentSnapshot, error) in
-            
-            if self.errorExists(err: error) { completion([]) ; return }
-                        
-            guard let snapshot = documentSnapshot else { completion([]); return }
-            let user = CodableService.CodableUser.getUser(snapshot: snapshot)
-            
-            completion(user.active_groups)
-        }
-    }
-    
     //Return error string associated with request
     private static func errorExists(err: Error?) -> (Bool) {
         if let _ = err {
