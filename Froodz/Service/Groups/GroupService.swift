@@ -139,17 +139,17 @@ struct GroupService {
     }
 
     //Joining existing group as a user and pushing data to FB
-    static func didJoinExistingGroup(userID: String, code: String,_ didJoin: @escaping (Bool) -> Void) {
+    static func didJoinExistingGroup(userID: String, code: String,_ didJoin: @escaping (Bool, String?) -> Void) {
 
         FBRef.whereField("code", isEqualTo: code).getDocuments { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
-                didJoin(false)
+                didJoin(false, nil)
                 return
             }
 
             guard let documents = snapshot?.documents else {
-                didJoin(false)
+                didJoin(false, nil)
                 return
             }
             
@@ -160,16 +160,16 @@ struct GroupService {
                         "leaderboard.\(user.username)" : group.startingAmt,
                         "users": FieldValue.arrayUnion([user.documentId])
                     ]) { error in
-                        if let err = error { print(err.localizedDescription) ; didJoin(false) ; return }
+                        if let err = error { print(err.localizedDescription) ; didJoin(false, nil) ; return }
                         else {
                             UserService.addGroupTo_ActiveGroups(userID: userID, groupID: group.documentId)
                             PushNotificationService.subscribeToGroup(group: group.documentId)
-                            didJoin(true)
+                            didJoin(true, group.documentId)
                             return
                         }
                     }
-                } else {didJoin(false) ; return}
-            } else {didJoin(false) ; return}
+                } else {didJoin(false, nil) ; return}
+            } else {didJoin(false, nil) ; return}
         }
     }
     

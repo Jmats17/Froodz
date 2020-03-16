@@ -55,8 +55,10 @@ extension ActiveGroupsViewController: UITextFieldDelegate {
     
     func joinGroup() {
         guard let code = joinGroupTextField.text else { return }
-        GroupService.didJoinExistingGroup(userID: user.documentId, code: code) { (didJoin) in
+        GroupService.didJoinExistingGroup(userID: user.documentId, code: code) { (didJoin, groupID) in
             if didJoin {
+                guard let groupCode = groupID else {return}
+                PushNotificationService.sendPushNotification(to: groupCode, title: "\(self.user.fullName) joined!", body: "\(self.user.fullName) may now place and wager on group bets.")
                 self.joinGroupTextField.text = ""
                 self.refreshGroupData(self)
             } else {

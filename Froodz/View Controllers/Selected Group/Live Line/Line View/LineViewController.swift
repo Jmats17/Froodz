@@ -74,7 +74,7 @@ class LineViewController: UIViewController {
         if line.creator != user.username {
             endButton.isHidden = true
         } else {
-            if getLinePercentFilled(line: line) < 0.8 {
+            if getLinePercentFilled(line: line) < 0.50 {
                 endButton.setTitle("\(Int(getLinePercentFilled(line: line) * 100.0))% Filled", for: .normal)
                 endButton.setTitleColor(Constants.Color.primaryBlackText, for: .normal)
                 endButton.isEnabled = false
