@@ -20,13 +20,12 @@ class ActiveGroupsViewController: UIViewController {
             }
         }
     }
-    @IBOutlet weak var joinGroupTextField : UITextField! {
+    @IBOutlet weak var createGroupButton: UIButton! {
         didSet {
-            joinGroupTextField.attributedPlaceholder = NSAttributedString(string: "6ixCde",
-                                                                          attributes: [NSAttributedString.Key.foregroundColor: Constants.Color.lightGray])
+            createGroupButton.layer.borderColor = Constants.Color.primaryBlue.cgColor
         }
     }
-    @IBOutlet weak var createGroupButton: UIButton!
+    @IBOutlet weak var joinGroupButton: UIButton!
     @IBOutlet weak var groupLbl : UILabel! {
         didSet {
             groupLbl.text = "My Groups"
@@ -44,8 +43,6 @@ class ActiveGroupsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        joinGroupTextField.delegate = self
-        endEditingTapRecgonizer()
         
         refreshControl.addTarget(self, action: #selector(refreshGroupData(_:)), for: .valueChanged)
         startAnimatingIndicator()
@@ -82,11 +79,15 @@ class ActiveGroupsViewController: UIViewController {
             }
         }
     }
-   
-    private func endEditingTapRecgonizer() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+    
+    @IBAction func tappedJoinGroup(sender: UIButton) {
+        AlertViewService.JoinGroup.join_ExistingGroup(user: user, viewController: self) { (didJoin) in
+            if (didJoin) {
+                self.refreshGroupData(self)
+            } else {
+                AlertViewService.JoinGroup.showCodeError(viewController: self)
+            }
+        }
     }
 
 }

@@ -11,6 +11,8 @@ pod 'CodableFirebase'
 pod 'PMSuperButton'
 pod "Haptica"
 pod 'Firebase/Messaging'
+pod 'CleanyModal'
+
   # Pods for Froodz
 
 end

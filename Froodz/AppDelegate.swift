@@ -25,22 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return true
     }
-//    
-//    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-//        print(remoteMessage.appData)
-//    }
-//
-//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-//        InstanceID.instanceID().instanceID { (result, error) in
-//          if let error = error {
-//            print("Error fetching remote instance ID: \(error)")
-//          } else if let result = result {
-//            print("Remote instance ID token: \(result.token)")
-//            UserDefaults.standard.set(result.token, forKey: "UserToken")
-//          }
-//        }
-//    }
-    
+
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

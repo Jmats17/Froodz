@@ -50,34 +50,3 @@ extension ActiveGroupsViewController : UITableViewDelegate, UITableViewDataSourc
     
     
 }
-
-extension ActiveGroupsViewController: UITextFieldDelegate {
-    
-    func joinGroup() {
-        guard let code = joinGroupTextField.text else { return }
-        GroupService.didJoinExistingGroup(userID: user.documentId, code: code) { (didJoin, groupID) in
-            if didJoin {
-                guard let groupCode = groupID else {return}
-                PushNotificationService.sendPushNotification(to: groupCode, title: "\(self.user.fullName) joined!", body: "\(self.user.fullName) may now place and wager on group bets.")
-                self.joinGroupTextField.text = ""
-                self.refreshGroupData(self)
-            } else {
-                self.joinGroupTextField.text = ""
-                self.codeNotFoundAlert()
-            }
-        }
-    }
-    
-    private func codeNotFoundAlert() {
-        let alert = UIAlertController(title: "Code Not Found", message: "Please try another code or check again.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        Haptic.impact(.light).generate()
-        joinGroup()
-        textField.resignFirstResponder()
-        return true
-    }
-}

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		171FEC5DB73BED6CBB2FD455 /* Pods_Froodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966F473B42CAD49A904136F6 /* Pods_Froodz.framework */; };
 		D03C1BC623FE1AB5009F8543 /* LineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03C1BC523FE1AB5009F8543 /* LineViewController.swift */; };
 		D03C1BC823FE1AD7009F8543 /* LineTblView-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03C1BC723FE1AD7009F8543 /* LineTblView-Ext.swift */; };
 		D03C1BCA23FE285E009F8543 /* BetSideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03C1BC923FE285E009F8543 /* BetSideTableViewCell.swift */; };
@@ -14,6 +15,7 @@
 		D041C5CC23FC80C100D230B2 /* CodableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5CB23FC80C100D230B2 /* CodableService.swift */; };
 		D041C5CF23FCA81300D230B2 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */; };
 		D041C5D123FCB04100D230B2 /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041C5D023FCB04100D230B2 /* LeaderboardTableViewCell.swift */; };
+		D04AB478243BA4770067F750 /* AlertViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04AB477243BA4770067F750 /* AlertViewService.swift */; };
 		D072697A23F0C85F002760ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072697923F0C85F002760ED /* AppDelegate.swift */; };
 		D072697C23F0C85F002760ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072697B23F0C85F002760ED /* SceneDelegate.swift */; };
 		D072698123F0C85F002760ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D072697F23F0C85F002760ED /* Main.storyboard */; };
@@ -45,7 +47,6 @@
 		D0DF8D1A23F6008100590C60 /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1923F6008100590C60 /* VerificationVC.swift */; };
 		D0DF8D1C23F600EF00590C60 /* VerifyTxtField-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1B23F600EF00590C60 /* VerifyTxtField-Ext.swift */; };
 		D0DF8D1E23F6037E00590C60 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF8D1D23F6037E00590C60 /* Constants.swift */; };
-		D390F8F41647BA48B2456F2B /* Pods_Froodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3304F30116A359A2908B18E3 /* Pods_Froodz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,9 +63,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.release.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.release.xcconfig"; sourceTree = "<group>"; };
-		3304F30116A359A2908B18E3 /* Pods_Froodz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Froodz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		85EDD8752165AD430FFF64E7 /* Pods-Froodz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.debug.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.debug.xcconfig"; sourceTree = "<group>"; };
+		0B0D525B851808287AB8CA79 /* Pods-Froodz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.release.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.release.xcconfig"; sourceTree = "<group>"; };
+		966F473B42CAD49A904136F6 /* Pods_Froodz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Froodz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3231364B610BF4C1510D455 /* Pods-Froodz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Froodz.debug.xcconfig"; path = "Target Support Files/Pods-Froodz/Pods-Froodz.debug.xcconfig"; sourceTree = "<group>"; };
 		D03C1BC523FE1AB5009F8543 /* LineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineViewController.swift; sourceTree = "<group>"; };
 		D03C1BC723FE1AD7009F8543 /* LineTblView-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineTblView-Ext.swift"; sourceTree = "<group>"; };
 		D03C1BC923FE285E009F8543 /* BetSideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetSideTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 		D041C5CB23FC80C100D230B2 /* CodableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableService.swift; sourceTree = "<group>"; };
 		D041C5CE23FCA81300D230B2 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		D041C5D023FCB04100D230B2 /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
+		D04AB477243BA4770067F750 /* AlertViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewService.swift; sourceTree = "<group>"; };
 		D072697623F0C85F002760ED /* Shake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D072697923F0C85F002760ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D072697B23F0C85F002760ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,28 +115,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D390F8F41647BA48B2456F2B /* Pods_Froodz.framework in Frameworks */,
+				171FEC5DB73BED6CBB2FD455 /* Pods_Froodz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		85B21A1AE8878FBC415EAA94 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3304F30116A359A2908B18E3 /* Pods_Froodz.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		9AB42BA30FB1588ACB601209 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				85EDD8752165AD430FFF64E7 /* Pods-Froodz.debug.xcconfig */,
-				31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */,
+				C3231364B610BF4C1510D455 /* Pods-Froodz.debug.xcconfig */,
+				0B0D525B851808287AB8CA79 /* Pods-Froodz.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D0389C1AE519FF4D48F161AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				966F473B42CAD49A904136F6 /* Pods_Froodz.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D03C1BC323FE1A94009F8543 /* Create Line */ = {
@@ -172,13 +174,29 @@
 			path = CodableFirestore;
 			sourceTree = "<group>";
 		};
+		D04AB475243BA44B0067F750 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D04AB476243BA45D0067F750 /* CleanyModal */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D04AB476243BA45D0067F750 /* CleanyModal */ = {
+			isa = PBXGroup;
+			children = (
+				D04AB477243BA4770067F750 /* AlertViewService.swift */,
+			);
+			path = CleanyModal;
+			sourceTree = "<group>";
+		};
 		D072696D23F0C85F002760ED = {
 			isa = PBXGroup;
 			children = (
 				D072697823F0C85F002760ED /* Froodz */,
 				D072697723F0C85F002760ED /* Products */,
 				9AB42BA30FB1588ACB601209 /* Pods */,
-				85B21A1AE8878FBC415EAA94 /* Frameworks */,
+				D0389C1AE519FF4D48F161AE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,6 +217,7 @@
 				D072699023F0C9D8002760ED /* Helpers */,
 				D072698F23F0C9C9002760ED /* Service */,
 				D072698E23F0C9BE002760ED /* Model */,
+				D04AB475243BA44B0067F750 /* Views */,
 				D072698D23F0C9B6002760ED /* View Controllers */,
 				D072699B23F1FC1D002760ED /* Tableview Cells */,
 				D072697F23F0C85F002760ED /* Main.storyboard */,
@@ -353,12 +372,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D072698A23F0C860002760ED /* Build configuration list for PBXNativeTarget "Froodz" */;
 			buildPhases = (
-				0D5ADCFD4DB62E6B25E8A917 /* [CP] Check Pods Manifest.lock */,
+				38F3FBE86A201FA3A24DF80A /* [CP] Check Pods Manifest.lock */,
 				D072697223F0C85F002760ED /* Sources */,
 				D072697323F0C85F002760ED /* Frameworks */,
 				D072697423F0C85F002760ED /* Resources */,
-				75C574ACB1FF472FDA87E391 /* [CP] Embed Pods Frameworks */,
 				D0DF8D2E23F6052500590C60 /* Embed App Extensions */,
+				6300082CE4F97E2CBE0B3EFE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -417,7 +436,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D5ADCFD4DB62E6B25E8A917 /* [CP] Check Pods Manifest.lock */ = {
+		38F3FBE86A201FA3A24DF80A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -439,7 +458,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		75C574ACB1FF472FDA87E391 /* [CP] Embed Pods Frameworks */ = {
+		6300082CE4F97E2CBE0B3EFE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -493,6 +512,7 @@
 				D07269C323F246BD002760ED /* Line.swift in Sources */,
 				D07269B223F20E56002760ED /* User.swift in Sources */,
 				D03C1BCA23FE285E009F8543 /* BetSideTableViewCell.swift in Sources */,
+				D04AB478243BA4770067F750 /* AlertViewService.swift in Sources */,
 				D07269C123F2426B002760ED /* CrteLineTxtFld-Ext.swift in Sources */,
 				D03C1BC623FE1AB5009F8543 /* LineViewController.swift in Sources */,
 				D0DF8D1E23F6037E00590C60 /* Constants.swift in Sources */,
@@ -638,7 +658,7 @@
 		};
 		D072698B23F0C860002760ED /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 85EDD8752165AD430FFF64E7 /* Pods-Froodz.debug.xcconfig */;
+			baseConfigurationReference = C3231364B610BF4C1510D455 /* Pods-Froodz.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -652,6 +672,74 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CleanyModal\"",
+					"-framework",
+					"\"CodableFirebase\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseFirestore\"",
+					"-framework",
+					"\"FirebaseFirestoreSwift\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"FirebaseMessaging\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GTMSessionFetcher\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleDataTransportCCTSupport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"Haptica\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"PMSuperButton\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"absl\"",
+					"-framework",
+					"\"grpc\"",
+					"-framework",
+					"\"grpcpp\"",
+					"-framework",
+					"\"leveldb\"",
+					"-framework",
+					"\"nanopb\"",
+					"-framework",
+					"\"openssl_grpc\"",
+					"-framework",
+					"\"protobuf\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinmatsnev.Froodz;
 				PRODUCT_NAME = Shake;
 				PROVISIONING_PROFILE_SPECIFIER = "Froodz PP";
@@ -662,7 +750,7 @@
 		};
 		D072698C23F0C860002760ED /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31F5E14DF78F8573D5E21D9B /* Pods-Froodz.release.xcconfig */;
+			baseConfigurationReference = 0B0D525B851808287AB8CA79 /* Pods-Froodz.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -675,6 +763,74 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CleanyModal\"",
+					"-framework",
+					"\"CodableFirebase\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseFirestore\"",
+					"-framework",
+					"\"FirebaseFirestoreSwift\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"FirebaseMessaging\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GTMSessionFetcher\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleDataTransportCCTSupport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"Haptica\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"PMSuperButton\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"absl\"",
+					"-framework",
+					"\"grpc\"",
+					"-framework",
+					"\"grpcpp\"",
+					"-framework",
+					"\"leveldb\"",
+					"-framework",
+					"\"nanopb\"",
+					"-framework",
+					"\"openssl_grpc\"",
+					"-framework",
+					"\"protobuf\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinmatsnev.Froodz;
 				PRODUCT_NAME = Shake;
